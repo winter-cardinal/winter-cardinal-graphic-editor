@@ -1,5 +1,5 @@
 {
-	"name": "wcardinal-geditor",
+	"name": "@wcardinal/wcardinal-geditor",
 	"version": "0.1.1",
 	"license": "Apache-2.0",
 	"description": "WebGL-based graphic editor, tester and viewer for supervisory systems",
