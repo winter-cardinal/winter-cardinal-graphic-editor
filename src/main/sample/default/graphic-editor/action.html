@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Action</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		// Add a custom open action.
+		// The same setting is required when creating a graphic viewer or tester.
+		wcardinal.ui.EShapeActionOpenExtensions.add({
+			type: wcardinal.ui.EShapeActionValueOpenType.EXTENSION + 0,
+			label: "My Open Extension",
+			opener: (target, inNewWindow, shape, diagram, environment) => {
+				// Called to open the target.
+			}
+		});
+
+		// Add a custom open dialog action.
+		// The same setting is required when creating a graphic viewer or tester.
+		wcardinal.ui.EShapeActionOpenDialogExtensions.add({
+			type: wcardinal.ui.EShapeActionValueOpenDialogType.EXTENSION + 0,
+			label: "My Dialog Open Extension",
+			opener: (target, argument, shape, diagram, environment) => {
+				// Called to open the target in dialogs.
+			}
+		});
+
+		// Add a custom misc. action.
+		// The same setting is required when creating a graphic viewer or tester.
+		wcardinal.ui.EShapeActionMiscExtensions.add({
+			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 0,
+			label: "My Misc. Extension",
+			executor: (argument, shape, diagram, environment) => {
+				// Called to execute this misc. action.
+			}
+		});
+
+		// Create a graphic editor.
+		new wcardinal.geditor.FGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Editor")
+		});
+	}());
+	</script>
+</body>
+</html>

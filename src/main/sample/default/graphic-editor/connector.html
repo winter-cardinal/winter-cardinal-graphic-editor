@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Connector</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		// Add a custom connector.
+		var type = wcardinal.ui.EShapeType.EXTENSION + 300;
+		wcardinal.geditor.EShapeExtensions.add({
+			type: type,
+			name: "My Connector",
+			icon: {
+				width: 24,
+				height: 24,
+				svg:
+					`<g transform="scale(26.667,26.667) translate(+12, +12) rotate(-40) translate(-12, -12)">` +
+						`<rect x="4" y="11" width="16" height="2" fill="#fff"></rect>` +
+						`<circle cx="1" cy="12" r="2" stroke="#fff" stroke-width="2" fill="none"></circle>` +
+						`<polygon points="20,10 20,14 24,12" stroke="#fff" stroke-width="2" fill="none" />` +
+					`</g>`
+			},
+			title: "Create my connector",
+
+			// Connectors are created by the tool made for that.
+			// The following function is called to create that tool.
+			creator: {
+				tool: (selection, diagram) => {
+					return new wcardinal.geditor.EToolShapeCreateLineConnector(selection, diagram, () => {
+						return new wcardinal.ui.EShapeConnectorLine(type);
+					});
+				}
+			},
+
+			// A function to create the tool to update this shape.
+			updater: {
+				tool: (selection, diagram) => {
+					return new wcardinal.geditor.EToolShapeEditLineConnector(selection, diagram);
+				}
+			},
+
+			deserializer: (item, manager) => {
+				return wcardinal.ui.deserializeConnectorLine(
+					item, manager, new wcardinal.ui.EShapeConnectorLine(type)
+				);
+			},
+
+			onDeserialized: wcardinal.ui.onDeserializedConnectorLine,
+
+			uploaded: wcardinal.ui.createLineUploaded,
+
+			capability: wcardinal.ui.EShapeCapability.CONNECTOR
+		});
+
+		// Create a graphic editor.
+		new wcardinal.geditor.FGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Editor")
+		});
+	}());
+	</script>
+</body>
+</html>

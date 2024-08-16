@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shape</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		// Add a custom shape.
+		wcardinal.geditor.EShapeExtensions.add({
+			// Icon settings
+			icon: {
+				width: 24,
+				height: 24,
+				svg: (
+					// The icons is scaled down by 3/80, that is approximately 1 / 26.667, before rendering.
+					// This is why `transform="scale(26.667)"` is here.
+					'<g transform="scale(26.667)" fill="#fff" stroke="none">' +
+						'<path d="M6 14l3 3v5h6v-5l3-3V9H6v5zm2-3h8v2.17l-3 3V20h-2v-3.83l-3-' +
+						'3V11zm3-9h2v3h-2zM3.502 5.874L4.916 4.46l2.122 2.12-1.414 1.415zm13.' +
+						'458.708l2.123-2.12 1.413 1.416-2.123 2.12z"/>' +
+					'</g>'
+				)
+			},
+			// Tooltip settings
+			title: {
+				// Tooltip text of a button to create an instance of a shape.
+				create: "Light",
+
+				// Tooltip text of a button to replace shape instances.
+				change: "Light"
+			},
+			// A function to create an instance of a shape.
+			// When creating an instance for replacing an existing instance,
+			// the argument `existing` is set to an instance about to be replaced.
+			// If the argument `existing` is not `undefined`, this function
+			// is supposed to copy its position, size and other properties of that instance.
+			// For simplicity, in this sample, the rectangle shape is used.
+			creator: (existing) => {
+				const result = new wcardinal.ui.EShapeRectangle();
+				if (existing) {
+					result.copy(existing);
+				}
+				return result;
+			}
+		});
+
+		// Add a shape factory for adding multiple shapes at once.
+		wcardinal.geditor.EShapeExtensionFactories.add({
+			// Icon settings
+			icon: {
+				width: 24,
+				height: 24,
+				svg: (
+					// The icons is scaled down by 3/80, that is approximately 1 / 26.667, before rendering.
+					// This is why `transform="scale(26.667)"` is here.
+					'<g transform="scale(26.6666)" fill="#fff" stroke="none">' +
+						'<path d="M6 14l3 3v5h6v-5l3-3V9H6v5zm2-3h8v2.17l-3 3V20h-2v-3.83l-3-' +
+						'3V11zm3-9h2v3h-2zM3.502 5.874L4.916 4.46l2.122 2.12-1.414 1.415zm13.' +
+						'458.708l2.123-2.12 1.413 1.416-2.123 2.12z"/>' +
+					'</g>'
+				)
+			},
+			// Tooltip settings
+			title: {
+				// Tooltip text of a button to create an instance of a shape.
+				create: "Extended Light",
+
+				// Tooltip text of a button to replace shape instances.
+				change: "Extended Light"
+			},
+			// A function called to search shapes.
+			// The first argument is a search word.
+			// This function is supposed to return `Promise<ITEM[]>`.
+			// `ITEM` is a generic type parameter and could be anything.
+			// But `ITEM` must be the same with those of `item.toLabel(ITEM)` and `item.toCreator(ITEM)`.
+			// Please refer to EShapeExtensionFactory<ITEM>.
+			// In this sample, `ITEM` is set to `string`.
+			search: (word) => {
+				return Promise.resolve([
+					"Extended light A",
+					"Extended light B",
+					"Extended light C"
+				]
+				.filter((id) => {
+					return word.length <= 0 || 0 <= id.indexOf(word);
+				}));
+			},
+			item: {
+				// A function to convert `ITEM` to its label.
+				toLabel: (item) => {
+					return item;
+				},
+
+				// A function to convert `ITEM` to its shape instance creator.
+				// For simplicity, in this sample, the rectangle shape is used.
+				toCreator: (item) => {
+					return Promise.resolve((existing) => {
+						const result = new wcardinal.ui.EShapeRectangle();
+						if (existing) {
+							result.copy(existing);
+						}
+						return result;
+					});
+				}
+			}
+		});
+
+		// Create a graphic editor.
+		new wcardinal.geditor.FGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Editor")
+		});
+	}());
+	</script>
+</body>
+</html>

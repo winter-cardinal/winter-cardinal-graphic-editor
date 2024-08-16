@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pointer Event Handler</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script src="../../resource/zigzag-formatter.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		class MyToolSelect extends wcardinal.geditor.EToolSelect {
+			constructor(options) {
+				super(options);
+				this._onClickBound = (e) => {
+					this.onClick(e);
+				};
+			}
+
+			onActivate() {
+				super.onActivate();
+
+				const diagram = this._diagram;
+				diagram.on("click", this._onClickBound);
+				diagram.on("rightclick", this._onClickBound);
+			}
+
+			onDeactivate() {
+				super.onDeactivate();
+				const diagram = this._diagram;
+				diagram.off("click", this._onClickBound);
+				diagram.off("rightclick", this._onClickBound);
+			}
+
+			onClick(e) {
+				const diagram = this._diagram;
+				const canvas = diagram.canvas;
+				const layer = diagram.layer;
+				if (canvas && layer) {
+					const hitObject = this.hitTest(e.data.global, this._selection.modifier, layer);
+					if (hitObject instanceof wcardinal.ui.EShapeBase) {
+						console.log(e.type, hitObject);
+					}
+				}
+			}
+		}
+
+		class MyGraphicEditor extends wcardinal.geditor.FGraphicEditor {
+			newToolShapeSelect() {
+				const diagram = this.diagram;
+				const result = new MyToolSelect({ diagram });
+				diagram.on("set", () => {
+					result.selection.clear();
+				});
+				diagram.on("unset", () => {
+					result.selection.clear();
+				});
+				return result;
+			}
+		}
+
+		// Create a graphic editor.
+		new MyGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Editor")
+		});
+	}());
+	</script>
+</body>
+</html>

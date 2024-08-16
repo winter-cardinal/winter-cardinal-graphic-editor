@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Command Controller</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script src="../../resource/connectors.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		// The command controller is the central class to handle all the commands that change graphics.
+		const commandController = wcardinal.ui.DControllers.getCommandController();
+
+		// The `executing` event is fired before executing commands.
+		commandController.on("executing", (command) => {
+			// ECommandShapeCreate is the command of newly creating shapes.
+			if (command instanceof wcardinal.geditor.ECommandShapeCreate) {
+				// Change the color of the connectors connected to circles.
+				command.shapes.forEach((shape) => {
+					if (common.Connectors.isConnector(shape)) {
+						if (common.Connectors.isConnectedTo(shape, wcardinal.ui.EShapeType.CIRCLE)) {
+							shape.stroke.color = 0x3388ff;
+						}
+					}
+				});
+			}
+
+			// ECommandShapeReplaceOne is the command of replacing a shape.
+			if (command instanceof wcardinal.geditor.ECommandShapeReplaceOne) {
+				// Change the stroke color of the connectors connected to circles.
+				// Otherwise, change it to the default stroke color.
+				const shape = command.newShape;
+				if (common.Connectors.isConnector(shape)) {
+					if (common.Connectors.isConnectedTo(shape, wcardinal.ui.EShapeType.CIRCLE)) {
+						shape.stroke.color = 0x3388ff;
+					} else {
+						shape.stroke.color = wcardinal.ui.DThemes.get("EShape").getStrokeColor();
+					}
+				}
+			}
+
+			// ECommandShapePropertyStrokeColor is the command of changing the stroke color of shapes.
+			if (command instanceof wcardinal.geditor.ECommandShapePropertyStrokeColor) {
+				command.shapes.forEach((shape) => {
+					// Log if shapes are connectors.
+					if (common.Connectors.isConnector(shape)) {
+						console.log("executing stroke color command", shape.stroke.color.toString(16));
+					}
+				})
+			}
+
+			// ECommandShapeDelete is the command of deleting shapes.
+			if (command instanceof wcardinal.geditor.ECommandShapeDelete) {
+				command.shapes.forEach((shape) => {
+					// Log if deleted shapes are connectors.
+					if (common.Connectors.isConnector(shape)) {
+						console.log("executing delete command", shape);
+					}
+				})
+			}
+		});
+
+		// The `executed` event is fired immediately after executing commands.
+		commandController.on("executed", (command) => {
+			// ECommandShapePropertyStrokeColor is the command of changing the stroke color of shapes.
+			if (command instanceof wcardinal.geditor.ECommandShapePropertyStrokeColor) {
+				command.shapes.forEach((shape) => {
+					// Log if shapes are connectors.
+					if (common.Connectors.isConnector(shape)) {
+						console.log("executed stroke color command", shape.stroke.color.toString(16));
+					}
+				})
+			}
+		});
+
+		// The `undoed` event is fired immediately after undoing commands.
+		commandController.on("undoed", (command) => {
+			// ECommandShapeDelete is the command of deleting shapes.
+			if (command instanceof wcardinal.geditor.ECommandShapeDelete) {
+				command.shapes.forEach((shape) => {
+					// Log if deleted shapes are connectors.
+					if (common.Connectors.isConnector(shape)) {
+						console.log("undoed delete command", shape);
+					}
+				})
+			}
+		});
+
+		// The `redoed` event is fired immediately after redoing commands.
+		commandController.on("redoed", (command) => {
+			// ECommandShapeDelete is the command of deleting shapes.
+			if (command instanceof wcardinal.geditor.ECommandShapeDelete) {
+				command.shapes.forEach((shape) => {
+					// Log if deleted shapes are connectors.
+					if (common.Connectors.isConnector(shape)) {
+						console.log("redoed delete command", shape);
+					}
+				})
+			}
+		});
+
+		// Create a graphic editor.
+		new wcardinal.geditor.FGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Editor")
+		});
+	}());
+	</script>
+</body>
+</html>

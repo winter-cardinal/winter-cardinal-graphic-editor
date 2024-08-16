@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Acceptor (Extension for Graphic Pieces)</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/5.3.12/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/0.446.0/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/0.446.0/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/0.1.0/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/0.1.0/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-piece-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		// Load the acceptor extension for graphic pieces.
+		// This extension allows users to create the custom acceptors on the graphic piece editor.
+		// The same setting is required when creating a graphic viewer or tester.
+		wcardinal.geditor.loadShapeExtensionEmbeddedAcceptorEdge();
+
+		// Create a graphic piece editor.
+		new wcardinal.geditor.FGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicPieceController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Piece Editor"),
+
+			canvas: {
+				// Default canvas size
+				width: 300,
+				height: 300
+			}
+		});
+	}());
+	</script>
+</body>
+</html>

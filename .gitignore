@@ -1,0 +1,17 @@
+bin
+build
+out
+node_modules
+dist
+
+.classpath
+.project
+.settings
+.vscode
+.rpt2_cache
+.idea
+
+src/main/typescript/types
+src/main/typescript/*.js
+src/main/typescript/*.js.map
+src/main/javascript/

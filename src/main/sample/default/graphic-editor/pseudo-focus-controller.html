@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pseudo Focus Controller</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		class MyPseudoFocusController {
+			constructor() {
+				this.focused = null;
+			}
+
+			set(shape) {
+				if (shape !== this.focused) {
+					if (this.focused != null) {
+						this.onBlur(this.focused);
+					}
+
+					this.focused = shape;
+					if (this.focused != null) {
+						this.onFocus(this.focused);
+					}
+				}
+			}
+
+			onFocus(shape) {
+				console.log("focus", shape);
+			}
+
+			onBlur(shape) {
+				console.log("blur", shape);
+			}
+		}
+
+		const myPseudoFocusController = new MyPseudoFocusController();
+
+		class MyToolSelect extends wcardinal.geditor.EToolSelect {
+			constructor(options) {
+				super(options);
+				this._onClickBound = (e) => {
+					this.onClick(e);
+				};
+			}
+
+			onActivate() {
+				super.onActivate();
+
+				const diagram = this._diagram;
+				diagram.on("click", this._onClickBound);
+			}
+
+			onDeactivate() {
+				super.onDeactivate();
+				const diagram = this._diagram;
+				diagram.off("click", this._onClickBound);
+			}
+
+			onClick(e) {
+				const diagram = this._diagram;
+				const canvas = diagram.canvas;
+				const layer = diagram.layer;
+				if (canvas && layer) {
+					const hitObject = this.hitTest(e.data.global, this._selection.modifier, layer);
+					if (hitObject instanceof wcardinal.ui.EShapeBase) {
+						myPseudoFocusController.set(hitObject);
+					} else {
+						myPseudoFocusController.set(null);
+					}
+				}
+			}
+		}
+
+		class MyGraphicEditor extends wcardinal.geditor.FGraphicEditor {
+			newToolShapeSelect() {
+				const diagram = this.diagram;
+				const result = new MyToolSelect({ diagram });
+				diagram.on("set", () => {
+					result.selection.clear();
+				});
+				diagram.on("unset", () => {
+					result.selection.clear();
+				});
+				return result;
+			}
+		}
+
+		// Create a graphic editor.
+		const editor = new MyGraphicEditor({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Editor")
+		});
+
+		editor.application.getFocusController().on("change", (newElement, oldElement) => {
+			if (!(newElement instanceof wcardinal.ui.DDiagramCanvasEditor)) {
+				myPseudoFocusController.set(null);
+			}
+		});
+	}());
+	</script>
+</body>
+</html>

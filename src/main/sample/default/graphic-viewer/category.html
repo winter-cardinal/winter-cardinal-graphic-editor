@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Category</title>
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #eeeeee;
+	}
+
+	canvas {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<script src="../../js/pixi/latest/pixi.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/latest/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/latest/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../resource/graphic-controller.js"></script>
+	<script src="../../resource/new-header.js"></script>
+	<script src="../../resource/updater.js"></script>
+	<script>
+	(function(){
+		"use strict";
+
+		// Load shape extensions if necessary.
+		wcardinal.geditor.loadShapeExtensionButton();
+		wcardinal.geditor.loadShapeExtensionButtonLayer();
+		wcardinal.geditor.loadShapeExtensionInput();
+		wcardinal.geditor.loadShapeExtensionChartLine();
+		wcardinal.geditor.loadShapeExtensionTable();
+
+		// Create a graphic viewer.
+		const viewer = new wcardinal.geditor.FGraphicViewer({
+			controller: {
+				// A graphic controller that handles I/O requests of fetching / saving edited graphics.
+				graphic: common.graphicController
+			},
+
+			// A header creator
+			header: common.newHeader("Top", "Graphic Viewer"),
+
+			canvas: {
+				// The categories are used to classify graphics.
+				// The following setting creates two categories, `Custom` and `Standard`, and
+				// makes the `custom` category the default category.
+				// The graphic controller must be aware of these categories.
+				// Please refer to UtilCanvasCategoryOptions.
+				category: {
+					default: "CUSTOM",
+
+					items: [
+						{ id: "CUSTOM", label: "Custom" },
+						{ id: "STANDARD", label: "Standard" }
+					],
+
+					writable: true
+				}
+			}
+		});
+
+		// Set pseudo sensor values periodically.
+		new common.Updater(viewer).start();
+	}());
+	</script>
+</body>
+</html>
