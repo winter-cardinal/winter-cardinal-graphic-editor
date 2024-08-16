@@ -4,7 +4,9 @@
 	"license": "Apache-2.0",
 	"description": "WebGL-based graphic editor, tester and viewer for supervisory systems",
 	"homepage": "https://github.com/winter-cardinal/winter-cardinal-graphic-editor",
-	"repository": "https://github.com/winter-cardinal/winter-cardinal-graphic-editor",
+	"repository": {
+		"url": "git+https://github.com/winter-cardinal/winter-cardinal-graphic-editor.git"
+	},
 	"keywords": [
 		"WebGL",
 		"UI",
@@ -13,14 +15,13 @@
 		"Tester",
 		"Viewer"
 	],
-	"private": true,
 	"main": "dist/wcardinal-geditor.cjs.js",
 	"types": "dist/types/wcardinal-geditor.esm.d.ts",
 	"module": "dist/wcardinal-geditor.esm.js",
 	"sideEffects": false,
 	"files": [
-		"dist/wcardinal-geditor",
 		"dist/types",
+		"dist/wcardinal-geditor",
 		"dist/wcardinal-geditor-theme-default.js",
 		"dist/wcardinal-geditor-theme-default.min.js",
 		"dist/wcardinal-geditor-theme-default.min.js.map",
@@ -47,7 +48,8 @@
 		"watch:ts": "tsc -w",
 		"watch:rollup": "rollup -c -w",
 		"lint": "eslint src/main/typescript",
-		"lint:fix": "eslint src/main/typescript --fix"
+		"lint:fix": "eslint src/main/typescript --fix",
+		"prepublishOnly": "npm run build"
 	},
 	"peerDependencies": {
 		"@wcardinal/wcardinal-ui": ">=0.446.0",
