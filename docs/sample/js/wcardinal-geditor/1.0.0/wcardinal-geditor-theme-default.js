@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v0.1.0
+ WinterCardinal Graphic Editor v1.0.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -55,33 +55,33 @@
       return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
     };
 
-    var ESubthemeDefaultJaJpEditorShapeButton = /** @class */ (function (_super) {
-        __extends(ESubthemeDefaultJaJpEditorShapeButton, _super);
-        function ESubthemeDefaultJaJpEditorShapeButton() {
+    var ESubthemeDefaultEnUsEditorShapeButton = /** @class */ (function (_super) {
+        __extends(ESubthemeDefaultEnUsEditorShapeButton, _super);
+        function ESubthemeDefaultEnUsEditorShapeButton() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        ESubthemeDefaultJaJpEditorShapeButton.prototype.getCheckIsToggleLabel = function () {
-            return "トグル";
+        ESubthemeDefaultEnUsEditorShapeButton.prototype.getCheckIsToggleLabel = function () {
+            return "Toggle";
         };
-        ESubthemeDefaultJaJpEditorShapeButton.prototype.getCheckIsGroupedLabel = function () {
-            return "グルーピング";
+        ESubthemeDefaultEnUsEditorShapeButton.prototype.getCheckIsGroupedLabel = function () {
+            return "Grouped";
         };
-        ESubthemeDefaultJaJpEditorShapeButton.prototype.getCheckIsActiveLabel = function () {
-            return "アクティブ";
+        ESubthemeDefaultEnUsEditorShapeButton.prototype.getCheckIsActiveLabel = function () {
+            return "Active";
         };
-        return ESubthemeDefaultJaJpEditorShapeButton;
+        return ESubthemeDefaultEnUsEditorShapeButton;
     }(ESubthemeDefaultEditorShapeButton));
 
-    var EThemeDefaultJaJpShapeButton = /** @class */ (function () {
-        function EThemeDefaultJaJpShapeButton() {
+    var EThemeDefaultEnUsShapeButton = /** @class */ (function () {
+        function EThemeDefaultEnUsShapeButton() {
         }
-        EThemeDefaultJaJpShapeButton.prototype.getName = function () {
-            return "ボタン";
+        EThemeDefaultEnUsShapeButton.prototype.getName = function () {
+            return "Button";
         };
-        EThemeDefaultJaJpShapeButton.prototype.getLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsShapeButton.prototype.getLabel = function () {
+            return "Label";
         };
-        return EThemeDefaultJaJpShapeButton;
+        return EThemeDefaultEnUsShapeButton;
     }());
 
     var ESubthemeDefaultEditorShapeButtonLayer = /** @class */ (function () {
@@ -102,68 +102,68 @@
         return EThemeDefaultDialogShapeButtonLayerValue;
     }(wcardinalUi.DThemes.getClass("DDialogLayered")));
 
-    var ESubthemeDefaultJaJpEditorShapeButtonLayer = /** @class */ (function (_super) {
-        __extends(ESubthemeDefaultJaJpEditorShapeButtonLayer, _super);
-        function ESubthemeDefaultJaJpEditorShapeButtonLayer() {
+    var ESubthemeDefaultEnUsEditorShapeButtonLayer = /** @class */ (function (_super) {
+        __extends(ESubthemeDefaultEnUsEditorShapeButtonLayer, _super);
+        function ESubthemeDefaultEnUsEditorShapeButtonLayer() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        ESubthemeDefaultJaJpEditorShapeButtonLayer.prototype.getButtonNewTitle = function () {
-            return "列の新規作成";
+        ESubthemeDefaultEnUsEditorShapeButtonLayer.prototype.getButtonNewTitle = function () {
+            return "Create New Column";
         };
-        ESubthemeDefaultJaJpEditorShapeButtonLayer.prototype.getButtonDeleteTitle = function () {
-            return "選択列を削除";
+        ESubthemeDefaultEnUsEditorShapeButtonLayer.prototype.getButtonDeleteTitle = function () {
+            return "Delete Selected Column";
         };
-        ESubthemeDefaultJaJpEditorShapeButtonLayer.prototype.getButtonBringForwardTitle = function () {
-            return "選択列を前に移動";
+        ESubthemeDefaultEnUsEditorShapeButtonLayer.prototype.getButtonBringForwardTitle = function () {
+            return "Bring Selected Column Forward";
         };
-        ESubthemeDefaultJaJpEditorShapeButtonLayer.prototype.getButtonSendBackwardTitle = function () {
-            return "選択列を後ろに移動";
+        ESubthemeDefaultEnUsEditorShapeButtonLayer.prototype.getButtonSendBackwardTitle = function () {
+            return "Send Selected Column Backward";
         };
-        ESubthemeDefaultJaJpEditorShapeButtonLayer.prototype.getInputMarginLabel = function () {
-            return "マージン";
+        ESubthemeDefaultEnUsEditorShapeButtonLayer.prototype.getInputMarginLabel = function () {
+            return "Margin";
         };
-        return ESubthemeDefaultJaJpEditorShapeButtonLayer;
+        return ESubthemeDefaultEnUsEditorShapeButtonLayer;
     }(ESubthemeDefaultEditorShapeButtonLayer));
 
-    var EThemeDefaultJaJpDialogShapeButtonLayerValue = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogShapeButtonLayerValue, _super);
-        function EThemeDefaultJaJpDialogShapeButtonLayerValue() {
+    var EThemeDefaultEnUsDialogShapeButtonLayerValue = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogShapeButtonLayerValue, _super);
+        function EThemeDefaultEnUsDialogShapeButtonLayerValue() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.getInputLabelLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.getInputLabelLabel = function () {
+            return "Label";
         };
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.newInputLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.newInputLabel = function () {
+            return "Label";
         };
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.getInputWidthLabel = function () {
-            return "横幅";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.getInputWidthLabel = function () {
+            return "Width";
         };
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.getSelectLayerLabel = function () {
-            return "レイヤー";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.getSelectLayerLabel = function () {
+            return "Layer";
         };
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.getCheckBringToFromLabel = function () {
-            return "前面に移動";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.getCheckBringToFromLabel = function () {
+            return "Bring to Front";
         };
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.getCheckIsGroupedLabel = function () {
-            return "グループピング";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.getCheckIsGroupedLabel = function () {
+            return "Grouped";
         };
-        EThemeDefaultJaJpDialogShapeButtonLayerValue.prototype.getCheckIsActiveLabel = function () {
-            return "アクティブ";
+        EThemeDefaultEnUsDialogShapeButtonLayerValue.prototype.getCheckIsActiveLabel = function () {
+            return "Active";
         };
-        return EThemeDefaultJaJpDialogShapeButtonLayerValue;
+        return EThemeDefaultEnUsDialogShapeButtonLayerValue;
     }(EThemeDefaultDialogShapeButtonLayerValue));
 
-    var EThemeDefaultJaJpShapeButtonLayer = /** @class */ (function () {
-        function EThemeDefaultJaJpShapeButtonLayer() {
+    var EThemeDefaultEnUsShapeButtonLayer = /** @class */ (function () {
+        function EThemeDefaultEnUsShapeButtonLayer() {
         }
-        EThemeDefaultJaJpShapeButtonLayer.prototype.getName = function () {
-            return "レイヤーボタン";
+        EThemeDefaultEnUsShapeButtonLayer.prototype.getName = function () {
+            return "Layer Button";
         };
-        EThemeDefaultJaJpShapeButtonLayer.prototype.getLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsShapeButtonLayer.prototype.getLabel = function () {
+            return "Label";
         };
-        return EThemeDefaultJaJpShapeButtonLayer;
+        return EThemeDefaultEnUsShapeButtonLayer;
     }());
 
     var ESubthemeDefaultEditorShapeChartLine = /** @class */ (function () {
@@ -176,57 +176,57 @@
         return ESubthemeDefaultEditorShapeChartLine;
     }());
 
-    var ESubthemeDefaultJaJpEditorShapeChartLine = /** @class */ (function (_super) {
-        __extends(ESubthemeDefaultJaJpEditorShapeChartLine, _super);
-        function ESubthemeDefaultJaJpEditorShapeChartLine() {
+    var ESubthemeDefaultEnUsEditorShapeChartLine = /** @class */ (function (_super) {
+        __extends(ESubthemeDefaultEnUsEditorShapeChartLine, _super);
+        function ESubthemeDefaultEnUsEditorShapeChartLine() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getCheckXAxisLabel = function () {
-            return "X軸";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getCheckXAxisLabel = function () {
+            return "X Axis";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getCheckXAxisMajorTickLabel = function () {
-            return "目盛";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getCheckXAxisMajorTickLabel = function () {
+            return "Major Tick";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getCheckXAxisMinorTickLabel = function () {
-            return "補助目盛";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getCheckXAxisMinorTickLabel = function () {
+            return "Minor Tick";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getCheckYAxisLabel = function () {
-            return "Y軸";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getCheckYAxisLabel = function () {
+            return "Y Axis";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getCheckYAxisMajorTickLabel = function () {
-            return "目盛";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getCheckYAxisMajorTickLabel = function () {
+            return "Major Tick";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getCheckYAxisMinorTickLabel = function () {
-            return "補助目盛";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getCheckYAxisMinorTickLabel = function () {
+            return "Minor Tick";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getTextMajorTickCountLabel = function () {
-            return "目盛数";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getTextMajorTickCountLabel = function () {
+            return "Major Tick Count";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getTextMinorTickCountLabel = function () {
-            return "補助目盛数";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getTextMinorTickCountLabel = function () {
+            return "Minor Tick Count";
         };
-        ESubthemeDefaultJaJpEditorShapeChartLine.prototype.getTextPaddingLabel = function () {
-            return "余白";
+        ESubthemeDefaultEnUsEditorShapeChartLine.prototype.getTextPaddingLabel = function () {
+            return "Padding";
         };
-        return ESubthemeDefaultJaJpEditorShapeChartLine;
+        return ESubthemeDefaultEnUsEditorShapeChartLine;
     }(ESubthemeDefaultEditorShapeChartLine));
 
-    var EThemeDefaultJaJpShapeChartLine = /** @class */ (function () {
-        function EThemeDefaultJaJpShapeChartLine() {
+    var EThemeDefaultEnUsShapeChartLine = /** @class */ (function () {
+        function EThemeDefaultEnUsShapeChartLine() {
         }
-        EThemeDefaultJaJpShapeChartLine.prototype.getName = function () {
-            return "ラインチャート";
+        EThemeDefaultEnUsShapeChartLine.prototype.getName = function () {
+            return "Line Chart";
         };
-        EThemeDefaultJaJpShapeChartLine.prototype.newPlotAreaLabel = function () {
-            return "タイトル";
+        EThemeDefaultEnUsShapeChartLine.prototype.newPlotAreaLabel = function () {
+            return "Title";
         };
-        EThemeDefaultJaJpShapeChartLine.prototype.newXAxisLabel = function () {
-            return "X軸";
+        EThemeDefaultEnUsShapeChartLine.prototype.newXAxisLabel = function () {
+            return "X Axis";
         };
-        EThemeDefaultJaJpShapeChartLine.prototype.newYAxisLabel = function () {
-            return "Y軸";
+        EThemeDefaultEnUsShapeChartLine.prototype.newYAxisLabel = function () {
+            return "Y Axis";
         };
-        return EThemeDefaultJaJpShapeChartLine;
+        return EThemeDefaultEnUsShapeChartLine;
     }());
 
     var ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge = /** @class */ (function () {
@@ -239,59 +239,59 @@
         return ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge;
     }());
 
-    var ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge = /** @class */ (function (_super) {
-        __extends(ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge, _super);
-        function ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge() {
+    var ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge = /** @class */ (function (_super) {
+        __extends(ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge, _super);
+        function ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge.prototype.toSelectSubtypeLabel = function (subType) {
+        ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge.prototype.toSelectSubtypeLabel = function (subType) {
             switch (subType) {
                 case wcardinalUi.EShapeAcceptorEdgeType.HEAD:
-                    return "終点";
+                    return "Head";
                 case wcardinalUi.EShapeAcceptorEdgeType.TAIL:
-                    return "始点";
+                    return "Tail";
                 case wcardinalUi.EShapeAcceptorEdgeType.ALL:
-                    return "全て";
+                    return "All";
             }
         };
-        ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge.prototype.toSelectSideLabel = function (side) {
+        ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge.prototype.toSelectSideLabel = function (side) {
             switch (side) {
                 case wcardinalUi.EShapeAcceptorEdgeSide.LEFT:
-                    return "左";
+                    return "Left";
                 case wcardinalUi.EShapeAcceptorEdgeSide.TOP:
-                    return "上";
+                    return "Top";
                 case wcardinalUi.EShapeAcceptorEdgeSide.RIGHT:
-                    return "右";
+                    return "Right";
                 case wcardinalUi.EShapeAcceptorEdgeSide.BOTTOM:
-                    return "下";
+                    return "Bottom";
             }
             return "";
         };
-        ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge.prototype.getCheckIsVvisibleLabel = function () {
-            return "ビューワーで表示";
+        ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge.prototype.getCheckIsVvisibleLabel = function () {
+            return "Visible in Viewers";
         };
-        return ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge;
+        return ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge;
     }(ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge));
 
-    var EThemeDefaultJaJpShapeEmbeddedAcceptorEdge = /** @class */ (function () {
-        function EThemeDefaultJaJpShapeEmbeddedAcceptorEdge() {
+    var EThemeDefaultEnUsShapeEmbeddedAcceptorEdge = /** @class */ (function () {
+        function EThemeDefaultEnUsShapeEmbeddedAcceptorEdge() {
         }
-        EThemeDefaultJaJpShapeEmbeddedAcceptorEdge.prototype.getName = function () {
-            return "接続点";
+        EThemeDefaultEnUsShapeEmbeddedAcceptorEdge.prototype.getName = function () {
+            return "Acceptor Edge";
         };
-        return EThemeDefaultJaJpShapeEmbeddedAcceptorEdge;
+        return EThemeDefaultEnUsShapeEmbeddedAcceptorEdge;
     }());
 
-    var EThemeDefaultJaJpShapeInput = /** @class */ (function () {
-        function EThemeDefaultJaJpShapeInput() {
+    var EThemeDefaultEnUsShapeInput = /** @class */ (function () {
+        function EThemeDefaultEnUsShapeInput() {
         }
-        EThemeDefaultJaJpShapeInput.prototype.getName = function () {
-            return "インプット";
+        EThemeDefaultEnUsShapeInput.prototype.getName = function () {
+            return "Input";
         };
-        EThemeDefaultJaJpShapeInput.prototype.getLabel = function () {
-            return "テキスト";
+        EThemeDefaultEnUsShapeInput.prototype.getLabel = function () {
+            return "Text";
         };
-        return EThemeDefaultJaJpShapeInput;
+        return EThemeDefaultEnUsShapeInput;
     }());
 
     var ESubthemeDefaultEditorShapeTable = /** @class */ (function () {
@@ -689,40 +689,40 @@
         return EShapeTableRowSelection;
     })());
 
-    var ESubthemeDefaultJaJpEditorShapeTable = /** @class */ (function (_super) {
-        __extends(ESubthemeDefaultJaJpEditorShapeTable, _super);
-        function ESubthemeDefaultJaJpEditorShapeTable() {
+    var ESubthemeDefaultEnUsEditorShapeTable = /** @class */ (function (_super) {
+        __extends(ESubthemeDefaultEnUsEditorShapeTable, _super);
+        function ESubthemeDefaultEnUsEditorShapeTable() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.getButtonNewTitle = function () {
-            return "新規列の作成";
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.getButtonNewTitle = function () {
+            return "Create New Column";
         };
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.getButtonDeleteTitle = function () {
-            return "選択列の削除";
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.getButtonDeleteTitle = function () {
+            return "Delete Selected Column";
         };
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.getButtonBringForwardTitle = function () {
-            return "選択列を前に移動";
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.getButtonBringForwardTitle = function () {
+            return "Bring Selected Column Forward";
         };
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.getButtonSendBackwardTitle = function () {
-            return "選択列を後ろに移動";
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.getButtonSendBackwardTitle = function () {
+            return "Send Selected Column Backward";
         };
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.getInputRowHeightLabel = function () {
-            return "行の高さ";
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.getInputRowHeightLabel = function () {
+            return "Row Height";
         };
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.getSelectRowSelectionTypeLabel = function () {
-            return "行の選択方法";
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.getSelectRowSelectionTypeLabel = function () {
+            return "Row Selection Type";
         };
-        ESubthemeDefaultJaJpEditorShapeTable.prototype.toSelectRowSelectionTypeLabel = function (type) {
+        ESubthemeDefaultEnUsEditorShapeTable.prototype.toSelectRowSelectionTypeLabel = function (type) {
             switch (type) {
                 case EShapeTableRowSelectionType.NONE:
-                    return "なし";
+                    return "None";
                 case EShapeTableRowSelectionType.SINGLE:
-                    return "シングル";
+                    return "Single";
                 case EShapeTableRowSelectionType.MULTIPLE:
-                    return "マルチ";
+                    return "Multiple";
             }
         };
-        return ESubthemeDefaultJaJpEditorShapeTable;
+        return ESubthemeDefaultEnUsEditorShapeTable;
     }(ESubthemeDefaultEditorShapeTable));
 
     var EShapeTableColumnValueType = {
@@ -730,72 +730,72 @@
         NUMBER: 1
     };
 
-    var EThemeDefaultJaJpDialogShapeTableColumn = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogShapeTableColumn, _super);
-        function EThemeDefaultJaJpDialogShapeTableColumn() {
+    var EThemeDefaultEnUsDialogShapeTableColumn = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogShapeTableColumn, _super);
+        function EThemeDefaultEnUsDialogShapeTableColumn() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getSelectColumnValueTypeLabel = function () {
-            return "種別";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getSelectColumnValueTypeLabel = function () {
+            return "Type";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.toSelectColumnValueTypeLabel = function (type) {
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.toSelectColumnValueTypeLabel = function (type) {
             switch (type) {
                 case EShapeTableColumnValueType.NUMBER:
-                    return "数値";
+                    return "Number";
                 default:
-                    return "文字";
+                    return "Text";
             }
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getInputLabelLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getInputLabelLabel = function () {
+            return "Label";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.newInputLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.newInputLabel = function () {
+            return "Label";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getInputWidthLabel = function () {
-            return "横幅";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getInputWidthLabel = function () {
+            return "Width";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getInputGetterLabel = function () {
-            return "ゲッター";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getInputGetterLabel = function () {
+            return "Getter";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getInputSetterLabel = function () {
-            return "セッター";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getInputSetterLabel = function () {
+            return "Setter";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getInputFormatLabel = function () {
-            return "書式";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getInputFormatLabel = function () {
+            return "Format";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.getSelectTextAlignLabel = function () {
-            return "文字寄せ";
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.getSelectTextAlignLabel = function () {
+            return "Align";
         };
-        EThemeDefaultJaJpDialogShapeTableColumn.prototype.toTextAlignLabel = function (align) {
+        EThemeDefaultEnUsDialogShapeTableColumn.prototype.toTextAlignLabel = function (align) {
             switch (align) {
                 case wcardinalUi.EShapeTextAlignHorizontal.LEFT:
-                    return "左寄せ";
+                    return "Left";
                 case wcardinalUi.EShapeTextAlignHorizontal.RIGHT:
-                    return "右寄せ";
+                    return "Right";
                 default:
-                    return "中央揃え";
+                    return "Center";
             }
         };
-        return EThemeDefaultJaJpDialogShapeTableColumn;
+        return EThemeDefaultEnUsDialogShapeTableColumn;
     }(EThemeDefaultDialogShapeTableColumn));
 
-    var EThemeDefaultJaJpShapeTable = /** @class */ (function () {
-        function EThemeDefaultJaJpShapeTable() {
+    var EThemeDefaultEnUsShapeTable = /** @class */ (function () {
+        function EThemeDefaultEnUsShapeTable() {
         }
-        EThemeDefaultJaJpShapeTable.prototype.getName = function () {
-            return "テーブル";
+        EThemeDefaultEnUsShapeTable.prototype.getName = function () {
+            return "Table";
         };
-        EThemeDefaultJaJpShapeTable.prototype.getHeaderName = function () {
-            return "テーブルヘッダー";
+        EThemeDefaultEnUsShapeTable.prototype.getHeaderName = function () {
+            return "Table Header";
         };
-        EThemeDefaultJaJpShapeTable.prototype.newHeaderLabel = function () {
-            return "ラベル";
+        EThemeDefaultEnUsShapeTable.prototype.newHeaderLabel = function () {
+            return "Label";
         };
-        EThemeDefaultJaJpShapeTable.prototype.getBodyName = function () {
-            return "テーブルボディー";
+        EThemeDefaultEnUsShapeTable.prototype.getBodyName = function () {
+            return "Table Body";
         };
-        return EThemeDefaultJaJpShapeTable;
+        return EThemeDefaultEnUsShapeTable;
     }());
 
     var EThemeDefaultButtonAmbient = /** @class */ (function (_super) {
@@ -1842,675 +1842,675 @@
         return EThemeDefaultShapeActionValue;
     }());
 
-    var EThemeDefaultJaJpButtonLock = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpButtonLock, _super);
-        function EThemeDefaultJaJpButtonLock() {
+    var EThemeDefaultEnUsButtonLock = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsButtonLock, _super);
+        function EThemeDefaultEnUsButtonLock() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpButtonLock.prototype.getTitle = function () {
-            return "ロック";
+        EThemeDefaultEnUsButtonLock.prototype.getTitle = function () {
+            return "Lock";
         };
-        return EThemeDefaultJaJpButtonLock;
+        return EThemeDefaultEnUsButtonLock;
     }(EThemeDefaultButtonLock));
 
-    var EThemeDefaultJaJpDialogAction = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogAction, _super);
-        function EThemeDefaultJaJpDialogAction() {
+    var EThemeDefaultEnUsDialogAction = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogAction, _super);
+        function EThemeDefaultEnUsDialogAction() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogAction.prototype.getSelectActionLabel = function () {
-            return "種別";
+        EThemeDefaultEnUsDialogAction.prototype.getSelectActionLabel = function () {
+            return "Action";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getButtonKeywordTitle = function () {
-            return "キーワードリストの表示切替";
+        EThemeDefaultEnUsDialogAction.prototype.getButtonKeywordTitle = function () {
+            return "Show / Hide Keyword List";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputOriginXLabel = function () {
-            return "基準X";
+        EThemeDefaultEnUsDialogAction.prototype.getInputOriginXLabel = function () {
+            return "X Origin";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputOriginYLabel = function () {
-            return "基準Y";
+        EThemeDefaultEnUsDialogAction.prototype.getInputOriginYLabel = function () {
+            return "Y Origin";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getSelectWhenLabel = function () {
-            return "条件";
+        EThemeDefaultEnUsDialogAction.prototype.getSelectWhenLabel = function () {
+            return "When";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getSelectLayerLabel = function () {
-            return "レイヤー";
+        EThemeDefaultEnUsDialogAction.prototype.getSelectLayerLabel = function () {
+            return "Layer";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputConditionLabel = function () {
-            return "条件";
+        EThemeDefaultEnUsDialogAction.prototype.getInputConditionLabel = function () {
+            return "When";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputIntervalLabel = function () {
-            return "周期";
+        EThemeDefaultEnUsDialogAction.prototype.getInputIntervalLabel = function () {
+            return "Interval";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputIntervalUnitLabel = function () {
-            return "ミリ秒";
+        EThemeDefaultEnUsDialogAction.prototype.getInputIntervalUnitLabel = function () {
+            return "ms";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputSizeLabel = function () {
-            return "サイズ";
+        EThemeDefaultEnUsDialogAction.prototype.getInputSizeLabel = function () {
+            return "Size";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputAmountLabel = function () {
-            return "量";
+        EThemeDefaultEnUsDialogAction.prototype.getInputAmountLabel = function () {
+            return "Amount";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputValueLabel = function () {
-            return "値";
+        EThemeDefaultEnUsDialogAction.prototype.getInputValueLabel = function () {
+            return "Value";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputInitializationLabel = function () {
-            return "初期化";
+        EThemeDefaultEnUsDialogAction.prototype.getInputInitializationLabel = function () {
+            return "Init.";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getCheckPointEventsLabel = function () {
-            return "ポインター操作";
+        EThemeDefaultEnUsDialogAction.prototype.getCheckPointEventsLabel = function () {
+            return "Pointer Event";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputTargetNameLabel = function () {
-            return "名前";
+        EThemeDefaultEnUsDialogAction.prototype.getInputTargetNameLabel = function () {
+            return "Name";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getButtonColorLabel = function () {
-            return "色";
+        EThemeDefaultEnUsDialogAction.prototype.getButtonColorLabel = function () {
+            return "Color";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputTargetLabel = function () {
-            return "対象";
+        EThemeDefaultEnUsDialogAction.prototype.getInputTargetLabel = function () {
+            return "Target";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputArgumentLabel = function () {
-            return "引数";
+        EThemeDefaultEnUsDialogAction.prototype.getInputArgumentLabel = function () {
+            return "Arg.";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputColorCodeLabel = function () {
+        EThemeDefaultEnUsDialogAction.prototype.getInputColorCodeLabel = function () {
             return "RGB";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputAlphaCodeLabel = function () {
-            return "透明度";
+        EThemeDefaultEnUsDialogAction.prototype.getInputAlphaCodeLabel = function () {
+            return "Alpha";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputBrightnessLabel = function () {
-            return "明るさ";
+        EThemeDefaultEnUsDialogAction.prototype.getInputBrightnessLabel = function () {
+            return "Brt.";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputBlendLabel = function () {
-            return "混合比率";
+        EThemeDefaultEnUsDialogAction.prototype.getInputBlendLabel = function () {
+            return "Bld. rate";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputInitialLabel = function () {
-            return "初期値";
+        EThemeDefaultEnUsDialogAction.prototype.getInputInitialLabel = function () {
+            return "Initial";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputStepLabel = function () {
-            return "間隔";
+        EThemeDefaultEnUsDialogAction.prototype.getInputStepLabel = function () {
+            return "Step";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputMinLabel = function () {
-            return "最小値";
+        EThemeDefaultEnUsDialogAction.prototype.getInputMinLabel = function () {
+            return "Min";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputMaxLabel = function () {
-            return "最大値";
+        EThemeDefaultEnUsDialogAction.prototype.getInputMaxLabel = function () {
+            return "Max";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getInputScaleLabel = function () {
-            return "上下限";
+        EThemeDefaultEnUsDialogAction.prototype.getInputScaleLabel = function () {
+            return "Scale";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getCheckBringToFrontLabel = function () {
-            return "最前面へ移動";
+        EThemeDefaultEnUsDialogAction.prototype.getCheckBringToFrontLabel = function () {
+            return "Bring to Front";
         };
-        EThemeDefaultJaJpDialogAction.prototype.getCheckInNewWindowLabel = function () {
-            return "新規ウィンドウ";
+        EThemeDefaultEnUsDialogAction.prototype.getCheckInNewWindowLabel = function () {
+            return "In New Window";
         };
         /* eslint-disable prettier/prettier */
-        EThemeDefaultJaJpDialogAction.prototype.newKeywords = function () {
+        EThemeDefaultEnUsDialogAction.prototype.newKeywords = function () {
             var result = [];
             // Basics
-            result.push(this.newKeyword("time", "number", "現在のUNIXミリ秒"));
+            result.push(this.newKeyword("time", "number", "A current UNIX timestamp in milliseconds."));
             // States
-            result.push(this.newKeyword("isInitializing", "boolean", "シェイプが初期化済みかどうかの真偽値"));
-            result.push(this.newKeyword("isHovered", "boolean", "シェイプにHover中かどうかの真偽値"));
-            result.push(this.newKeyword("isActive", "boolean", "シェイプがアクティブかどうかの真偽値"));
-            result.push(this.newKeyword("isActivated", "boolean", "シェイプがアクティブになる時に真となる真偽値"));
-            result.push(this.newKeyword("isDeactivated", "boolean", "シェイプが非アクティブになる時に真となる真偽値"));
-            result.push(this.newKeyword("isPressed", "boolean", "シェイプが押下されているかどうかの真偽値"));
-            result.push(this.newKeyword("isReadOnly", "boolean", "シェイプが読み取り専用かどうかの真偽値"));
-            result.push(this.newKeyword("isEnabled", "boolean", "シェイプが有効かどうかの真偽値"));
-            result.push(this.newKeyword("isDisabled", "boolean", "シェイプが非有効かどうかの真偽値"));
-            result.push(this.newKeyword("isActionable", "boolean", "シェイプがアクション可能な状態かどうかの真偽値"));
-            result.push(this.newKeyword("isGesturing", "boolean", "シェイプがドラッグ等による操作中かどうかの真偽値"));
-            result.push(this.newKeyword("isFocused", "boolean", "シェイプがフォーカスされているかどうかの真偽値"));
-            result.push(this.newKeyword("isFocusable", "boolean", "シェイプがフォーカス可能かどうかの真偽値"));
-            result.push(this.newKeyword("isUnfocusable", "boolean", "シェイプがフォーカス不可能かどうかの真偽値"));
-            result.push(this.newKeyword("isClicked", "boolean", "シェイプがクリックされた時に真となる真偽値"));
-            result.push(this.newKeyword("isDblClicked", "boolean", "シェイプがダブルクリックされた時に真となる真偽値"));
-            result.push(this.newKeyword("isDown", "boolean", "シェイプ上でポインターかキーが押下された時に真となる真偽値"));
-            result.push(this.newKeyword("isUp", "boolean", "シェイプ上でポインターかキーが離された時に真となる真偽値"));
-            result.push(this.newKeyword("isUpOutside", "boolean", "シェイプ外でポインターかキーが離された時に真となる真偽値"));
-            result.push(this.newKeyword("isRightClicked", "boolean", "シェイプが右クリックされた時に真となる真偽値"));
-            result.push(this.newKeyword("isRightDown", "boolean", "シェイプ上で右ポインターが押下された時に真となる真偽値"));
-            result.push(this.newKeyword("isRightUp", "boolean", "シェイプ上で右ポインターが離されたときに真となる真偽値"));
-            result.push(this.newKeyword("isRightUpOutside", "boolean", "シェイプ外で右ポインターが離されたときに真となる真偽値"));
-            result.push(this.newKeyword("isRightPressed", "boolean", "シェイプが右ポインターで押下されているかどうかの真偽値"));
+            result.push(this.newKeyword("isInitializing", "boolean", "True when a shape is initializing."));
+            result.push(this.newKeyword("isHovered", "boolean", "True when a shape is hovered."));
+            result.push(this.newKeyword("isActive", "boolean", "True when a shape is active."));
+            result.push(this.newKeyword("isActivated", "boolean", "True when a shape state be active."));
+            result.push(this.newKeyword("isDeactivated", "boolean", "True when a shape state be unactive."));
+            result.push(this.newKeyword("isPressed", "boolean", "True when a shape is pressed."));
+            result.push(this.newKeyword("isReadOnly", "boolean", "True if a shape is read-only."));
+            result.push(this.newKeyword("isEnabled", "boolean", "True if a shape is enabled."));
+            result.push(this.newKeyword("isDisabled", "boolean", "True if a shape is disabled."));
+            result.push(this.newKeyword("isActionable", "boolean", "True if a shape is actionable."));
+            result.push(this.newKeyword("isGesturing", "boolean", "True when a shape is being gestured."));
+            result.push(this.newKeyword("isFocused", "boolean", "True when a shape has a focuse."));
+            result.push(this.newKeyword("isFocusable", "boolean", "True if a shape is focusable."));
+            result.push(this.newKeyword("isUnfocusable", "boolean", "True if a shape is not focusable."));
+            result.push(this.newKeyword("isClicked", "boolean", "True when a shape is clicked."));
+            result.push(this.newKeyword("isDblClicked", "boolean", "True when a shape is double-clicked."));
+            result.push(this.newKeyword("isDown", "boolean", "True when a pointer or a key gets down on a shape."));
+            result.push(this.newKeyword("isUp", "boolean", "True when a pointer or a key gets up on a shape."));
+            result.push(this.newKeyword("isUpOutside", "boolean", "True when a pointer or a key gets up outside of a shape."));
+            result.push(this.newKeyword("isRightClicked", "boolean", "True when a secondary pointer is clicked on a shape."));
+            result.push(this.newKeyword("isRightDown", "boolean", "True when a secondary pointer gets down on a shape."));
+            result.push(this.newKeyword("isRightUp", "boolean", "True when a secondary pointer gets up on a shape."));
+            result.push(this.newKeyword("isRightUpOutside", "boolean", "True when a secondary pointer gets up outside of a shape."));
+            result.push(this.newKeyword("isRightPressed", "boolean", "True when a shape is pressed by a secondary pointer."));
             // Shape properties
-            result.push(this.newKeyword("id", "string", "シェイプID"));
-            result.push(this.newKeyword("type", "number", "シェイプ種別"));
-            result.push(this.newKeyword("size.x", "number", "シェイプの横幅"));
-            result.push(this.newKeyword("size.y", "number", "シェイプの高さ"));
-            result.push(this.newKeyword("fill.enable", "boolean", "シェイプの塗りが有効かどうかの真偽値"));
-            result.push(this.newKeyword("fill.color", "number", "シェイプの塗りのRGB色"));
-            result.push(this.newKeyword("fill.alpha", "number", "シェイプの塗りの透明度"));
-            result.push(this.newKeyword("stroke.enable", "boolean", "シェイプの境界線が有効かどうかの真偽値"));
-            result.push(this.newKeyword("stroke.color", "number", "シェイプの境界線のRGB色"));
-            result.push(this.newKeyword("stroke.alpha", "number", "シェイプの境界線の透明度"));
-            result.push(this.newKeyword("stroke.width", "number", "シェイプの境界線の線幅"));
-            result.push(this.newKeyword("stroke.align", "number", "シェイプの境界線の位置"));
-            result.push(this.newKeyword("transform.position.x", "number", "シェイプのX座標"));
-            result.push(this.newKeyword("transform.position.y", "number", "シェイプのY座標"));
-            result.push(this.newKeyword("transform.pivot.x", "number", "シェイプのXピボット位置"));
-            result.push(this.newKeyword("transform.pivot.y", "number", "シェイプのYピボット位置"));
-            result.push(this.newKeyword("transform.rotation", "number", "シェイプの回転角度（ラジアン単位）"));
-            result.push(this.newKeyword("transform.skew.x", "number", "シェイプの歪のX成分"));
-            result.push(this.newKeyword("transform.skew.y", "number", "シェイプの歪のY成分"));
-            result.push(this.newKeyword("transform.scale.x", "number", "シェイプの拡大縮小率のX成分"));
-            result.push(this.newKeyword("transform.scale.y", "number", "シェイプの拡大縮小率のY成分"));
-            result.push(this.newKeyword("points.length", "number", "シェイプのポイント数"));
-            result.push(this.newKeyword("points.values", "number[]", "シェイプのポイント配列"));
-            result.push(this.newKeyword("text.value", "string", "シェイプのテキスト値"));
-            result.push(this.newKeyword("text.color", "number", "シェイプのテキストのRGB色"));
-            result.push(this.newKeyword("text.alpha", "number", "シェイプのテキストの透明度"));
-            result.push(this.newKeyword("text.family", "string", "シェイプのテキストのフォントファミリー"));
-            result.push(this.newKeyword("text.size", "number", "シェイプのテキストのフォントサイズ"));
-            result.push(this.newKeyword("cursor", "string", "シェイプに割り当てられているカーソル"));
-            result.push(this.newKeyword("shortcut", "string | undefined", "シェイプに割り当てられているショートカット"));
-            result.push(this.newKeyword("title", "string | undefined", "シェイプに割り当てられているツールチップテキスト"));
-            result.push(this.newKeyword("visible", "boolean", "シェイプが可視かどうかの真偽値"));
-            result.push(this.newKeyword("interactive", "boolean", "シェイプがポインターに反応するかどうかの真偽値"));
+            result.push(this.newKeyword("id", "string", "A shape ID."));
+            result.push(this.newKeyword("type", "number", "A shape type."));
+            result.push(this.newKeyword("size.x", "number", "A shape width."));
+            result.push(this.newKeyword("size.y", "number", "A shape height."));
+            result.push(this.newKeyword("fill.enable", "boolean", "True if a fill of a shape is enabled."));
+            result.push(this.newKeyword("fill.color", "number", "A fill color of a shape."));
+            result.push(this.newKeyword("fill.alpha", "number", "A fill alpha of a shape."));
+            result.push(this.newKeyword("stroke.enable", "boolean", "True if a shape stroke is enabled."));
+            result.push(this.newKeyword("stroke.color", "number", "A stroke color of a shape."));
+            result.push(this.newKeyword("stroke.alpha", "number", "A stroke alpha of a shape."));
+            result.push(this.newKeyword("stroke.width", "number", "A stroke width of a shape."));
+            result.push(this.newKeyword("stroke.align", "number", "A stroke alignment of a shape."));
+            result.push(this.newKeyword("transform.position.x", "number", "A shape X position."));
+            result.push(this.newKeyword("transform.position.y", "number", "A shape Y position."));
+            result.push(this.newKeyword("transform.pivot.x", "number", "A X-coordinate pivot of a shape."));
+            result.push(this.newKeyword("transform.pivot.y", "number", "A Y-coordinate pivot of a shape."));
+            result.push(this.newKeyword("transform.rotation", "number", "A rotation of a shape."));
+            result.push(this.newKeyword("transform.skew.x", "number", "A X-coordinate skew of a shape."));
+            result.push(this.newKeyword("transform.skew.y", "number", "A Y-coordinate skew of a shape."));
+            result.push(this.newKeyword("transform.scale.x", "number", "A X-coordinate scale of a shape."));
+            result.push(this.newKeyword("transform.scale.y", "number", "A Y-coordinate scale of a shape."));
+            result.push(this.newKeyword("points.length", "number", "A point length of a shape."));
+            result.push(this.newKeyword("points.values", "number[]", "A point values of a shape."));
+            result.push(this.newKeyword("text.value", "string", "A text value of a shape."));
+            result.push(this.newKeyword("text.color", "number", "A text color of a shape."));
+            result.push(this.newKeyword("text.alpha", "number", "A text alpha of a shape."));
+            result.push(this.newKeyword("text.family", "string", "A font family of a shape."));
+            result.push(this.newKeyword("text.size", "number", "A font size of a shape."));
+            result.push(this.newKeyword("cursor", "string", "A cursor of a shape."));
+            result.push(this.newKeyword("shortcut", "string | undefined", "A shortcut key of a shape."));
+            result.push(this.newKeyword("title", "string | undefined", "A tooltip text of a shape."));
+            result.push(this.newKeyword("visible", "boolean", "True if a shape is visible."));
+            result.push(this.newKeyword("interactive", "boolean", "True if a shape is interactive."));
             // First data
-            result.push(this.newKeyword("data.id", "string", "最初のデータのID"));
-            result.push(this.newKeyword("data.initial", "string", "最初のデータの初期値式"));
-            result.push(this.newKeyword("data.format", "string", "最初のデータの書式式"));
-            result.push(this.newKeyword("data.capacity", "number", "最初のデータのデータ保存個数上限"));
-            result.push(this.newKeyword("data.order", "number", "最初のデータの並び順（0: 昇順、1: 降順）"));
-            result.push(this.newKeyword("data.value", "unknown", "最初のデータのデータ値"));
-            result.push(this.newKeyword("data.nvalue", "number", "最初のデータの正規化後のデータ値"));
-            result.push(this.newKeyword("data.time", "number", "最初のデータのUNIXミリ秒"));
-            result.push(this.newKeyword("data.values", "unknown[]", "最初のデータのデータ配列"));
-            result.push(this.newKeyword("data.times", "number[]", "最初のデータのUNIXミリ秒の配列"));
-            result.push(this.newKeyword("data.range.from", "number", "最初のデータの下限"));
-            result.push(this.newKeyword("data.range.to", "number", "最初のデータの上限"));
+            result.push(this.newKeyword("data.id", "string", "An ID of the first data."));
+            result.push(this.newKeyword("data.initial", "string", "An initial value expression of the first data."));
+            result.push(this.newKeyword("data.format", "string", "A formatter expression of the first data."));
+            result.push(this.newKeyword("data.capacity", "number", "A capacity of the first data."));
+            result.push(this.newKeyword("data.order", "number", "An data order of the first data. Zero: Ascending order. One: Descending order."));
+            result.push(this.newKeyword("data.value", "unknown", "A value of the first data."));
+            result.push(this.newKeyword("data.nvalue", "number", "A normalized value of the first data."));
+            result.push(this.newKeyword("data.time", "number", "An UNIX timestamp in milliseconds of the first data."));
+            result.push(this.newKeyword("data.values", "unknown[]", "Values of the first data."));
+            result.push(this.newKeyword("data.times", "number[]", "UNIX timestamps in milliseconds of the first data."));
+            result.push(this.newKeyword("data.range.from", "number", "A lower bound of the first data."));
+            result.push(this.newKeyword("data.range.to", "number", "An upper bound of the first data."));
             // Data by index
-            result.push(this.newKeyword("data.get(n).id", "string", "n番目のデータのID"));
-            result.push(this.newKeyword("data.get(n).initial", "string", "n番目のデータの初期値式"));
-            result.push(this.newKeyword("data.get(n).format", "string", "n番目のデータの書式式"));
-            result.push(this.newKeyword("data.get(n).capacity", "number", "n番目のデータのデータ保存個数上限"));
-            result.push(this.newKeyword("data.get(n).order", "number", "n番目のデータの並び順（0: 昇順、1: 降順）"));
-            result.push(this.newKeyword("data.get(n).value", "unknown", "n番目のデータのデータ値"));
-            result.push(this.newKeyword("data.get(n).nvalue", "number", "n番目のデータの正規化後のデータ値"));
-            result.push(this.newKeyword("data.get(n).time", "number", "n番目のデータのUNIXミリ秒"));
-            result.push(this.newKeyword("data.get(n).values", "unknown[]", "n番目のデータのデータ配列"));
-            result.push(this.newKeyword("data.get(n).times", "number[]", "n番目のデータのUNIXミリ秒の配列"));
-            result.push(this.newKeyword("data.get(n).range.from", "number", "n番目のデータの下限"));
-            result.push(this.newKeyword("data.get(n).range.to", "number", "n番目のデータの上限"));
+            result.push(this.newKeyword("data.get(n).id", "string", "An ID of the n-th data."));
+            result.push(this.newKeyword("data.get(n).initial", "string", "An initial value expression of the n-th data."));
+            result.push(this.newKeyword("data.get(n).format", "string", "A formatter expression of the n-th data."));
+            result.push(this.newKeyword("data.get(n).capacity", "number", "A capacity of the n-th data."));
+            result.push(this.newKeyword("data.get(n).order", "number", "An data order of the n-th data. Zero: Ascending order. One: Descending order."));
+            result.push(this.newKeyword("data.get(n).value", "unknown", "A value of the n-th data."));
+            result.push(this.newKeyword("data.get(n).nvalue", "number", "A normalized value of the n-th data."));
+            result.push(this.newKeyword("data.get(n).time", "number", "An UNIX timestamp in milliseconds of the n-th data."));
+            result.push(this.newKeyword("data.get(n).values", "unknown[]", "Values of the n-th data."));
+            result.push(this.newKeyword("data.get(n).times", "number[]", "UNIX timestamps in milliseconds of the n-th data."));
+            result.push(this.newKeyword("data.get(n).range.from", "number", "A lower bound of the n-th data."));
+            result.push(this.newKeyword("data.get(n).range.to", "number", "An upper bound of the n-th data."));
             // Data by alias
-            result.push(this.newKeyword("${alias}.id", "string", "エイリアスが指すデータのID"));
-            result.push(this.newKeyword("${alias}.initial", "string", "エイリアスが指すデータの初期値式"));
-            result.push(this.newKeyword("${alias}.format", "string", "エイリアスが指すデータの書式式"));
-            result.push(this.newKeyword("${alias}.capacity", "number", "エイリアスが指すデータのデータ保存個数上限"));
-            result.push(this.newKeyword("${alias}.order", "number", "エイリアスが指すデータの並び順（0: 昇順、1: 降順）"));
-            result.push(this.newKeyword("${alias}.value", "unknown", "エイリアスが指すデータのデータ値"));
-            result.push(this.newKeyword("${alias}.nvalue", "number", "エイリアスが指すデータの正規化後のデータ値"));
-            result.push(this.newKeyword("${alias}.time", "number", "エイリアスが指すデータのUNIXミリ秒"));
-            result.push(this.newKeyword("${alias}.values", "unknown[]", "エイリアスが指すデータのデータ配列"));
-            result.push(this.newKeyword("${alias}.times", "number[]", "エイリアスが指すデータのUNIXミリ秒の配列"));
-            result.push(this.newKeyword("${alias}.range.from", "number", "エイリアスが指すデータの下限"));
-            result.push(this.newKeyword("${alias}.range.to", "number", "エイリアスが指すデータの上限"));
+            result.push(this.newKeyword("${alias}.id", "string", "An ID of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.initial", "string", "An initial value expression of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.format", "string", "A formatter expression of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.capacity", "number", "A capacity of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.order", "number", "An order of the data the alias points to. Zero: Ascending order. One: Descending order."));
+            result.push(this.newKeyword("${alias}.value", "unknown", "A value of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.nvalue", "number", "A normalized value of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.time", "number", "An UNIX timestamp in milliseconds of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.values", "unknown[]", "Values of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.times", "number[]", "UNIX timestamps in milliseconds of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.range.from", "number", "A lower bound of the data the alias points to."));
+            result.push(this.newKeyword("${alias}.range.to", "number", "An upper bound of the data the alias points to."));
             return result;
         };
-        return EThemeDefaultJaJpDialogAction;
+        return EThemeDefaultEnUsDialogAction;
     }(EThemeDefaultDialogAction));
 
-    var EThemeDefaultJaJpDialogCanvas = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogCanvas, _super);
-        function EThemeDefaultJaJpDialogCanvas() {
+    var EThemeDefaultEnUsDialogCanvas = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogCanvas, _super);
+        function EThemeDefaultEnUsDialogCanvas() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return EThemeDefaultJaJpDialogCanvas;
+        return EThemeDefaultEnUsDialogCanvas;
     }(EThemeDefaultDialogCanvas));
 
-    var EThemeDefaultJaJpDialogDataMappingValue = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogDataMappingValue, _super);
-        function EThemeDefaultJaJpDialogDataMappingValue() {
+    var EThemeDefaultEnUsDialogDataMappingValue = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogDataMappingValue, _super);
+        function EThemeDefaultEnUsDialogDataMappingValue() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogDataMappingValue.prototype.getInputSourceLabel = function () {
-            return "変換対象";
+        EThemeDefaultEnUsDialogDataMappingValue.prototype.getInputSourceLabel = function () {
+            return "From";
         };
-        EThemeDefaultJaJpDialogDataMappingValue.prototype.getInputDestinationLabel = function () {
-            return "変換規則";
+        EThemeDefaultEnUsDialogDataMappingValue.prototype.getInputDestinationLabel = function () {
+            return "To";
         };
-        EThemeDefaultJaJpDialogDataMappingValue.prototype.getInputInitialLabel = function () {
-            return "初期値";
+        EThemeDefaultEnUsDialogDataMappingValue.prototype.getInputInitialLabel = function () {
+            return "Initial";
         };
-        EThemeDefaultJaJpDialogDataMappingValue.prototype.getTableColumnDataIdLabel = function () {
-            return "変換前";
+        EThemeDefaultEnUsDialogDataMappingValue.prototype.getTableColumnDataIdLabel = function () {
+            return "Data ID";
         };
-        EThemeDefaultJaJpDialogDataMappingValue.prototype.getTableColumnMappedToLabel = function () {
-            return "変換後";
+        EThemeDefaultEnUsDialogDataMappingValue.prototype.getTableColumnMappedToLabel = function () {
+            return "Mapped To";
         };
-        return EThemeDefaultJaJpDialogDataMappingValue;
+        return EThemeDefaultEnUsDialogDataMappingValue;
     }(EThemeDefaultDialogDataMappingValue));
 
-    var EThemeDefaultJaJpDialogDataValue = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogDataValue, _super);
-        function EThemeDefaultJaJpDialogDataValue() {
+    var EThemeDefaultEnUsDialogDataValue = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogDataValue, _super);
+        function EThemeDefaultEnUsDialogDataValue() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputIdLabel = function () {
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputIdLabel = function () {
             return "ID";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputAsLabel = function () {
-            return "別名";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputAsLabel = function () {
+            return "As";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectTypeLabel = function () {
-            return "種別";
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectTypeLabel = function () {
+            return "Type";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectTypeValueLabel = function (type) {
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectTypeValueLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeDataValueType.BOOLEAN:
-                    return "真偽値";
+                    return "Boolean";
                 case wcardinalUi.EShapeDataValueType.BOOLEAN_ARRAY:
-                    return "真偽値の配列";
+                    return "Boolean Array";
                 case wcardinalUi.EShapeDataValueType.NUMBER:
-                    return "数値";
+                    return "Number";
                 case wcardinalUi.EShapeDataValueType.NUMBER_ARRAY:
-                    return "数値の配列";
+                    return "Number Array";
                 case wcardinalUi.EShapeDataValueType.STRING:
-                    return "文字列";
+                    return "String";
                 case wcardinalUi.EShapeDataValueType.STRING_ARRAY:
-                    return "文字列の配列";
+                    return "String Array";
                 case wcardinalUi.EShapeDataValueType.OBJECT:
-                    return "オブジェクト";
+                    return "Object";
                 case wcardinalUi.EShapeDataValueType.OBJECT_ARRAY:
-                    return "オブジェクトの配列";
+                    return "Object Array";
                 case wcardinalUi.EShapeDataValueType.TICKER:
-                    return "ティッカー";
+                    return "Ticker";
                 default:
                     var extension = wcardinalUi.EShapeDataValueExtensions.get(type);
                     if (extension) {
                         return extension.label;
                     }
-                    return "不明";
+                    return "Unknown";
             }
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectScopeLabel = function () {
-            return "公開範囲";
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectScopeLabel = function () {
+            return "Scope";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectScopeValueLabel = function (type) {
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectScopeValueLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeDataValueScope.PUBLIC:
-                    return "公開";
+                    return "Public";
                 case wcardinalUi.EShapeDataValueScope.PROTECTED:
-                    return "図面内のみ公開";
+                    return "Protected";
                 case wcardinalUi.EShapeDataValueScope.PRIVATE:
-                    return "非公開";
+                    return "Private";
             }
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputInitialLabel = function () {
-            return "初期値";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputInitialLabel = function () {
+            return "Initial";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputIntervalLabel = function () {
-            return "周期";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputIntervalLabel = function () {
+            return "Interval";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputIntervalUnitLabel = function () {
-            return "ミリ秒";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputIntervalUnitLabel = function () {
+            return "ms";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputFormatLabel = function () {
-            return "書式";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputFormatLabel = function () {
+            return "Format";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectRangeTypeLabel = function () {
-            return "範囲";
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectRangeTypeLabel = function () {
+            return "Range";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectRangeTypeValueLabel = function (type) {
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectRangeTypeValueLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeDataValueRangeType.FROM:
-                    return "下限のみ";
+                    return "Lower Limit";
                 case wcardinalUi.EShapeDataValueRangeType.TO:
-                    return "上限のみ";
+                    return "Upper Limit";
                 case wcardinalUi.EShapeDataValueRangeType.FROM_TO:
-                    return "上下限あり";
+                    return "Upper and Lower Limit";
                 default:
-                    return "なし";
+                    return "No Range";
             }
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputRangeFromLabel = function () {
-            return "下限";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputRangeFromLabel = function () {
+            return "Lower Limit";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputRangeToLabel = function () {
-            return "上限";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputRangeToLabel = function () {
+            return "Upper Limit";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getInputCapacityLabel = function () {
-            return "保存個数";
+        EThemeDefaultEnUsDialogDataValue.prototype.getInputCapacityLabel = function () {
+            return "Capacity";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectOrderLabel = function () {
-            return "順序";
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectOrderLabel = function () {
+            return "Order";
         };
-        EThemeDefaultJaJpDialogDataValue.prototype.getSelectOrderValueLabel = function (order) {
+        EThemeDefaultEnUsDialogDataValue.prototype.getSelectOrderValueLabel = function (order) {
             switch (order) {
                 case wcardinalUi.EShapeDataValueOrder.ASCENDING:
-                    return "昇順";
+                    return "Ascending Order";
                 case wcardinalUi.EShapeDataValueOrder.DESCENDING:
-                    return "降順";
+                    return "Descending Order";
             }
         };
-        return EThemeDefaultJaJpDialogDataValue;
+        return EThemeDefaultEnUsDialogDataValue;
     }(EThemeDefaultDialogDataValue));
 
-    var EThemeDefaultJaJpDialogLayer = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogLayer, _super);
-        function EThemeDefaultJaJpDialogLayer() {
+    var EThemeDefaultEnUsDialogLayer = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogLayer, _super);
+        function EThemeDefaultEnUsDialogLayer() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogLayer.prototype.getInputNameLabel = function () {
-            return "名前";
+        EThemeDefaultEnUsDialogLayer.prototype.getInputNameLabel = function () {
+            return "Name";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getInputPositionLabel = function () {
-            return "位置";
+        EThemeDefaultEnUsDialogLayer.prototype.getInputPositionLabel = function () {
+            return "Position";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getInputSizeLabel = function () {
-            return "サイズ";
+        EThemeDefaultEnUsDialogLayer.prototype.getInputSizeLabel = function () {
+            return "Size";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getTextBackgroundLabel = function () {
-            return "背景";
+        EThemeDefaultEnUsDialogLayer.prototype.getTextBackgroundLabel = function () {
+            return "Bckgrnd";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getCheckBackgroundLabel = function () {
-            return "有効";
+        EThemeDefaultEnUsDialogLayer.prototype.getCheckBackgroundLabel = function () {
+            return "Enable";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getCheckVisibleLabel = function () {
-            return "可視";
+        EThemeDefaultEnUsDialogLayer.prototype.getCheckVisibleLabel = function () {
+            return "Visible";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getCheckInteractiveLabel = function () {
-            return "インタラクティブ";
+        EThemeDefaultEnUsDialogLayer.prototype.getCheckInteractiveLabel = function () {
+            return "Interactive";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getSelectGestureLabel = function () {
-            return "操作";
+        EThemeDefaultEnUsDialogLayer.prototype.getSelectGestureLabel = function () {
+            return "Gesture";
         };
-        EThemeDefaultJaJpDialogLayer.prototype.getSelectGestureValueLabel = function (type) {
+        EThemeDefaultEnUsDialogLayer.prototype.getSelectGestureValueLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueGestureOperationType.DRAG:
-                    return "ドラッグ";
+                    return "Drag";
                 case wcardinalUi.EShapeActionValueGestureOperationType.PINCH:
-                    return "ピンチ";
+                    return "Pinch";
             }
-            return "不明";
+            return "Unknown";
         };
-        return EThemeDefaultJaJpDialogLayer;
+        return EThemeDefaultEnUsDialogLayer;
     }(EThemeDefaultDialogLayer));
 
-    var EThemeDefaultJaJpDialogSnap = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpDialogSnap, _super);
-        function EThemeDefaultJaJpDialogSnap() {
+    var EThemeDefaultEnUsDialogSnap = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsDialogSnap, _super);
+        function EThemeDefaultEnUsDialogSnap() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpDialogSnap.prototype.getSelectDirectionLabel = function () {
-            return "方向";
+        EThemeDefaultEnUsDialogSnap.prototype.getSelectDirectionLabel = function () {
+            return "Dir.";
         };
-        EThemeDefaultJaJpDialogSnap.prototype.getSelectDirectionValueLabel = function (value) {
+        EThemeDefaultEnUsDialogSnap.prototype.getSelectDirectionValueLabel = function (value) {
             switch (value) {
                 case wcardinalUi.ESnapperTargetValueType.VERTICAL:
-                    return "垂直";
+                    return "Vertical";
                 case wcardinalUi.ESnapperTargetValueType.HORIZONTAL:
-                    return "水平";
+                    return "Horizontal";
             }
-            return "不明";
+            return "Unknown";
         };
-        EThemeDefaultJaJpDialogSnap.prototype.getInputPositionLabel = function () {
-            return "位置";
+        EThemeDefaultEnUsDialogSnap.prototype.getInputPositionLabel = function () {
+            return "Position";
         };
-        return EThemeDefaultJaJpDialogSnap;
+        return EThemeDefaultEnUsDialogSnap;
     }(EThemeDefaultDialogSnap));
 
-    var EThemeDefaultJaJpEditorAction = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorAction, _super);
-        function EThemeDefaultJaJpEditorAction() {
+    var EThemeDefaultEnUsEditorAction = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorAction, _super);
+        function EThemeDefaultEnUsEditorAction() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorAction.prototype.getLabel = function () {
-            return "アクション";
+        EThemeDefaultEnUsEditorAction.prototype.getLabel = function () {
+            return "Action";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getButtonNewTitle = function () {
-            return "新規アクション";
+        EThemeDefaultEnUsEditorAction.prototype.getButtonNewTitle = function () {
+            return "New Action";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getButtonDeleteTitle = function () {
-            return "アクションを削除";
+        EThemeDefaultEnUsEditorAction.prototype.getButtonDeleteTitle = function () {
+            return "Delete Action";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getButtonBringForwardTitle = function () {
-            return "選択アクションを上へ移動";
+        EThemeDefaultEnUsEditorAction.prototype.getButtonBringForwardTitle = function () {
+            return "Bring Selected Action Forward";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getButtonSendBackwardTitle = function () {
-            return "選択アクションを下へ移動";
+        EThemeDefaultEnUsEditorAction.prototype.getButtonSendBackwardTitle = function () {
+            return "Send Selected Action Backward";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getCheckInteractiveLabel = function () {
-            return "インタラクティブ";
+        EThemeDefaultEnUsEditorAction.prototype.getCheckInteractiveLabel = function () {
+            return "Interactive";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getCheckFocusableLabel = function () {
-            return "フォーカス";
+        EThemeDefaultEnUsEditorAction.prototype.getCheckFocusableLabel = function () {
+            return "Focusable";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getInputShortcutLabel = function () {
-            return "ショートカット";
+        EThemeDefaultEnUsEditorAction.prototype.getInputShortcutLabel = function () {
+            return "Shortcut";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getInputTitleLabel = function () {
-            return "ツールチップ";
+        EThemeDefaultEnUsEditorAction.prototype.getInputTitleLabel = function () {
+            return "Tooltip";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getDropdownCursorLabel = function () {
-            return "カーソル";
+        EThemeDefaultEnUsEditorAction.prototype.getDropdownCursorLabel = function () {
+            return "Cursor";
         };
-        EThemeDefaultJaJpEditorAction.prototype.getCursors = function () {
+        EThemeDefaultEnUsEditorAction.prototype.getCursors = function () {
             var result = new Map();
-            result.set("", "なし");
-            result.set("default", "デフォルト");
-            result.set("context-menu", "コンテキストメニュー");
-            result.set("help", "ヘルプ");
-            result.set("pointer", "ポインター");
-            result.set("progress", "プログレス");
-            result.set("wait", "ビジー");
-            result.set("cell", "セル");
-            result.set("crosshair", "十字");
-            result.set("text", "テキスト");
-            result.set("vertical-text", "縦書きテキスト");
-            result.set("alias", "エイリアス");
-            result.set("copy", "コピー");
-            result.set("move", "移動");
-            result.set("no-drop", "ドロップ禁止");
-            result.set("not-allowed", "禁止");
-            result.set("grab", "掴む");
-            result.set("grabbing", "掴んでいる");
-            result.set("all-scroll", "スクロール");
-            result.set("col-resize", "水平リサイズ");
-            result.set("row-resize", "垂直リサイズ");
-            result.set("n-resize", "リサイズ（北）");
-            result.set("e-resize", "リサイズ（東）");
-            result.set("s-resize", "リサイズ（南）");
-            result.set("w-resize", "リサイズ（西）");
-            result.set("ne-resize", "リサイズ（北東）");
-            result.set("nw-resize", "リサイズ（北西）");
-            result.set("se-resize", "リサイズ（南東）");
-            result.set("sw-resize", "リサイズ（南西）");
-            result.set("ew-resize", "リサイズ（東西）");
-            result.set("ns-resize", "リサイズ（南北）");
-            result.set("nesw-resize", "リサイズ（北東から南西）");
-            result.set("nwse-resize", "リサイズ（北西から南東）");
-            result.set("zoom-in", "ズームイン");
-            result.set("zoom-out", "ズームアウト");
+            result.set("", "None");
+            result.set("default", "Default");
+            result.set("context-menu", "Context Menu");
+            result.set("help", "Help");
+            result.set("pointer", "Pointer");
+            result.set("progress", "Progress");
+            result.set("wait", "Wait");
+            result.set("cell", "Cell");
+            result.set("crosshair", "Crosshair");
+            result.set("text", "Text");
+            result.set("vertical-text", "Vertical Text");
+            result.set("alias", "Alias");
+            result.set("copy", "Copy");
+            result.set("move", "Move");
+            result.set("no-drop", "No Drop");
+            result.set("not-allowed", "Not Allowed");
+            result.set("grab", "Grab");
+            result.set("grabbing", "Grabbing");
+            result.set("all-scroll", "All Scroll");
+            result.set("col-resize", "Column Resize");
+            result.set("row-resize", "Row Resize");
+            result.set("n-resize", "North Resize");
+            result.set("e-resize", "East Resize");
+            result.set("s-resize", "South Resize");
+            result.set("w-resize", "West Resize");
+            result.set("ne-resize", "North-East Resize");
+            result.set("nw-resize", "North-West Resize");
+            result.set("se-resize", "South-East Resize");
+            result.set("sw-resize", "South-West Resize");
+            result.set("ew-resize", "East-West Resize");
+            result.set("ns-resize", "North-South Resize");
+            result.set("nesw-resize", "NE-to-SW Resize");
+            result.set("nwse-resize", "NW-to-SE Resize");
+            result.set("zoom-in", "Zoom In");
+            result.set("zoom-out", "Zoom Out");
             return result;
         };
-        return EThemeDefaultJaJpEditorAction;
+        return EThemeDefaultEnUsEditorAction;
     }(EThemeDefaultEditorAction));
 
-    var EThemeDefaultJaJpEditorCanvasLegacy = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorCanvasLegacy, _super);
-        function EThemeDefaultJaJpEditorCanvasLegacy() {
+    var EThemeDefaultEnUsEditorCanvasLegacy = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorCanvasLegacy, _super);
+        function EThemeDefaultEnUsEditorCanvasLegacy() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return EThemeDefaultJaJpEditorCanvasLegacy;
+        return EThemeDefaultEnUsEditorCanvasLegacy;
     }(EThemeDefaultEditorCanvasLegacy));
 
-    var EThemeDefaultJaJpEditorCanvas = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorCanvas, _super);
-        function EThemeDefaultJaJpEditorCanvas() {
+    var EThemeDefaultEnUsEditorCanvas = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorCanvas, _super);
+        function EThemeDefaultEnUsEditorCanvas() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorCanvas.prototype.getLabel = function () {
-            return "キャンバス";
+        EThemeDefaultEnUsEditorCanvas.prototype.getLabel = function () {
+            return "Canvas";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getDefaultName = function () {
-            return "名称未設定";
+        EThemeDefaultEnUsEditorCanvas.prototype.getDefaultName = function () {
+            return "Untitled";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputNameLabel = function () {
-            return "名前";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputNameLabel = function () {
+            return "Name";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputLabelLabel = function () {
-            return "表示名称";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputLabelLabel = function () {
+            return "Label";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputWidthLabel = function () {
-            return "幅";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputWidthLabel = function () {
+            return "Width";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputHeightLabel = function () {
-            return "高さ";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputHeightLabel = function () {
+            return "Height";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getSelectCategoryLabel = function () {
-            return "カテゴリ";
+        EThemeDefaultEnUsEditorCanvas.prototype.getSelectCategoryLabel = function () {
+            return "Ctgry";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputBackgroundLabel = function () {
-            return "背景";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputBackgroundLabel = function () {
+            return "Bckgrd";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputSummaryLabel = function () {
-            return "概要";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputSummaryLabel = function () {
+            return "Smmry";
         };
-        EThemeDefaultJaJpEditorCanvas.prototype.getInputDescriptionLabel = function () {
-            return "説明";
+        EThemeDefaultEnUsEditorCanvas.prototype.getInputDescriptionLabel = function () {
+            return "Desc";
         };
-        return EThemeDefaultJaJpEditorCanvas;
+        return EThemeDefaultEnUsEditorCanvas;
     }(EThemeDefaultEditorCanvas));
 
-    var EThemeDefaultJaJpEditorCoordinate = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorCoordinate, _super);
-        function EThemeDefaultJaJpEditorCoordinate() {
+    var EThemeDefaultEnUsEditorCoordinate = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorCoordinate, _super);
+        function EThemeDefaultEnUsEditorCoordinate() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorCoordinate.prototype.getLabel = function () {
-            return "位置とサイズ";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getLabel = function () {
+            return "Coordinate";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputIdLabel = function () {
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputIdLabel = function () {
             return "ID";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputPositionXLabel = function () {
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputPositionXLabel = function () {
             return "X";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputPositionYLabel = function () {
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputPositionYLabel = function () {
             return "Y";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputPositionLeftLabel = function () {
-            return "左端";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputPositionLeftLabel = function () {
+            return "Left";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputPositionTopLabel = function () {
-            return "上端";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputPositionTopLabel = function () {
+            return "Top";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputSizeXLabel = function () {
-            return "幅";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputSizeXLabel = function () {
+            return "Width";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputSizeYLabel = function () {
-            return "高さ";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputSizeYLabel = function () {
+            return "Height";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputRotationLabel = function () {
-            return "角度";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputRotationLabel = function () {
+            return "Rotation";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getInputSkewLabel = function () {
-            return "歪";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getInputSkewLabel = function () {
+            return "Skew";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonAlignLeftTitle = function () {
-            return "左揃え";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonAlignLeftTitle = function () {
+            return "Align Left";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonAlignCenterTitle = function () {
-            return "中央揃え";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonAlignCenterTitle = function () {
+            return "Align Center";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonAlignRightTitle = function () {
-            return "右揃え";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonAlignRightTitle = function () {
+            return "Align Right";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonAlignTopTitle = function () {
-            return "上揃え";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonAlignTopTitle = function () {
+            return "Align Top";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonAlignMiddleTitle = function () {
-            return "上下中央揃え";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonAlignMiddleTitle = function () {
+            return "Align Middle";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonAlignBottomTitle = function () {
-            return "下揃え";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonAlignBottomTitle = function () {
+            return "Align Bottom";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonDistributeHorizontallyTitle = function () {
-            return "左右に整列";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonDistributeHorizontallyTitle = function () {
+            return "Distribute Horizontally";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonDistributeVerticallyTitle = function () {
-            return "上下に整列";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonDistributeVerticallyTitle = function () {
+            return "Distribute Vertically";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonRotateLeftTitle = function () {
-            return "左回転";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonRotateLeftTitle = function () {
+            return "Rotate Left";
         };
-        EThemeDefaultJaJpEditorCoordinate.prototype.getButtonRotateRightTitle = function () {
-            return "右回転";
+        EThemeDefaultEnUsEditorCoordinate.prototype.getButtonRotateRightTitle = function () {
+            return "Rotate Right";
         };
-        return EThemeDefaultJaJpEditorCoordinate;
+        return EThemeDefaultEnUsEditorCoordinate;
     }(EThemeDefaultEditorCoordinate));
 
-    var EThemeDefaultJaJpEditorDataMapping = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorDataMapping, _super);
-        function EThemeDefaultJaJpEditorDataMapping() {
+    var EThemeDefaultEnUsEditorDataMapping = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorDataMapping, _super);
+        function EThemeDefaultEnUsEditorDataMapping() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorDataMapping.prototype.getLabel = function () {
-            return "データ変換";
+        EThemeDefaultEnUsEditorDataMapping.prototype.getLabel = function () {
+            return "Data Mapping";
         };
-        EThemeDefaultJaJpEditorDataMapping.prototype.getButtonNewTitle = function () {
-            return "新規データ変換";
+        EThemeDefaultEnUsEditorDataMapping.prototype.getButtonNewTitle = function () {
+            return "New Data Mapping";
         };
-        EThemeDefaultJaJpEditorDataMapping.prototype.getButtonDeleteTitle = function () {
-            return "選択データ変換を削除";
+        EThemeDefaultEnUsEditorDataMapping.prototype.getButtonDeleteTitle = function () {
+            return "Delete Selected Data Mapping";
         };
-        EThemeDefaultJaJpEditorDataMapping.prototype.getButtonBringForwardTitle = function () {
-            return "選択データ変換を上へ移動";
+        EThemeDefaultEnUsEditorDataMapping.prototype.getButtonBringForwardTitle = function () {
+            return "Bring Selected Data Mapping Forward";
         };
-        EThemeDefaultJaJpEditorDataMapping.prototype.getButtonSendBackwardTitle = function () {
-            return "選択データ変換を下へ移動";
+        EThemeDefaultEnUsEditorDataMapping.prototype.getButtonSendBackwardTitle = function () {
+            return "Send Selected Data Mapping Backward";
         };
-        return EThemeDefaultJaJpEditorDataMapping;
+        return EThemeDefaultEnUsEditorDataMapping;
     }(EThemeDefaultEditorDataMapping));
 
-    var EThemeDefaultJaJpEditorData = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorData, _super);
-        function EThemeDefaultJaJpEditorData() {
+    var EThemeDefaultEnUsEditorData = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorData, _super);
+        function EThemeDefaultEnUsEditorData() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorData.prototype.getLabel = function () {
-            return "データ";
+        EThemeDefaultEnUsEditorData.prototype.getLabel = function () {
+            return "Data";
         };
-        EThemeDefaultJaJpEditorData.prototype.getButtonNewTitle = function () {
-            return "新規データ";
+        EThemeDefaultEnUsEditorData.prototype.getButtonNewTitle = function () {
+            return "New Data";
         };
-        EThemeDefaultJaJpEditorData.prototype.getButtonDeleteTitle = function () {
-            return "選択データを削除";
+        EThemeDefaultEnUsEditorData.prototype.getButtonDeleteTitle = function () {
+            return "Delete Selected Data";
         };
-        EThemeDefaultJaJpEditorData.prototype.getButtonBringForwardTitle = function () {
-            return "選択データを上へ移動";
+        EThemeDefaultEnUsEditorData.prototype.getButtonBringForwardTitle = function () {
+            return "Bring Selected Data Forward";
         };
-        EThemeDefaultJaJpEditorData.prototype.getButtonSendBackwardTitle = function () {
-            return "選択データを下へ移動";
+        EThemeDefaultEnUsEditorData.prototype.getButtonSendBackwardTitle = function () {
+            return "Send Selected Data Backward";
         };
-        return EThemeDefaultJaJpEditorData;
+        return EThemeDefaultEnUsEditorData;
     }(EThemeDefaultEditorData));
 
-    var EThemeDefaultJaJpEditorLayer = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorLayer, _super);
-        function EThemeDefaultJaJpEditorLayer() {
+    var EThemeDefaultEnUsEditorLayer = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorLayer, _super);
+        function EThemeDefaultEnUsEditorLayer() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorLayer.prototype.getLabel = function () {
-            return "レイヤー";
+        EThemeDefaultEnUsEditorLayer.prototype.getLabel = function () {
+            return "Layer";
         };
-        EThemeDefaultJaJpEditorLayer.prototype.getButtonNewTitle = function () {
-            return "新規レイヤー";
+        EThemeDefaultEnUsEditorLayer.prototype.getButtonNewTitle = function () {
+            return "New Layer";
         };
-        EThemeDefaultJaJpEditorLayer.prototype.getButtonDeleteTitle = function () {
-            return "選択レイヤーの削除";
+        EThemeDefaultEnUsEditorLayer.prototype.getButtonDeleteTitle = function () {
+            return "Delete Selected Layer";
         };
-        EThemeDefaultJaJpEditorLayer.prototype.getButtonBringForwardTitle = function () {
-            return "選択レイヤーを前面へ移動";
+        EThemeDefaultEnUsEditorLayer.prototype.getButtonBringForwardTitle = function () {
+            return "Bring Selected Layer Forward";
         };
-        EThemeDefaultJaJpEditorLayer.prototype.getButtonSendBackwardTitle = function () {
-            return "選択レイヤーを背面へ移動";
+        EThemeDefaultEnUsEditorLayer.prototype.getButtonSendBackwardTitle = function () {
+            return "Send Selected Layer Backward";
         };
-        return EThemeDefaultJaJpEditorLayer;
+        return EThemeDefaultEnUsEditorLayer;
     }(EThemeDefaultEditorLayer));
 
     var EEditorSearchConditionState = {
@@ -2524,50 +2524,50 @@
         NONE: -1
     };
 
-    var EThemeDefaultJaJpEditorSearch = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorSearch, _super);
-        function EThemeDefaultJaJpEditorSearch() {
+    var EThemeDefaultEnUsEditorSearch = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorSearch, _super);
+        function EThemeDefaultEnUsEditorSearch() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorSearch.prototype.getLabel = function () {
-            return "検索";
+        EThemeDefaultEnUsEditorSearch.prototype.getLabel = function () {
+            return "Search";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.getInputIdLabel = function () {
+        EThemeDefaultEnUsEditorSearch.prototype.getInputIdLabel = function () {
             return "ID";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.getSelectTypeLabel = function () {
-            return "種別";
+        EThemeDefaultEnUsEditorSearch.prototype.getSelectTypeLabel = function () {
+            return "Type";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.toTypeLabel = function (type) {
+        EThemeDefaultEnUsEditorSearch.prototype.toTypeLabel = function (type) {
             switch (type) {
                 case EEditorSearchConditionType.NONE:
-                    return "指定しない";
+                    return "Any";
             }
-            return "不明";
+            return "Unknown";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.getSelectStateLabel = function () {
-            return "状態";
+        EThemeDefaultEnUsEditorSearch.prototype.getSelectStateLabel = function () {
+            return "State";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.toStateLabel = function (state) {
+        EThemeDefaultEnUsEditorSearch.prototype.toStateLabel = function (state) {
             switch (state) {
                 case EEditorSearchConditionState.NONE:
-                    return "指定しない";
+                    return "Any";
                 case EEditorSearchConditionState.CONNECTED_FULLY:
-                    return "完全に接続";
+                    return "Fully Connected";
                 case EEditorSearchConditionState.CONNECTED_PARTIALLY:
-                    return "部分的に接続";
+                    return "Partially Connected";
                 case EEditorSearchConditionState.UNCONNECTED:
-                    return "接続していない";
+                    return "Not Connected";
             }
-            return "不明";
+            return "Unknown";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.getButtonExecuteTitle = function () {
-            return "実行";
+        EThemeDefaultEnUsEditorSearch.prototype.getButtonExecuteTitle = function () {
+            return "Execute";
         };
-        EThemeDefaultJaJpEditorSearch.prototype.getDialogErrorLabel = function () {
-            return "シェイプが見つかりません";
+        EThemeDefaultEnUsEditorSearch.prototype.getDialogErrorLabel = function () {
+            return "No Shapes Found";
         };
-        return EThemeDefaultJaJpEditorSearch;
+        return EThemeDefaultEnUsEditorSearch;
     }(EThemeDefaultEditorSearch));
 
     var toLabel = function (label, shortcut) {
@@ -2581,200 +2581,200 @@
         }
     };
 
-    var EThemeDefaultJaJpEditorShape = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorShape, _super);
-        function EThemeDefaultJaJpEditorShape() {
+    var EThemeDefaultEnUsEditorShape = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorShape, _super);
+        function EThemeDefaultEnUsEditorShape() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorShape.prototype.getLabel = function () {
-            return "シェイプ";
+        EThemeDefaultEnUsEditorShape.prototype.getLabel = function () {
+            return "Shape";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getTextChangeToLabel = function () {
-            return "シェイプの変更";
+        EThemeDefaultEnUsEditorShape.prototype.getTextChangeToLabel = function () {
+            return "Change Shape To:";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonGroupTitle = function () {
-            return toLabel("選択シェイプをグループ化", this.getButtonGroupShortcut());
+        EThemeDefaultEnUsEditorShape.prototype.getButtonGroupTitle = function () {
+            return toLabel("Group Selected Shapes", this.getButtonGroupShortcut());
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonUngroupTitle = function () {
-            return toLabel("選択シェイプのグループを解除", this.getButtonUngroupShortcut());
+        EThemeDefaultEnUsEditorShape.prototype.getButtonUngroupTitle = function () {
+            return toLabel("Ungroup Selected Groups", this.getButtonUngroupShortcut());
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonFillLabel = function () {
-            return "塗り";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonFillLabel = function () {
+            return "Fill";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeLabel = function () {
-            return "輪郭線";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeLabel = function () {
+            return "Stroke";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getInputStrokeWidthLabel = function () {
-            return "幅";
+        EThemeDefaultEnUsEditorShape.prototype.getInputStrokeWidthLabel = function () {
+            return "Width";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getInputStrokeAlignLabel = function () {
-            return "位置";
+        EThemeDefaultEnUsEditorShape.prototype.getInputStrokeAlignLabel = function () {
+            return "Align";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeSideTopTitle = function () {
-            return "上輪郭線";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeSideTopTitle = function () {
+            return "Top";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeSideRightTitle = function () {
-            return "右輪郭線";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeSideRightTitle = function () {
+            return "Right";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeSideBottomTitle = function () {
-            return "下輪郭線";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeSideBottomTitle = function () {
+            return "Bottom";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeSideLeftTitle = function () {
-            return "左輪郭線";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeSideLeftTitle = function () {
+            return "Left";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeExpandableTitle = function () {
-            return "線幅の拡大を許可";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeExpandableTitle = function () {
+            return "Expandable";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeShrinkableTitle = function () {
-            return "線幅の縮小を許可";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeShrinkableTitle = function () {
+            return "Shrinkable";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonStrokeScalableDotDashTitle = function () {
-            return "点線／破線の拡大縮小を許可";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeScalableDotDashTitle = function () {
+            return "Scalable Dot / Dash";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getTextCornerLabel = function () {
-            return "角の丸み";
+        EThemeDefaultEnUsEditorShape.prototype.getTextCornerLabel = function () {
+            return "Corner Radius";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonCornerTopLeftTitle = function () {
-            return "左上角を丸める";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonCornerTopLeftTitle = function () {
+            return "Top-Left Corner";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonCornerTopRightTitle = function () {
-            return "右上角を丸める";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonCornerTopRightTitle = function () {
+            return "Top-Right Corner";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonCornerBottomRightTitle = function () {
-            return "右下角を丸める";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonCornerBottomRightTitle = function () {
+            return "Bottom-Right Corner";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonCornerBottomLeftTitle = function () {
-            return "左下角を丸める";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonCornerBottomLeftTitle = function () {
+            return "Bottom-Left Corner";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getTextLineLabel = function () {
-            return "線";
+        EThemeDefaultEnUsEditorShape.prototype.getTextLineLabel = function () {
+            return "Line";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getSelectLineStyleLabel = function (style) {
+        EThemeDefaultEnUsEditorShape.prototype.getSelectLineStyleLabel = function (style) {
             switch (style) {
                 case wcardinalUi.EShapeStrokeStyle.NONE:
-                    return "実線";
+                    return "Solid";
                 case wcardinalUi.EShapeStrokeStyle.NON_EXPANDING_WIDTH:
-                    return "拡大しない";
+                    return "Non Expanding";
                 case wcardinalUi.EShapeStrokeStyle.NON_SHRINKING_WIDTH:
-                    return "縮小しない";
+                    return "Non Shrinking";
                 case wcardinalUi.EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH:
-                    return "点線／破線の間隔を維持";
+                    return "Non-Scaling Dot/Dash";
                 case wcardinalUi.EShapeStrokeStyle.DOTTED:
-                    return "点線";
+                    return "Dotted";
                 case wcardinalUi.EShapeStrokeStyle.DOTTED_DENSELY:
-                    return "点線（密）";
+                    return "Densely Dotted";
                 case wcardinalUi.EShapeStrokeStyle.DOTTED_LOOSELY:
-                    return "点線（疎）";
+                    return "Loosely Dotted";
                 case wcardinalUi.EShapeStrokeStyle.DASHED:
-                    return "破線";
+                    return "Dashed";
                 case wcardinalUi.EShapeStrokeStyle.DASHED_DENSELY:
-                    return "破線（密）";
+                    return "Densely Dashed";
                 case wcardinalUi.EShapeStrokeStyle.DASHED_LOOSELY:
-                    return "破線（疎）";
+                    return "Loosely Dashed";
             }
             return "Unknown";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getSelectLineTypeLabel = function (style) {
+        EThemeDefaultEnUsEditorShape.prototype.getSelectLineTypeLabel = function (style) {
             switch (style) {
                 case wcardinalUi.EShapePointsStyle.NONE:
-                    return "折れ線";
+                    return "Polyline";
                 case wcardinalUi.EShapePointsStyle.CLOSED:
-                    return "閉じる";
+                    return "Closed";
             }
             return "Unknown";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonLineClosedTitle = function () {
-            return "閉じる";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonLineClosedTitle = function () {
+            return "Closed";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getTextLineTailLabel = function () {
-            return "線の始点側";
+        EThemeDefaultEnUsEditorShape.prototype.getTextLineTailLabel = function () {
+            return "Line Tail";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getSelectLineTailTypeLabel = function (type) {
+        EThemeDefaultEnUsEditorShape.prototype.getSelectLineTailTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapePointsMarkerType.NONE:
-                    return "マーカー無し";
+                    return "No Marker";
                 case wcardinalUi.EShapePointsMarkerType.CIRCLE:
-                    return "円";
+                    return "Circle";
                 case wcardinalUi.EShapePointsMarkerType.TRIANGLE:
-                    return "三角形";
+                    return "Triangle";
                 case wcardinalUi.EShapePointsMarkerType.RECTANGLE:
-                    return "四角形";
+                    return "Rectangle";
             }
-            return "不明";
+            return "None";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getInputLineTailMarginLabel = function () {
-            return "余白";
+        EThemeDefaultEnUsEditorShape.prototype.getInputLineTailMarginLabel = function () {
+            return "Margin";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getTextLineHeadLabel = function () {
-            return "線の終点側";
+        EThemeDefaultEnUsEditorShape.prototype.getTextLineHeadLabel = function () {
+            return "Line Head";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonTextureImageTitle = function () {
-            return "画像をテクスチャとして適用...";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonTextureImageTitle = function () {
+            return "Apply Image as Texture...";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonTextureGradientTitle = function () {
-            return "グラデーションをテクスチャとして適用...";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonTextureGradientTitle = function () {
+            return "Apply Gradient as Texture...";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonTextureFitToTitle = function () {
-            return "テクスチャにフィットさせる";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonTextureFitToTitle = function () {
+            return "Fit to Texture";
         };
-        EThemeDefaultJaJpEditorShape.prototype.getButtonTextureClearTitle = function () {
-            return "テクスチャを削除";
+        EThemeDefaultEnUsEditorShape.prototype.getButtonTextureClearTitle = function () {
+            return "Clear Texture";
         };
-        return EThemeDefaultJaJpEditorShape;
+        return EThemeDefaultEnUsEditorShape;
     }(EThemeDefaultEditorShape));
 
-    var EThemeDefaultJaJpEditorSnap = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorSnap, _super);
-        function EThemeDefaultJaJpEditorSnap() {
+    var EThemeDefaultEnUsEditorSnap = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorSnap, _super);
+        function EThemeDefaultEnUsEditorSnap() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorSnap.prototype.getLabel = function () {
-            return "スナップ";
+        EThemeDefaultEnUsEditorSnap.prototype.getLabel = function () {
+            return "Snap";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonTargetLabel = function () {
-            return "スナップターゲット";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonTargetLabel = function () {
+            return "Snap on Target";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonTargetNewTitle = function () {
-            return "新規スナップターゲット";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonTargetNewTitle = function () {
+            return "New Snap Target";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonTargetDeleteTitle = function () {
-            return "選択スナップターゲットを削除";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonTargetDeleteTitle = function () {
+            return "Delete Selected Snap Target";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonTargetBringForwardTitle = function () {
-            return "選択スナップターゲットを上へ移動";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonTargetBringForwardTitle = function () {
+            return "Bring Selected Snap Target Forward";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonTargetSendBackwardTitle = function () {
-            return "選択スナップターゲットを下へ移動";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonTargetSendBackwardTitle = function () {
+            return "Send Selected Snap Target Backward";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonTargetEyeTitle = function () {
-            return "スナップターゲットの表示";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonTargetEyeTitle = function () {
+            return "Show / Hide Snap Targets";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonGridLabel = function () {
-            return "スナップグリッド";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonGridLabel = function () {
+            return "Snap on Grid";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getButtonGridEyeTitle = function () {
-            return "スナップグリッドの表示";
+        EThemeDefaultEnUsEditorSnap.prototype.getButtonGridEyeTitle = function () {
+            return "Show / Hide Snap Grid";
         };
-        EThemeDefaultJaJpEditorSnap.prototype.getInputGridSizeLabel = function () {
-            return "サイズ";
+        EThemeDefaultEnUsEditorSnap.prototype.getInputGridSizeLabel = function () {
+            return "Size";
         };
-        return EThemeDefaultJaJpEditorSnap;
+        return EThemeDefaultEnUsEditorSnap;
     }(EThemeDefaultEditorSnap));
 
-    var EThemeDefaultJaJpEditorText = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorText, _super);
-        function EThemeDefaultJaJpEditorText() {
+    var EThemeDefaultEnUsEditorText = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorText, _super);
+        function EThemeDefaultEnUsEditorText() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorText.prototype.getLabel = function () {
-            return "テキスト";
+        EThemeDefaultEnUsEditorText.prototype.getLabel = function () {
+            return "Text";
         };
-        EThemeDefaultJaJpEditorText.prototype.getTextFontLabel = function () {
-            return "フォント";
+        EThemeDefaultEnUsEditorText.prototype.getTextFontLabel = function () {
+            return "Font";
         };
-        EThemeDefaultJaJpEditorText.prototype.getFontFamilies = function () {
+        EThemeDefaultEnUsEditorText.prototype.getFontFamilies = function () {
             var result = new Map();
-            result.set("auto", "自動");
+            result.set("auto", "Auto");
             result.set('"Arial", "Helvetica Neue", "Helvetica", sans-serif', "Arial");
             result.set('"Calibri", "Candara", "Segoe", "Segoe UI", "Optima", "Arial", sans-serif', "Calibri");
             result.set('"Cambria", "Georgia", serif', "Cambria");
@@ -2786,391 +2786,391 @@
             result.set('"Dejavu Sans", "Arial", "Verdana", sans-serif', "Dejavu Sans");
             result.set('"Georgia", "Cambria", serif', "Georgia");
             result.set('"Helvetica", "Helvetica Neue", "Arial", sans-serif', "Helvetica");
-            result.set('"Hiragino Kaku Gothic Std", "Hiragino Kaku Gothic Pro", "Hiragino Sans", sans-serif', "ヒラギノ角ゴ");
-            result.set('"Hiragino Maru Gothic Pro", sans-serif', "ヒラギノ丸ゴ");
-            result.set('"Hiragino Mincho Pro", serif', "ヒラギノ明朝");
+            result.set('"Hiragino Kaku Gothic Std", "Hiragino Kaku Gothic Pro", "Hiragino Sans", sans-serif', "Hiragino Kaku Gothic");
+            result.set('"Hiragino Maru Gothic Pro", sans-serif', "Hiragino Maru Gothic");
+            result.set('"Hiragino Mincho Pro", serif', "Hiragino Mincho");
             result.set('"Impact", "Charcoal", "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif', "Impact");
-            result.set('"MS Gothic", sans-serif', "ＭＳ ゴシック");
-            result.set('"MS Mincho", serif', "ＭＳ 明朝");
-            result.set('"MS PGothic", sans-serif', "ＭＳ Ｐゴシック");
-            result.set('"MS PMincho", serif', "ＭＳ Ｐ明朝");
-            result.set('"Meiryo", sans-serif', "メイリオ");
-            result.set('"Meiryo UI", sans-serif', "メイリオＵＩ");
+            result.set('"MS Gothic", sans-serif', "MS Gothic");
+            result.set('"MS Mincho", serif', "MS Mincho");
+            result.set('"MS PGothic", sans-serif', "MS PGothic");
+            result.set('"MS PMincho", serif', "MS PMincho");
+            result.set('"Meiryo", sans-serif', "Meiryo");
+            result.set('"Meiryo UI", sans-serif', "Meiryo UI");
             result.set('"Optima", "Segoe UI", "Segoe", "Candara", "Calibri", "Arial", sans-serif', "Optima");
             result.set('"Roboto", system-ui', "Roboto");
             result.set('"Segoe", "Candara", "Calibri","Segoe UI", "Optima", "Arial", sans-serif', "Segoe");
             result.set('"Segoe UI", "Segoe", "Candara", "Calibri", "Optima", "Arial", sans-serif', "Segoe UI");
             result.set('"Verdana", "Dejavu Sans", "Arial", sans-serif', "Verdana");
-            result.set('"YuGothic", "Hiragino Sans", sans-serif', "游ゴシック");
-            result.set('"YuGothic UI", "Hiragino Sans", sans-serif', "游ゴシックＵＩ");
-            result.set('"YuMincho", serif', "游明朝");
+            result.set('"YuGothic", "Hiragino Sans", sans-serif', "YuGothic");
+            result.set('"YuGothic UI", "Hiragino Sans", sans-serif', "YuGothic UI");
+            result.set('"YuMincho", serif', "YuMincho");
             return result;
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonFontSizeIncreaseTitle = function () {
-            return "フォントサイズの拡大";
+        EThemeDefaultEnUsEditorText.prototype.getButtonFontSizeIncreaseTitle = function () {
+            return "Increase Font Size";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonFontSizeDecreaseTitle = function () {
-            return "フォントサイズの縮小";
+        EThemeDefaultEnUsEditorText.prototype.getButtonFontSizeDecreaseTitle = function () {
+            return "Decrease Font Size";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonFontItalicTitle = function () {
-            return "斜体";
+        EThemeDefaultEnUsEditorText.prototype.getButtonFontItalicTitle = function () {
+            return "Italic Font";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonFontBoldTitle = function () {
-            return "太字";
+        EThemeDefaultEnUsEditorText.prototype.getButtonFontBoldTitle = function () {
+            return "Bold Font";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonOutlineLabel = function () {
-            return "輪郭線";
+        EThemeDefaultEnUsEditorText.prototype.getButtonOutlineLabel = function () {
+            return "Text Outline";
         };
-        EThemeDefaultJaJpEditorText.prototype.getInputOutlineWidthLabel = function () {
-            return "線幅";
+        EThemeDefaultEnUsEditorText.prototype.getInputOutlineWidthLabel = function () {
+            return "Width";
         };
-        EThemeDefaultJaJpEditorText.prototype.getTextAlignLabel = function () {
-            return "配置";
+        EThemeDefaultEnUsEditorText.prototype.getTextAlignLabel = function () {
+            return "Text Align";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignOutsideLeftTitle = function () {
-            return "左外揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignOutsideLeftTitle = function () {
+            return "Align Outside Left";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignLeftTitle = function () {
-            return "左揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignLeftTitle = function () {
+            return "Align Left";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignCenterTitle = function () {
-            return "中央揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignCenterTitle = function () {
+            return "Align Center";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignRightTitle = function () {
-            return "右揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignRightTitle = function () {
+            return "Align Right";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignOutsideRightTitle = function () {
-            return "右外揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignOutsideRightTitle = function () {
+            return "Align Outside Right";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignOutsideTopTitle = function () {
-            return "上外揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignOutsideTopTitle = function () {
+            return "Align Outside Top";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignTopTitle = function () {
-            return "上揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignTopTitle = function () {
+            return "Align Top";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignMiddleTitle = function () {
-            return "上下中央揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignMiddleTitle = function () {
+            return "Align Middle";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignBottomTitle = function () {
-            return "下揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignBottomTitle = function () {
+            return "Align Bottom";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonAlignOutsideBottomTitle = function () {
-            return "下外揃え";
+        EThemeDefaultEnUsEditorText.prototype.getButtonAlignOutsideBottomTitle = function () {
+            return "Align Outside Bottom";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonDirectionLeftToRightTitle = function () {
-            return "左から右";
+        EThemeDefaultEnUsEditorText.prototype.getButtonDirectionLeftToRightTitle = function () {
+            return "Left to Right";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonDirectionTopToBottomTitle = function () {
-            return "上から下";
+        EThemeDefaultEnUsEditorText.prototype.getButtonDirectionTopToBottomTitle = function () {
+            return "Top to Bottom";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonDirectionBottomToTopTitle = function () {
-            return "下から上";
+        EThemeDefaultEnUsEditorText.prototype.getButtonDirectionBottomToTopTitle = function () {
+            return "Bottom to Top";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonDirectionRightToLeftTitle = function () {
-            return "右から左";
+        EThemeDefaultEnUsEditorText.prototype.getButtonDirectionRightToLeftTitle = function () {
+            return "Right to Left";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonClippingLabel = function () {
-            return "クリッピング";
+        EThemeDefaultEnUsEditorText.prototype.getButtonClippingLabel = function () {
+            return "Text Clipping";
         };
-        EThemeDefaultJaJpEditorText.prototype.getButtonFittingLabel = function () {
-            return "フィッティング";
+        EThemeDefaultEnUsEditorText.prototype.getButtonFittingLabel = function () {
+            return "Text Fitting";
         };
-        EThemeDefaultJaJpEditorText.prototype.getTextSpacingLabel = function () {
-            return "文字間隔";
+        EThemeDefaultEnUsEditorText.prototype.getTextSpacingLabel = function () {
+            return "Letter Spacing";
         };
-        EThemeDefaultJaJpEditorText.prototype.getTextPaddingLabel = function () {
-            return "パティング";
+        EThemeDefaultEnUsEditorText.prototype.getTextPaddingLabel = function () {
+            return "Text Padding";
         };
-        EThemeDefaultJaJpEditorText.prototype.getTextOffsetLabel = function () {
-            return "オフセット";
+        EThemeDefaultEnUsEditorText.prototype.getTextOffsetLabel = function () {
+            return "Text Offset";
         };
-        return EThemeDefaultJaJpEditorText;
+        return EThemeDefaultEnUsEditorText;
     }(EThemeDefaultEditorText));
 
-    var EThemeDefaultJaJpEditorTree = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorTree, _super);
-        function EThemeDefaultJaJpEditorTree() {
+    var EThemeDefaultEnUsEditorTree = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorTree, _super);
+        function EThemeDefaultEnUsEditorTree() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorTree.prototype.getLabel = function () {
-            return "ツリー";
+        EThemeDefaultEnUsEditorTree.prototype.getLabel = function () {
+            return "Tree";
         };
-        EThemeDefaultJaJpEditorTree.prototype.getButtonBringToFrontTitle = function () {
-            return toLabel("最前面へ移動", this.getButtonBringToFrontShortcut());
+        EThemeDefaultEnUsEditorTree.prototype.getButtonBringToFrontTitle = function () {
+            return toLabel("Bring to Front", this.getButtonBringToFrontShortcut());
         };
-        EThemeDefaultJaJpEditorTree.prototype.getButtonBringForwardTitle = function () {
-            return toLabel("前面へ移動", this.getButtonBringForwardShortcut());
+        EThemeDefaultEnUsEditorTree.prototype.getButtonBringForwardTitle = function () {
+            return toLabel("Bring Forward", this.getButtonBringForwardShortcut());
         };
-        EThemeDefaultJaJpEditorTree.prototype.getButtonSendBackwardTitle = function () {
-            return toLabel("背面へ移動", this.getButtonSendBackwardShortcut());
+        EThemeDefaultEnUsEditorTree.prototype.getButtonSendBackwardTitle = function () {
+            return toLabel("Send Backward", this.getButtonSendBackwardShortcut());
         };
-        EThemeDefaultJaJpEditorTree.prototype.getButtonSendToBackTitle = function () {
-            return toLabel("最背面へ移動", this.getButtonSendToBackShortcut());
+        EThemeDefaultEnUsEditorTree.prototype.getButtonSendToBackTitle = function () {
+            return toLabel("Send to Back", this.getButtonSendToBackShortcut());
         };
-        return EThemeDefaultJaJpEditorTree;
+        return EThemeDefaultEnUsEditorTree;
     }(EThemeDefaultEditorTree));
 
-    var EThemeDefaultJaJpEditorValidation = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpEditorValidation, _super);
-        function EThemeDefaultJaJpEditorValidation() {
+    var EThemeDefaultEnUsEditorValidation = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsEditorValidation, _super);
+        function EThemeDefaultEnUsEditorValidation() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpEditorValidation.prototype.getLabel = function () {
-            return "検証";
+        EThemeDefaultEnUsEditorValidation.prototype.getLabel = function () {
+            return "Validation";
         };
-        EThemeDefaultJaJpEditorValidation.prototype.getButtonRevalidateTitle = function () {
-            return "再検証";
+        EThemeDefaultEnUsEditorValidation.prototype.getButtonRevalidateTitle = function () {
+            return "Revalidate";
         };
-        return EThemeDefaultJaJpEditorValidation;
+        return EThemeDefaultEnUsEditorValidation;
     }(EThemeDefaultEditorValidation));
 
-    var EThemeDefaultJaJpShapeActionValue = /** @class */ (function (_super) {
-        __extends(EThemeDefaultJaJpShapeActionValue, _super);
-        function EThemeDefaultJaJpShapeActionValue() {
+    var EThemeDefaultEnUsShapeActionValue = /** @class */ (function (_super) {
+        __extends(EThemeDefaultEnUsShapeActionValue, _super);
+        function EThemeDefaultEnUsShapeActionValue() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        EThemeDefaultJaJpShapeActionValue.prototype.toTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueType.SHOW_HIDE:
-                    return "表示切替";
+                    return "Show / Hide";
                 case wcardinalUi.EShapeActionValueType.BLINK:
-                    return "点滅";
+                    return "Blink";
                 case wcardinalUi.EShapeActionValueType.TRANSFORM:
-                    return "移動・回転・拡大縮小";
+                    return "Transform";
                 case wcardinalUi.EShapeActionValueType.OPEN:
-                    return "開く";
+                    return "Open";
                 case wcardinalUi.EShapeActionValueType.CHANGE_COLOR:
                 case wcardinalUi.EShapeActionValueType.CHANGE_COLOR_LEGACY:
-                    return "色変更";
+                    return "Change Color";
                 case wcardinalUi.EShapeActionValueType.CHANGE_TEXT:
-                    return "テキスト変更";
+                    return "Change Text";
                 case wcardinalUi.EShapeActionValueType.CHANGE_CURSOR:
-                    return "カーソル変更";
+                    return "Change Cursor";
                 case wcardinalUi.EShapeActionValueType.EMIT_EVENT:
-                    return "イベント発火";
+                    return "Emit Event";
                 case wcardinalUi.EShapeActionValueType.GESTURE:
-                    return "操作";
+                    return "Gesture";
                 case wcardinalUi.EShapeActionValueType.MISC:
-                    return "その他";
+                    return "Misc.";
                 default:
                     if (wcardinalUi.EShapeActionValueType.EXTENSION <= type) {
-                        return "拡張";
+                        return "Extension";
                     }
                     else {
-                        return "不明";
+                        return "Unknown";
                     }
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toBlinkTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toBlinkTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueBlinkType.VISIBILITY:
-                    return "表示切替";
+                    return "Visibility";
                 case wcardinalUi.EShapeActionValueBlinkType.BRIGHTEN:
-                    return "明るく";
+                    return "Brighten";
                 case wcardinalUi.EShapeActionValueBlinkType.DARKEN:
-                    return "暗く";
+                    return "Darken";
                 case wcardinalUi.EShapeActionValueBlinkType.OPACITY:
-                    return "透明度";
+                    return "Opacity";
                 case wcardinalUi.EShapeActionValueBlinkType.COLOR_FILL:
-                    return "塗り";
+                    return "Fill";
                 case wcardinalUi.EShapeActionValueBlinkType.COLOR_STROKE:
-                    return "境界線";
+                    return "Stroke";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toShowHideTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toShowHideTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueShowHideType.SHAPE_SHOW:
-                    return "表示";
+                    return "Show";
                 case wcardinalUi.EShapeActionValueShowHideType.SHAPE_HIDE:
-                    return "非表示";
+                    return "Hide";
                 case wcardinalUi.EShapeActionValueShowHideType.SHAPE:
-                    return "シェイプ";
+                    return "Shape";
                 case wcardinalUi.EShapeActionValueShowHideType.LAYER:
-                    return "レイヤー";
+                    return "Layer";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toTransformTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toTransformTypeLabel = function (type) {
             switch (type) {
-                case wcardinalUi.EShapeActionValueTransformType.MOVE:
-                    return "移動";
-                case wcardinalUi.EShapeActionValueTransformType.ROTATE:
-                    return "回転";
                 case wcardinalUi.EShapeActionValueTransformType.RESIZE:
-                    return "拡大縮小";
+                    return "Resize";
+                case wcardinalUi.EShapeActionValueTransformType.MOVE:
+                    return "Move";
+                case wcardinalUi.EShapeActionValueTransformType.ROTATE:
+                    return "Rotate";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toTransformRotateTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toTransformRotateTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueTransformRotateType.RELATIVE:
-                    return "相対角度";
+                    return "Relative";
                 case wcardinalUi.EShapeActionValueTransformRotateType.ABSOLUTE:
-                    return "絶対角度";
+                    return "Absolute";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toTransformMoveTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toTransformMoveTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueTransformMoveType.RELATIVE_X:
-                    return "相対X座標";
+                    return "Relative X";
                 case wcardinalUi.EShapeActionValueTransformMoveType.RELATIVE_Y:
-                    return "相対Y座標";
+                    return "Relative Y";
                 case wcardinalUi.EShapeActionValueTransformMoveType.ABSOLUTE_X:
-                    return "絶対X座標";
+                    return "Absolute X";
                 case wcardinalUi.EShapeActionValueTransformMoveType.ABSOLUTE_Y:
-                    return "絶対Y座標";
+                    return "Absolute Y";
                 case wcardinalUi.EShapeActionValueTransformMoveType.FORWARD_OR_BACKWARD:
-                    return "前後";
+                    return "Forward / Backward";
                 case wcardinalUi.EShapeActionValueTransformMoveType.LEFT_OR_RIGHT:
-                    return "左右";
+                    return "Left / Right";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toTransformResizeTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toTransformResizeTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueTransformResizeType.ABSOLUTE_SIZE:
-                    return "幅と高さ";
+                    return "Height & Width";
                 case wcardinalUi.EShapeActionValueTransformResizeType.RELATIVE_SIZE:
-                    return "幅と高さ（％）";
+                    return "Height & Width (%)";
                 case wcardinalUi.EShapeActionValueTransformResizeType.ABSOLUTE_HEIGHT:
-                    return "高さ";
+                    return "Height";
                 case wcardinalUi.EShapeActionValueTransformResizeType.RELATIVE_HEIGHT:
-                    return "高さ（％）";
+                    return "Height (%)";
                 case wcardinalUi.EShapeActionValueTransformResizeType.ABSOLUTE_WIDTH:
-                    return "幅";
+                    return "Width";
                 case wcardinalUi.EShapeActionValueTransformResizeType.RELATIVE_WIDTH:
-                    return "幅（％）";
+                    return "Width (%)";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toChangeColorTypeValueLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toChangeColorTypeValueLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueChangeColorType.NONE:
-                    return "無し";
+                    return "None";
                 case wcardinalUi.EShapeActionValueChangeColorType.FILL:
-                    return "塗り";
+                    return "Fill";
                 case wcardinalUi.EShapeActionValueChangeColorType.STROKE:
-                    return "境界線";
+                    return "Stroke";
                 case wcardinalUi.EShapeActionValueChangeColorType.TEXT:
-                    return "テキスト";
+                    return "Text";
                 case wcardinalUi.EShapeActionValueChangeColorType.TEXT_OUTLINE:
-                    return "テキスト境界線";
+                    return "Text Outline";
             }
-            return "不明";
+            return "Unknown";
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toChangeColorTargetLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toChangeColorTargetLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueChangeColorTarget.COLOR_AND_ALPHA:
-                    return "色";
+                    return "Color";
                 case wcardinalUi.EShapeActionValueChangeColorTarget.COLOR:
                     return "RGB";
                 case wcardinalUi.EShapeActionValueChangeColorTarget.ALPHA:
-                    return "透明度";
+                    return "Alpha";
                 case wcardinalUi.EShapeActionValueChangeColorTarget.CODE:
-                    return "色（動的）";
+                    return "Dynamic Color";
                 case wcardinalUi.EShapeActionValueChangeColorTarget.BRIGHTNESS:
-                    return "明るさ";
+                    return "Brightness";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toChangeTextTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toChangeTextTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueChangeTextType.TEXT:
-                    return "テキスト";
+                    return "Text";
                 case wcardinalUi.EShapeActionValueChangeTextType.NUMBER:
-                    return "数値";
+                    return "Number";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toOpenTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toOpenTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueOpenType.DIAGRAM_LEGACY:
-                    return "グラフィック";
+                    return "Graphic";
                 case wcardinalUi.EShapeActionValueOpenType.PAGE_LEGACY:
-                    return "ページ（新規ウィンドウ）";
+                    return "Page (New Window)";
                 case wcardinalUi.EShapeActionValueOpenType.PAGE_INPLACE_LEGACY:
-                    return "ページ（現在のウィンドウ）";
+                    return "Page (In-place)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_TEXT:
-                    return "ダイアログ（テキスト）";
+                    return "Dialog (Text)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_INTEGER:
-                    return "ダイアログ（整数）";
+                    return "Dialog (Integer)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_REAL:
-                    return "ダイアログ（実数）";
+                    return "Dialog (Real)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_BOOLEAN:
-                    return "ダイアログ（真偽値）";
+                    return "Dialog (Boolean)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_DATE:
-                    return "ダイアログ（日付）";
+                    return "Dialog (Date)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_TIME:
-                    return "ダイアログ（時刻）";
+                    return "Dialog (Time)";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG_DATETIME:
-                    return "ダイアログ（日時）";
+                    return "Dialog (Datetime)";
                 case wcardinalUi.EShapeActionValueOpenType.DIAGRAM:
-                    return "グラフィック";
+                    return "Graphic";
                 case wcardinalUi.EShapeActionValueOpenType.PAGE:
-                    return "ページ";
+                    return "Page";
                 case wcardinalUi.EShapeActionValueOpenType.DIALOG:
-                    return "ダイアログ";
+                    return "Dialog";
                 default:
                     if (wcardinalUi.EShapeActionValueOpenType.EXTENSION <= type) {
                         var extension = wcardinalUi.EShapeActionOpenExtensions.get(type);
                         if (extension) {
                             return extension.label;
                         }
-                        return "拡張";
+                        return "Extension";
                     }
                     else {
-                        return "不明";
+                        return "Unknown";
                     }
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toOpenDialogTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toOpenDialogTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueOpenDialogType.TEXT:
-                    return "テキスト";
+                    return "Text";
                 case wcardinalUi.EShapeActionValueOpenDialogType.INTEGER:
-                    return "整数";
+                    return "Integer";
                 case wcardinalUi.EShapeActionValueOpenDialogType.REAL:
-                    return "実数";
+                    return "Real";
                 case wcardinalUi.EShapeActionValueOpenDialogType.BOOLEAN:
-                    return "真偽値";
+                    return "Boolean";
                 case wcardinalUi.EShapeActionValueOpenDialogType.DATE:
-                    return "日付";
+                    return "Date";
                 case wcardinalUi.EShapeActionValueOpenDialogType.TIME:
-                    return "時刻";
+                    return "Time";
                 case wcardinalUi.EShapeActionValueOpenDialogType.DATETIME:
-                    return "日時";
+                    return "Datetime";
                 default:
                     if (wcardinalUi.EShapeActionValueOpenDialogType.EXTENSION <= type) {
                         var extension = wcardinalUi.EShapeActionOpenDialogExtensions.get(type);
                         if (extension) {
                             return extension.label;
                         }
-                        return "拡張";
+                        return "Extension";
                     }
                     else {
-                        return "不明";
+                        return "Unknown";
                     }
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toGestureTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toGestureTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueGestureType.SHAPE:
-                    return "シェイプ";
+                    return "Shape";
                 case wcardinalUi.EShapeActionValueGestureType.LAYER:
-                    return "レイヤー";
+                    return "Layer";
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toGestureOperationTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toGestureOperationTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueGestureOperationType.DRAG:
-                    return "ドラッグ";
+                    return "Drag";
                 case wcardinalUi.EShapeActionValueGestureOperationType.PINCH:
-                    return "ピンチ";
+                    return "Pinch";
             }
-            return "不明";
+            return "Unknown";
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toMiscTypeLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toMiscTypeLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueMiscType.INPUT_TEXT:
-                    return "入力（テキスト）";
+                    return "Input (Text)";
                 case wcardinalUi.EShapeActionValueMiscType.INPUT_INTEGER:
-                    return "入力（整数）";
+                    return "Input (Integer)";
                 case wcardinalUi.EShapeActionValueMiscType.INPUT_REAL:
-                    return "入力（実数）";
+                    return "Input (Real)";
                 case wcardinalUi.EShapeActionValueMiscType.EMIT_EVENT:
                     return this.toOnInputActionLabel(wcardinalUi.EShapeActionValueOnInputAction.EMIT_EVENT);
                 case wcardinalUi.EShapeActionValueMiscType.WRITE_BOTH:
@@ -3180,57 +3180,57 @@
                 case wcardinalUi.EShapeActionValueMiscType.WRITE_REMOTE:
                     return this.toOnInputActionLabel(wcardinalUi.EShapeActionValueOnInputAction.WRITE_REMOTE);
                 case wcardinalUi.EShapeActionValueMiscType.HTML_ELEMENT:
-                    return "HTML要素";
+                    return "HTML Element";
                 case wcardinalUi.EShapeActionValueMiscType.HTML_ELEMENT_WITHOUT_POINTER_EVENTS:
-                    return "HTML要素（ポインター無効）";
+                    return "HTML Element (No Pointer Event)";
                 case wcardinalUi.EShapeActionValueMiscType.SHOW_HIDE_LAYER:
-                    return "レイヤー表示切替";
+                    return "Show / Hide Layers";
                 case wcardinalUi.EShapeActionValueMiscType.GESTURE_LAYER:
-                    return "レイヤー操作";
+                    return "Layer Gesture";
                 case wcardinalUi.EShapeActionValueMiscType.GESTURE:
-                    return "操作";
+                    return "Gesture";
                 case wcardinalUi.EShapeActionValueMiscType.EXECUTE:
-                    return "実行";
+                    return "Execute";
                 default:
                     if (wcardinalUi.EShapeActionValueMiscType.EXTENSION <= type) {
                         var extension = wcardinalUi.EShapeActionMiscExtensions.get(type);
                         if (extension) {
                             return extension.label;
                         }
-                        return "拡張";
+                        return "Extension";
                     }
                     else {
-                        return "不明";
+                        return "Unknown";
                     }
             }
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toHtmlElementWhenLabel = function (when) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toHtmlElementWhenLabel = function (when) {
             switch (when) {
                 case wcardinalUi.UtilHtmlElementWhen.CLICKED:
-                    return "クリック時";
+                    return "Clicked";
                 case wcardinalUi.UtilHtmlElementWhen.DOUBLE_CLICKED:
-                    return "ダブルクリック時";
+                    return "Double Clicked";
                 case wcardinalUi.UtilHtmlElementWhen.FOCUSED:
-                    return "フォーカス時";
+                    return "Focused";
                 case wcardinalUi.UtilHtmlElementWhen.ALWAYS:
-                    return "常時";
+                    return "Always";
             }
-            return "不明";
+            return "Unknown";
         };
-        EThemeDefaultJaJpShapeActionValue.prototype.toOnInputActionLabel = function (type) {
+        EThemeDefaultEnUsShapeActionValue.prototype.toOnInputActionLabel = function (type) {
             switch (type) {
                 case wcardinalUi.EShapeActionValueOnInputAction.EMIT_EVENT:
-                    return "イベント発火";
+                    return "Emit Event";
                 case wcardinalUi.EShapeActionValueOnInputAction.WRITE_BOTH:
-                    return "書込み（両方）";
+                    return "Write (Both)";
                 case wcardinalUi.EShapeActionValueOnInputAction.WRITE_LOCAL:
-                    return "書込み（ローカル）";
+                    return "Write (Local)";
                 case wcardinalUi.EShapeActionValueOnInputAction.WRITE_REMOTE:
-                    return "書込み（リモート）";
+                    return "Write (Remote)";
             }
-            return "不明";
+            return "Unknown";
         };
-        return EThemeDefaultJaJpShapeActionValue;
+        return EThemeDefaultEnUsShapeActionValue;
     }(EThemeDefaultShapeActionValue));
 
     var FThemeDefaultGraphicEditor = /** @class */ (function () {
@@ -3372,57 +3372,57 @@
         return FThemeDefaultGraphicEditor;
     }());
 
-    var FThemeDefaultJaJpGraphicEditor = /** @class */ (function (_super) {
-        __extends(FThemeDefaultJaJpGraphicEditor, _super);
-        function FThemeDefaultJaJpGraphicEditor() {
+    var FThemeDefaultEnUsGraphicEditor = /** @class */ (function (_super) {
+        __extends(FThemeDefaultEnUsGraphicEditor, _super);
+        function FThemeDefaultEnUsGraphicEditor() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonCreateTitle = function () {
-            return toLabel("新規作成...", this.getToolFileButtonCreateShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonCreateTitle = function () {
+            return toLabel("New File...", this.getToolFileButtonCreateShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonOpenTitle = function () {
-            return toLabel("開く...", this.getToolFileButtonOpenShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonOpenTitle = function () {
+            return toLabel("Open File...", this.getToolFileButtonOpenShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonSaveTitle = function () {
-            return toLabel("保存", this.getToolFileButtonSaveShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonSaveTitle = function () {
+            return toLabel("Save", this.getToolFileButtonSaveShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonSaveAsTitle = function () {
-            return toLabel("名前を付けて保存...", this.getToolFileButtonSaveAsShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonSaveAsTitle = function () {
+            return toLabel("Save As...", this.getToolFileButtonSaveAsShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonUploadTitle = function () {
-            return toLabel("アップロード...", this.getToolFileButtonUploadShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonUploadTitle = function () {
+            return toLabel("Upload from File...", this.getToolFileButtonUploadShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonDownloadTitle = function () {
-            return toLabel("ダウンロード", this.getToolFileButtonDownloadShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonDownloadTitle = function () {
+            return toLabel("Download", this.getToolFileButtonDownloadShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonUndoTitle = function () {
-            return toLabel("元に戻す", this.getToolFileButtonUndoShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonUndoTitle = function () {
+            return toLabel("Undo", this.getToolFileButtonUndoShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonRedoTitle = function () {
-            return toLabel("やり直す", this.getToolFileButtonRedoShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonRedoTitle = function () {
+            return toLabel("Redo", this.getToolFileButtonRedoShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolFileButtonDeleteTitle = function () {
-            return toLabel("削除...", this.getToolFileButtonDeleteShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolFileButtonDeleteTitle = function () {
+            return toLabel("Delete...", this.getToolFileButtonDeleteShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getToolShapeButtonSelectTitle = function () {
-            return "選択ツール";
+        FThemeDefaultEnUsGraphicEditor.prototype.getToolShapeButtonSelectTitle = function () {
+            return "Select tool";
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getViewButtonZoomOutTitle = function () {
-            return toLabel("ズームアウト", this.getViewButtonZoomOutShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getViewButtonZoomOutTitle = function () {
+            return toLabel("Zoom Out", this.getViewButtonZoomOutShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getViewButtonZoomInTitle = function () {
-            return toLabel("ズームイン", this.getViewButtonZoomInShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getViewButtonZoomInTitle = function () {
+            return toLabel("Zoom In", this.getViewButtonZoomInShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getViewButtonDragAndPinchTitle = function () {
-            return toLabel("ビュー操作モード", this.getViewButtonDragAndPinchShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getViewButtonDragAndPinchTitle = function () {
+            return toLabel("Drag and Pinch Viewport", this.getViewButtonDragAndPinchShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getViewButtonResetTitle = function () {
-            return toLabel("ビューのリセット", this.getViewButtonResetShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getViewButtonResetTitle = function () {
+            return toLabel("Reset Viewport", this.getViewButtonResetShortcut());
         };
-        FThemeDefaultJaJpGraphicEditor.prototype.getViewButtonFitTitle = function () {
-            return toLabel("ビューをスクリーンにフィットさせる", this.getViewButtonFitShortcut());
+        FThemeDefaultEnUsGraphicEditor.prototype.getViewButtonFitTitle = function () {
+            return toLabel("Fit Viewport to Screen", this.getViewButtonFitShortcut());
         };
-        return FThemeDefaultJaJpGraphicEditor;
+        return FThemeDefaultEnUsGraphicEditor;
     }(FThemeDefaultGraphicEditor));
 
     var FThemeDefaultGraphicTester = /** @class */ (function () {
@@ -3516,30 +3516,30 @@
         return FThemeDefaultGraphicTester;
     }());
 
-    var FThemeDefaultJaJpGraphicTester = /** @class */ (function (_super) {
-        __extends(FThemeDefaultJaJpGraphicTester, _super);
-        function FThemeDefaultJaJpGraphicTester() {
+    var FThemeDefaultEnUsGraphicTester = /** @class */ (function (_super) {
+        __extends(FThemeDefaultEnUsGraphicTester, _super);
+        function FThemeDefaultEnUsGraphicTester() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        FThemeDefaultJaJpGraphicTester.prototype.getToolFileButtonGraphicOpenTitle = function () {
-            return toLabel("グラフィックを開く...", this.getToolFileButtonGraphicOpenShortcut());
+        FThemeDefaultEnUsGraphicTester.prototype.getToolFileButtonGraphicOpenTitle = function () {
+            return toLabel("Open Graphic...", this.getToolFileButtonGraphicOpenShortcut());
         };
-        FThemeDefaultJaJpGraphicTester.prototype.getToolFileButtonOpenTitle = function () {
-            return toLabel("マッピングを開く...", this.getToolFileButtonOpenShortcut());
+        FThemeDefaultEnUsGraphicTester.prototype.getToolFileButtonOpenTitle = function () {
+            return toLabel("Open Mapping...", this.getToolFileButtonOpenShortcut());
         };
-        FThemeDefaultJaJpGraphicTester.prototype.getInputNameLabel = function () {
-            return "名称";
+        FThemeDefaultEnUsGraphicTester.prototype.getInputNameLabel = function () {
+            return "Name";
         };
-        FThemeDefaultJaJpGraphicTester.prototype.getTableColumnDataLabel = function () {
-            return "データ";
+        FThemeDefaultEnUsGraphicTester.prototype.getTableColumnDataLabel = function () {
+            return "Data";
         };
-        FThemeDefaultJaJpGraphicTester.prototype.getTableColumnValueLabel = function () {
-            return "値";
+        FThemeDefaultEnUsGraphicTester.prototype.getTableColumnValueLabel = function () {
+            return "Value";
         };
-        FThemeDefaultJaJpGraphicTester.prototype.newDialogCreateTextValue = function () {
-            return "名称未設定";
+        FThemeDefaultEnUsGraphicTester.prototype.newDialogCreateTextValue = function () {
+            return "Untitled";
         };
-        return FThemeDefaultJaJpGraphicTester;
+        return FThemeDefaultEnUsGraphicTester;
     }(FThemeDefaultGraphicTester));
 
     var FThemeDefaultGraphicViewer = /** @class */ (function () {
@@ -3595,12 +3595,12 @@
         return FThemeDefaultGraphicViewer;
     }());
 
-    var FThemeDefaultJaJpGraphicViewer = /** @class */ (function (_super) {
-        __extends(FThemeDefaultJaJpGraphicViewer, _super);
-        function FThemeDefaultJaJpGraphicViewer() {
+    var FThemeDefaultEnUsGraphicViewer = /** @class */ (function (_super) {
+        __extends(FThemeDefaultEnUsGraphicViewer, _super);
+        function FThemeDefaultEnUsGraphicViewer() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return FThemeDefaultJaJpGraphicViewer;
+        return FThemeDefaultEnUsGraphicViewer;
     }(FThemeDefaultGraphicViewer));
 
     var FThemeDefaultShapeType = /** @class */ (function () {
@@ -3609,130 +3609,130 @@
         return FThemeDefaultShapeType;
     }());
 
-    var FThemeDefaultJaJpShapeType = /** @class */ (function (_super) {
-        __extends(FThemeDefaultJaJpShapeType, _super);
-        function FThemeDefaultJaJpShapeType() {
+    var FThemeDefaultEnUsShapeType = /** @class */ (function (_super) {
+        __extends(FThemeDefaultEnUsShapeType, _super);
+        function FThemeDefaultEnUsShapeType() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        FThemeDefaultJaJpShapeType.prototype.getLabel = function (shapeType) {
+        FThemeDefaultEnUsShapeType.prototype.getLabel = function (shapeType) {
             switch (shapeType) {
                 case wcardinalUi.EShapeType.CIRCLE:
-                    return "円";
+                    return "Circle";
                 case wcardinalUi.EShapeType.RECTANGLE:
-                    return "四角形";
+                    return "Rectangle";
                 case wcardinalUi.EShapeType.RECTANGLE_ROUNDED:
-                    return "四角形（角を丸める）";
+                    return "Rounded Rectangle";
                 case wcardinalUi.EShapeType.TRIANGLE:
-                    return "三角形";
+                    return "Triangle";
                 case wcardinalUi.EShapeType.TRIANGLE_ROUNDED:
-                    return "三角形（角を丸める）";
+                    return "Rounded Triangle";
                 case wcardinalUi.EShapeType.LINE:
-                    return "線";
+                    return "Line";
                 case wcardinalUi.EShapeType.IMAGE:
-                    return "画像";
+                    return "Image";
                 case wcardinalUi.EShapeType.IMAGE_SDF:
-                    return "SDF画像";
+                    return "SDF Image";
                 case wcardinalUi.EShapeType.GROUP:
-                    return "グループ";
+                    return "Group";
                 case wcardinalUi.EShapeType.BAR:
-                    return "バー";
+                    return "Bar";
                 case wcardinalUi.EShapeType.LABEL:
-                    return "ラベル";
+                    return "Label";
                 case wcardinalUi.EShapeType.NULL:
                     return "Null";
                 case wcardinalUi.EShapeType.GROUP_SHADOWED:
-                    return "グループ";
+                    return "Group";
                 case wcardinalUi.EShapeType.LINE_OF_CIRCLES:
-                    return "円群";
+                    return "Circles";
                 case wcardinalUi.EShapeType.LINE_OF_RECTANGLES:
-                    return "四角形群";
+                    return "Rectangles";
                 case wcardinalUi.EShapeType.LINE_OF_RECTANGLE_ROUNDEDS:
-                    return "四角形群（角を丸める）";
+                    return "Rounded Rectangles";
                 case wcardinalUi.EShapeType.LINE_OF_TRIANGLES:
-                    return "三角形群";
+                    return "Triangles";
                 case wcardinalUi.EShapeType.LINE_OF_TRIANGLE_ROUNDEDS:
-                    return "三角形群（角を丸める）";
+                    return "Rounded Triangles";
                 case wcardinalUi.EShapeType.EMBEDDED:
-                    return "グラフィックピース";
+                    return "Graphic Piece";
                 case wcardinalUi.EShapeType.EMBEDDED_LAYER:
-                    return "埋め込みレイヤー";
+                    return "Embedded Layer";
                 case wcardinalUi.EShapeType.BUTTON:
-                    return "ボタン";
+                    return "Button";
                 case wcardinalUi.EShapeType.RECTANGLE_PIVOTED:
-                    return "四角形（ピボット変換）";
+                    return "Pivoted Rectangle";
                 case wcardinalUi.EShapeType.CONNECTOR_LINE:
-                    return "コネクタ";
+                    return "Line Connector";
                 case wcardinalUi.EShapeType.CONNECTOR_ELBOW:
-                    return "コネクタ（カギ線）";
+                    return "Elbow Connector";
                 case wcardinalUi.EShapeType.SEMICIRCLE:
-                    return "半円";
+                    return "Semicircle";
                 case wcardinalUi.EShapeType.EMBEDDED_ACCEPTOR_EDGE:
-                    return "接続点";
+                    return "Acceptor Edge";
                 default:
                     if (wcardinalUi.EShapeType.EXTENSION <= shapeType) {
-                        return "拡張";
+                        return "Extension";
                     }
             }
-            return "不明";
+            return "Unknown";
         };
-        return FThemeDefaultJaJpShapeType;
+        return FThemeDefaultEnUsShapeType;
     }(FThemeDefaultShapeType));
 
     /*
      * Copyright (C) 2019 Toshiba Corporation
      * SPDX-License-Identifier: Apache-2.0
      */
-    var loadThemeDefaultJaJpAll = function () {
-        wcardinalUi.DThemes.setClass("FShapeType", FThemeDefaultJaJpShapeType);
-        wcardinalUi.DThemes.setClass("EShapeActionValue", EThemeDefaultJaJpShapeActionValue);
+    var loadThemeDefaultEnUsAll = function () {
+        wcardinalUi.DThemes.setClass("FShapeType", FThemeDefaultEnUsShapeType);
+        wcardinalUi.DThemes.setClass("EShapeActionValue", EThemeDefaultEnUsShapeActionValue);
         wcardinalUi.DThemes.setClass("EButtonEditor", EThemeDefaultButtonAmbient);
-        wcardinalUi.DThemes.setClass("EButtonEditorLock", EThemeDefaultJaJpButtonLock);
+        wcardinalUi.DThemes.setClass("EButtonEditorLock", EThemeDefaultEnUsButtonLock);
         wcardinalUi.DThemes.setClass("EButtonEditorCheck", EThemeDefaultButtonCheck);
         wcardinalUi.DThemes.setClass("EButtonToolLayout", EThemeDefaultButtonToolLayout);
         wcardinalUi.DThemes.setClass("EButtonToolFileGraphic", EThemeDefaultButtonAmbient);
         wcardinalUi.DThemes.setClass("EButtonToolFile", EThemeDefaultButtonAmbient);
         wcardinalUi.DThemes.setClass("EButtonToolShape", EThemeDefaultButtonAmbient);
         wcardinalUi.DThemes.setClass("EButtonView", EThemeDefaultButtonAmbient);
-        wcardinalUi.DThemes.setClass("EDialogAction", EThemeDefaultJaJpDialogAction);
-        wcardinalUi.DThemes.setClass("EDialogCanvas", EThemeDefaultJaJpDialogCanvas);
-        wcardinalUi.DThemes.setClass("EDialogDataMappingValue", EThemeDefaultJaJpDialogDataMappingValue);
-        wcardinalUi.DThemes.setClass("EDialogDataValue", EThemeDefaultJaJpDialogDataValue);
-        wcardinalUi.DThemes.setClass("EDialogLayer", EThemeDefaultJaJpDialogLayer);
-        wcardinalUi.DThemes.setClass("EDialogSnap", EThemeDefaultJaJpDialogSnap);
+        wcardinalUi.DThemes.setClass("EDialogAction", EThemeDefaultEnUsDialogAction);
+        wcardinalUi.DThemes.setClass("EDialogCanvas", EThemeDefaultEnUsDialogCanvas);
+        wcardinalUi.DThemes.setClass("EDialogDataMappingValue", EThemeDefaultEnUsDialogDataMappingValue);
+        wcardinalUi.DThemes.setClass("EDialogDataValue", EThemeDefaultEnUsDialogDataValue);
+        wcardinalUi.DThemes.setClass("EDialogLayer", EThemeDefaultEnUsDialogLayer);
+        wcardinalUi.DThemes.setClass("EDialogSnap", EThemeDefaultEnUsDialogSnap);
         wcardinalUi.DThemes.setClass("EEditorButtonLayout", EThemeDefaultEditorButtonLayout);
-        wcardinalUi.DThemes.setClass("EEditorAction", EThemeDefaultJaJpEditorAction);
-        wcardinalUi.DThemes.setClass("EEditorCanvasLegacy", EThemeDefaultJaJpEditorCanvasLegacy);
-        wcardinalUi.DThemes.setClass("EEditorCanvas", EThemeDefaultJaJpEditorCanvas);
-        wcardinalUi.DThemes.setClass("EEditorCoordinate", EThemeDefaultJaJpEditorCoordinate);
-        wcardinalUi.DThemes.setClass("EEditorDataMapping", EThemeDefaultJaJpEditorDataMapping);
-        wcardinalUi.DThemes.setClass("EEditorData", EThemeDefaultJaJpEditorData);
-        wcardinalUi.DThemes.setClass("EEditorLayer", EThemeDefaultJaJpEditorLayer);
+        wcardinalUi.DThemes.setClass("EEditorAction", EThemeDefaultEnUsEditorAction);
+        wcardinalUi.DThemes.setClass("EEditorCanvasLegacy", EThemeDefaultEnUsEditorCanvasLegacy);
+        wcardinalUi.DThemes.setClass("EEditorCanvas", EThemeDefaultEnUsEditorCanvas);
+        wcardinalUi.DThemes.setClass("EEditorCoordinate", EThemeDefaultEnUsEditorCoordinate);
+        wcardinalUi.DThemes.setClass("EEditorDataMapping", EThemeDefaultEnUsEditorDataMapping);
+        wcardinalUi.DThemes.setClass("EEditorData", EThemeDefaultEnUsEditorData);
+        wcardinalUi.DThemes.setClass("EEditorLayer", EThemeDefaultEnUsEditorLayer);
         wcardinalUi.DThemes.setClass("EEditorLayout", EThemeDefaultEditorLayout);
         wcardinalUi.DThemes.setClass("EEditorPaneContent", EThemeDefaultEditorPaneContent);
         wcardinalUi.DThemes.setClass("EEditorPane", EThemeDefaultEditorPane);
-        wcardinalUi.DThemes.setClass("EEditorSearch", EThemeDefaultJaJpEditorSearch);
-        wcardinalUi.DThemes.setClass("EEditorShape", EThemeDefaultJaJpEditorShape);
-        wcardinalUi.DThemes.setClass("EEditorSnap", EThemeDefaultJaJpEditorSnap);
-        wcardinalUi.DThemes.setClass("EEditorText", EThemeDefaultJaJpEditorText);
-        wcardinalUi.DThemes.setClass("EEditorTree", EThemeDefaultJaJpEditorTree);
-        wcardinalUi.DThemes.setClass("EEditorValidation", EThemeDefaultJaJpEditorValidation);
+        wcardinalUi.DThemes.setClass("EEditorSearch", EThemeDefaultEnUsEditorSearch);
+        wcardinalUi.DThemes.setClass("EEditorShape", EThemeDefaultEnUsEditorShape);
+        wcardinalUi.DThemes.setClass("EEditorSnap", EThemeDefaultEnUsEditorSnap);
+        wcardinalUi.DThemes.setClass("EEditorText", EThemeDefaultEnUsEditorText);
+        wcardinalUi.DThemes.setClass("EEditorTree", EThemeDefaultEnUsEditorTree);
+        wcardinalUi.DThemes.setClass("EEditorValidation", EThemeDefaultEnUsEditorValidation);
         wcardinalUi.DThemes.setClass("EEditor", EThemeDefaultEditor);
-        wcardinalUi.DThemes.setClass("FGraphicEditor", FThemeDefaultJaJpGraphicEditor);
-        wcardinalUi.DThemes.setClass("FGraphicTester", FThemeDefaultJaJpGraphicTester);
-        wcardinalUi.DThemes.setClass("FGraphicViewer", FThemeDefaultJaJpGraphicViewer);
-        wcardinalUi.DThemes.setClass("EShapeButton", EThemeDefaultJaJpShapeButton);
-        wcardinalUi.DThemes.setClass("EEditorShapeButton", ESubthemeDefaultJaJpEditorShapeButton);
-        wcardinalUi.DThemes.setClass("EShapeButtonLayer", EThemeDefaultJaJpShapeButtonLayer);
-        wcardinalUi.DThemes.setClass("EDialogShapeButtonLayerValue", EThemeDefaultJaJpDialogShapeButtonLayerValue);
-        wcardinalUi.DThemes.setClass("EEditorShapeButtonLayer", ESubthemeDefaultJaJpEditorShapeButtonLayer);
-        wcardinalUi.DThemes.setClass("EShapeChartLine", EThemeDefaultJaJpShapeChartLine);
-        wcardinalUi.DThemes.setClass("EEditorShapeChartLine", ESubthemeDefaultJaJpEditorShapeChartLine);
-        wcardinalUi.DThemes.setClass("EShapeEmbeddedAcceptorEdge", EThemeDefaultJaJpShapeEmbeddedAcceptorEdge);
-        wcardinalUi.DThemes.setClass("EEditorShapeEmbeddedAcceptorEdge", ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge);
-        wcardinalUi.DThemes.setClass("EShapeInput", EThemeDefaultJaJpShapeInput);
-        wcardinalUi.DThemes.setClass("EShapeTable", EThemeDefaultJaJpShapeTable);
-        wcardinalUi.DThemes.setClass("EDialogShapeTableColumn", EThemeDefaultJaJpDialogShapeTableColumn);
-        wcardinalUi.DThemes.setClass("EEditorShapeTable", ESubthemeDefaultJaJpEditorShapeTable);
+        wcardinalUi.DThemes.setClass("FGraphicEditor", FThemeDefaultEnUsGraphicEditor);
+        wcardinalUi.DThemes.setClass("FGraphicTester", FThemeDefaultEnUsGraphicTester);
+        wcardinalUi.DThemes.setClass("FGraphicViewer", FThemeDefaultEnUsGraphicViewer);
+        wcardinalUi.DThemes.setClass("EShapeButton", EThemeDefaultEnUsShapeButton);
+        wcardinalUi.DThemes.setClass("EEditorShapeButton", ESubthemeDefaultEnUsEditorShapeButton);
+        wcardinalUi.DThemes.setClass("EShapeButtonLayer", EThemeDefaultEnUsShapeButtonLayer);
+        wcardinalUi.DThemes.setClass("EDialogShapeButtonLayerValue", EThemeDefaultEnUsDialogShapeButtonLayerValue);
+        wcardinalUi.DThemes.setClass("EEditorShapeButtonLayer", ESubthemeDefaultEnUsEditorShapeButtonLayer);
+        wcardinalUi.DThemes.setClass("EShapeChartLine", EThemeDefaultEnUsShapeChartLine);
+        wcardinalUi.DThemes.setClass("EEditorShapeChartLine", ESubthemeDefaultEnUsEditorShapeChartLine);
+        wcardinalUi.DThemes.setClass("EShapeEmbeddedAcceptorEdge", EThemeDefaultEnUsShapeEmbeddedAcceptorEdge);
+        wcardinalUi.DThemes.setClass("EEditorShapeEmbeddedAcceptorEdge", ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge);
+        wcardinalUi.DThemes.setClass("EShapeInput", EThemeDefaultEnUsShapeInput);
+        wcardinalUi.DThemes.setClass("EShapeTable", EThemeDefaultEnUsShapeTable);
+        wcardinalUi.DThemes.setClass("EDialogShapeTableColumn", EThemeDefaultEnUsDialogShapeTableColumn);
+        wcardinalUi.DThemes.setClass("EEditorShapeTable", ESubthemeDefaultEnUsEditorShapeTable);
     };
 
     var d = {
@@ -3742,11 +3742,11 @@
         ESubthemeDefaultEditorShapeChartLine: ESubthemeDefaultEditorShapeChartLine,
         ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge: ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge,
         ESubthemeDefaultEditorShapeTable: ESubthemeDefaultEditorShapeTable,
-        ESubthemeDefaultJaJpEditorShapeButton: ESubthemeDefaultJaJpEditorShapeButton,
-        ESubthemeDefaultJaJpEditorShapeButtonLayer: ESubthemeDefaultJaJpEditorShapeButtonLayer,
-        ESubthemeDefaultJaJpEditorShapeChartLine: ESubthemeDefaultJaJpEditorShapeChartLine,
-        ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge: ESubthemeDefaultJaJpEditorShapeEmbeddedAcceptorEdge,
-        ESubthemeDefaultJaJpEditorShapeTable: ESubthemeDefaultJaJpEditorShapeTable,
+        ESubthemeDefaultEnUsEditorShapeButton: ESubthemeDefaultEnUsEditorShapeButton,
+        ESubthemeDefaultEnUsEditorShapeButtonLayer: ESubthemeDefaultEnUsEditorShapeButtonLayer,
+        ESubthemeDefaultEnUsEditorShapeChartLine: ESubthemeDefaultEnUsEditorShapeChartLine,
+        ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge: ESubthemeDefaultEnUsEditorShapeEmbeddedAcceptorEdge,
+        ESubthemeDefaultEnUsEditorShapeTable: ESubthemeDefaultEnUsEditorShapeTable,
         EThemeDefaultButtonAmbient: EThemeDefaultButtonAmbient,
         EThemeDefaultButtonCheck: EThemeDefaultButtonCheck,
         EThemeDefaultButtonLock: EThemeDefaultButtonLock,
@@ -3777,53 +3777,53 @@
         EThemeDefaultEditorText: EThemeDefaultEditorText,
         EThemeDefaultEditorTree: EThemeDefaultEditorTree,
         EThemeDefaultEditorValidation: EThemeDefaultEditorValidation,
-        EThemeDefaultJaJpButtonLock: EThemeDefaultJaJpButtonLock,
-        EThemeDefaultJaJpDialogAction: EThemeDefaultJaJpDialogAction,
-        EThemeDefaultJaJpDialogCanvas: EThemeDefaultJaJpDialogCanvas,
-        EThemeDefaultJaJpDialogDataMappingValue: EThemeDefaultJaJpDialogDataMappingValue,
-        EThemeDefaultJaJpDialogDataValue: EThemeDefaultJaJpDialogDataValue,
-        EThemeDefaultJaJpDialogLayer: EThemeDefaultJaJpDialogLayer,
-        EThemeDefaultJaJpDialogShapeButtonLayerValue: EThemeDefaultJaJpDialogShapeButtonLayerValue,
-        EThemeDefaultJaJpDialogShapeTableColumn: EThemeDefaultJaJpDialogShapeTableColumn,
-        EThemeDefaultJaJpDialogSnap: EThemeDefaultJaJpDialogSnap,
-        EThemeDefaultJaJpEditorAction: EThemeDefaultJaJpEditorAction,
-        EThemeDefaultJaJpEditorCanvas: EThemeDefaultJaJpEditorCanvas,
-        EThemeDefaultJaJpEditorCanvasLegacy: EThemeDefaultJaJpEditorCanvasLegacy,
-        EThemeDefaultJaJpEditorCoordinate: EThemeDefaultJaJpEditorCoordinate,
-        EThemeDefaultJaJpEditorData: EThemeDefaultJaJpEditorData,
-        EThemeDefaultJaJpEditorDataMapping: EThemeDefaultJaJpEditorDataMapping,
-        EThemeDefaultJaJpEditorLayer: EThemeDefaultJaJpEditorLayer,
-        EThemeDefaultJaJpEditorSearch: EThemeDefaultJaJpEditorSearch,
-        EThemeDefaultJaJpEditorShape: EThemeDefaultJaJpEditorShape,
-        EThemeDefaultJaJpEditorSnap: EThemeDefaultJaJpEditorSnap,
-        EThemeDefaultJaJpEditorText: EThemeDefaultJaJpEditorText,
-        EThemeDefaultJaJpEditorTree: EThemeDefaultJaJpEditorTree,
-        EThemeDefaultJaJpEditorValidation: EThemeDefaultJaJpEditorValidation,
-        EThemeDefaultJaJpShapeActionValue: EThemeDefaultJaJpShapeActionValue,
-        EThemeDefaultJaJpShapeButton: EThemeDefaultJaJpShapeButton,
-        EThemeDefaultJaJpShapeButtonLayer: EThemeDefaultJaJpShapeButtonLayer,
-        EThemeDefaultJaJpShapeChartLine: EThemeDefaultJaJpShapeChartLine,
-        EThemeDefaultJaJpShapeEmbeddedAcceptorEdge: EThemeDefaultJaJpShapeEmbeddedAcceptorEdge,
-        EThemeDefaultJaJpShapeInput: EThemeDefaultJaJpShapeInput,
-        EThemeDefaultJaJpShapeTable: EThemeDefaultJaJpShapeTable,
+        EThemeDefaultEnUsButtonLock: EThemeDefaultEnUsButtonLock,
+        EThemeDefaultEnUsDialogAction: EThemeDefaultEnUsDialogAction,
+        EThemeDefaultEnUsDialogCanvas: EThemeDefaultEnUsDialogCanvas,
+        EThemeDefaultEnUsDialogDataMappingValue: EThemeDefaultEnUsDialogDataMappingValue,
+        EThemeDefaultEnUsDialogDataValue: EThemeDefaultEnUsDialogDataValue,
+        EThemeDefaultEnUsDialogLayer: EThemeDefaultEnUsDialogLayer,
+        EThemeDefaultEnUsDialogShapeButtonLayerValue: EThemeDefaultEnUsDialogShapeButtonLayerValue,
+        EThemeDefaultEnUsDialogShapeTableColumn: EThemeDefaultEnUsDialogShapeTableColumn,
+        EThemeDefaultEnUsDialogSnap: EThemeDefaultEnUsDialogSnap,
+        EThemeDefaultEnUsEditorAction: EThemeDefaultEnUsEditorAction,
+        EThemeDefaultEnUsEditorCanvas: EThemeDefaultEnUsEditorCanvas,
+        EThemeDefaultEnUsEditorCanvasLegacy: EThemeDefaultEnUsEditorCanvasLegacy,
+        EThemeDefaultEnUsEditorCoordinate: EThemeDefaultEnUsEditorCoordinate,
+        EThemeDefaultEnUsEditorData: EThemeDefaultEnUsEditorData,
+        EThemeDefaultEnUsEditorDataMapping: EThemeDefaultEnUsEditorDataMapping,
+        EThemeDefaultEnUsEditorLayer: EThemeDefaultEnUsEditorLayer,
+        EThemeDefaultEnUsEditorSearch: EThemeDefaultEnUsEditorSearch,
+        EThemeDefaultEnUsEditorShape: EThemeDefaultEnUsEditorShape,
+        EThemeDefaultEnUsEditorSnap: EThemeDefaultEnUsEditorSnap,
+        EThemeDefaultEnUsEditorText: EThemeDefaultEnUsEditorText,
+        EThemeDefaultEnUsEditorTree: EThemeDefaultEnUsEditorTree,
+        EThemeDefaultEnUsEditorValidation: EThemeDefaultEnUsEditorValidation,
+        EThemeDefaultEnUsShapeActionValue: EThemeDefaultEnUsShapeActionValue,
+        EThemeDefaultEnUsShapeButton: EThemeDefaultEnUsShapeButton,
+        EThemeDefaultEnUsShapeButtonLayer: EThemeDefaultEnUsShapeButtonLayer,
+        EThemeDefaultEnUsShapeChartLine: EThemeDefaultEnUsShapeChartLine,
+        EThemeDefaultEnUsShapeEmbeddedAcceptorEdge: EThemeDefaultEnUsShapeEmbeddedAcceptorEdge,
+        EThemeDefaultEnUsShapeInput: EThemeDefaultEnUsShapeInput,
+        EThemeDefaultEnUsShapeTable: EThemeDefaultEnUsShapeTable,
         EThemeDefaultShapeActionValue: EThemeDefaultShapeActionValue,
+        FThemeDefaultEnUsGraphicEditor: FThemeDefaultEnUsGraphicEditor,
+        FThemeDefaultEnUsGraphicTester: FThemeDefaultEnUsGraphicTester,
+        FThemeDefaultEnUsGraphicViewer: FThemeDefaultEnUsGraphicViewer,
+        FThemeDefaultEnUsShapeType: FThemeDefaultEnUsShapeType,
         FThemeDefaultGraphicEditor: FThemeDefaultGraphicEditor,
         FThemeDefaultGraphicTester: FThemeDefaultGraphicTester,
         FThemeDefaultGraphicViewer: FThemeDefaultGraphicViewer,
-        FThemeDefaultJaJpGraphicEditor: FThemeDefaultJaJpGraphicEditor,
-        FThemeDefaultJaJpGraphicTester: FThemeDefaultJaJpGraphicTester,
-        FThemeDefaultJaJpGraphicViewer: FThemeDefaultJaJpGraphicViewer,
-        FThemeDefaultJaJpShapeType: FThemeDefaultJaJpShapeType,
         FThemeDefaultShapeType: FThemeDefaultShapeType,
         iconBuilder: iconBuilder,
-        loadThemeDefaultJaJpAll: loadThemeDefaultJaJpAll
+        loadThemeDefaultEnUsAll: loadThemeDefaultEnUsAll
     };
 
     /*
      * Copyright (C) 2019 Toshiba Corporation
      * SPDX-License-Identifier: Apache-2.0
      */
-    loadThemeDefaultJaJpAll();
+    loadThemeDefaultEnUsAll();
     var global = window;
     global.wcardinal = global.wcardinal || {};
     var dest = (global.wcardinal.geditor = global.wcardinal.geditor || {});
