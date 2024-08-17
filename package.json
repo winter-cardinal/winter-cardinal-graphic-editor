@@ -21,7 +21,7 @@
 	"sideEffects": false,
 	"files": [
 		"dist/types",
-		"dist/wcardinal-geditor",
+		"dist/wcardinal",
 		"dist/wcardinal-geditor-theme-default.js",
 		"dist/wcardinal-geditor-theme-default.min.js",
 		"dist/wcardinal-geditor-theme-default.min.js.map",
