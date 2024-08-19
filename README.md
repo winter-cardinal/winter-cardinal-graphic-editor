@@ -1,6 +1,6 @@
 ### WinterCardinal Graphic Editor
 
-WebGL-based graphic editor, tester and viewer for supervisory systems.
+WebGL-based graphic editor, tester and viewer for supervisory systems
 
 ### Documentation
 
