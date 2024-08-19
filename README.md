@@ -6,7 +6,7 @@ WebGL-based graphic editor, tester and viewer for supervisory systems.
 
 * Samples
 	* [Default theme](https://winter-cardinal.github.io/winter-cardinal-graphic-editor/sample/default/)
-	* [Starter](https://github.com/winter-cardinal/winter-cardinal-starter)
+* [Starter](https://github.com/winter-cardinal/winter-cardinal-starter)
 
 ### How to Run
 
