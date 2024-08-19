@@ -5,20 +5,21 @@ WebGL-based graphic editor, tester and viewer for supervisory systems.
 ### Documentation
 
 * Samples
-	* [Default Theme](https://winter-cardinal.github.io/winter-cardinal-graphic-editor/sample/default/)
+	* [Default theme](https://winter-cardinal.github.io/winter-cardinal-graphic-editor/sample/default/)
+	* [Starter](https://github.com/winter-cardinal/winter-cardinal-starter)
 
-### How to run
+### How to Run
 
 1. `npm start`
 2. Go to `http://localhost:8080/` with your browser.
 
-### How to build
+### How to Build
 
-#### Release build
+#### Release Build
 
 1. `npm run build`
 
-#### Incremental debug build
+#### Incremental Debug Build
 
 1. `npm run watch:ts`
 2. `npm run watch:rollup` in an another terminal.
