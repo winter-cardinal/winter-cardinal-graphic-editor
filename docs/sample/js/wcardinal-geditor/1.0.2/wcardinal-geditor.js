@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.0.1
+ WinterCardinal Graphic Editor v1.0.2
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -34403,9 +34403,16 @@
           var graphicPiece = this._options.controller.graphic.piece;
           return {
               search: function (word, categoryId) {
-                  return graphicPiece.search(word, categoryId).then(function (pieces) {
-                      return _this.toDialogSelectPieceResult(pieces);
-                  });
+                  if (categoryId === undefined) {
+                      return graphicPiece.search(word).then(function (pieces) {
+                          return _this.toDialogSelectPieceResult(pieces);
+                      });
+                  }
+                  else {
+                      return graphicPiece.search(word, categoryId).then(function (pieces) {
+                          return _this.toDialogSelectPieceResult(pieces);
+                      });
+                  }
               }
           };
       };
