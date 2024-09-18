@@ -2799,9 +2799,15 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 				word: string,
 				categoryId?: string | null
 			): Promise<DDiagramSerializedName[]> => {
-				return graphicPiece.search(word, categoryId).then((pieces) => {
-					return this.toDialogSelectPieceResult(pieces);
-				});
+				if (categoryId === undefined) {
+					return graphicPiece.search(word).then((pieces) => {
+						return this.toDialogSelectPieceResult(pieces);
+					});
+				} else {
+					return graphicPiece.search(word, categoryId).then((pieces) => {
+						return this.toDialogSelectPieceResult(pieces);
+					});
+				}
 			}
 		};
 	}
