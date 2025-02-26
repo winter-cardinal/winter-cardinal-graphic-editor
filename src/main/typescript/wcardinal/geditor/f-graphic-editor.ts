@@ -444,7 +444,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 	}
 
 	protected initCopyAndPaste(): void {
-		new UtilClipboard()
+		new UtilClipboard(this._application.getLayerBase().view)
 			.on("copy", (clipboardData: DataTransfer): void => {
 				const serialized = this.toolShapeSelect.selection.serialize();
 				if (serialized != null) {
