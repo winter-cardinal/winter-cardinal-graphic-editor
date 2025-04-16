@@ -43,7 +43,8 @@ export class EThemeDefaultJaJpEditorAction extends EThemeDefaultEditorAction {
 
 	override getCursors(): Map<string, string> {
 		const result = new Map<string, string>();
-		result.set("", "なし");
+		result.set("", "未設定");
+		result.set("none", "なし");
 		result.set("default", "デフォルト");
 		result.set("context-menu", "コンテキストメニュー");
 		result.set("help", "ヘルプ");

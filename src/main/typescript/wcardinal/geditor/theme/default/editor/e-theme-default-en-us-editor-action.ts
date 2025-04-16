@@ -43,7 +43,8 @@ export class EThemeDefaultEnUsEditorAction extends EThemeDefaultEditorAction {
 
 	override getCursors(): Map<string, string> {
 		const result = new Map<string, string>();
-		result.set("", "None");
+		result.set("", "Unset");
+		result.set("none", "None");
 		result.set("default", "Default");
 		result.set("context-menu", "Context Menu");
 		result.set("help", "Help");
