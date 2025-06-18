@@ -55,7 +55,21 @@
 		// The same setting is required when creating a graphic viewer or tester.
 		wcardinal.ui.EShapeActionMiscExtensions.add({
 			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 0,
-			label: "My Misc. Extension",
+			label: "My Misc. Extension 1",
+			executor: (argument, shape, diagram, environment) => {
+				// Called to execute this misc. action.
+			}
+		});
+		wcardinal.ui.EShapeActionMiscExtensions.add({
+			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 1,
+			label: "My Misc. Extension 2",
+			executor: (argument, shape, diagram, environment) => {
+				// Called to execute this misc. action.
+			}
+		});
+		wcardinal.ui.EShapeActionMiscExtensions.add({
+			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 2,
+			label: "My Misc. Extension 3",
 			executor: (argument, shape, diagram, environment) => {
 				// Called to execute this misc. action.
 			}

@@ -3366,7 +3366,7 @@ export class EDialogAction extends DDialogLayered<
 				this.condition.input.value = value.condition;
 				this.target.input.value = value.target;
 			} else if (value instanceof EShapeActionValueMiscExtension) {
-				this.miscType.value = EShapeActionValueMiscType.EXTENSION;
+				this.miscType.value = value.subtype;
 				this.condition.input.value = value.condition;
 				this.argument.input.value = value.argument;
 			} else {
