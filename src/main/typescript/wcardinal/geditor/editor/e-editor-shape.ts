@@ -209,6 +209,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	protected _isPieceEnabled: boolean;
 	protected _pieceExcluder?: () => number | null;
 	protected _isChangeable?: boolean;
+	protected _isDanglingConnectorAllowed: boolean;
 
 	protected _layoutChangeTo?: DLayoutVertical | null;
 	protected _buttonCircle?: DButton<string>;
@@ -299,6 +300,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			this._isPieceEnabled = false;
 		}
 		this._isChangeable = options.changeable;
+		this._isDanglingConnectorAllowed = options?.connector?.dangling ?? false;
 	}
 
 	show(): this {
@@ -693,10 +695,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		return null;
 	}
 
-	protected isDanglingConnectorAllowed(): boolean {
-		return this.options?.connector?.dangling ?? false;
-	}
-
 	protected get buttonLineConnector(): DButton<string> {
 		return (this._buttonLineConnector ??= this.newButtonLineConnector());
 	}
@@ -710,23 +708,19 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditor",
 			on: {
 				active: (): void => {
-					const isDanglingConnectorAllowed = this.isDanglingConnectorAllowed();
 					this._selection.replace((existing) => {
-						return this.replaceLineConnector(existing, isDanglingConnectorAllowed);
+						return this.replaceLineConnector(existing);
 					});
 				}
 			}
 		});
 	}
 
-	protected replaceLineConnector(
-		existing: EShape,
-		isDanglingConnectorAllowed: boolean
-	): EShapeConnectorLine | null {
+	protected replaceLineConnector(existing: EShape): EShapeConnectorLine | null {
 		if (existing.type !== EShapeType.CONNECTOR_LINE) {
 			if (existing instanceof EShapeConnectorLine) {
 				return new EShapeConnectorLine().copy(existing);
-			} else if (isDanglingConnectorAllowed) {
+			} else if (this._isDanglingConnectorAllowed) {
 				return this.replaceConnector(existing, new EShapeConnectorLine());
 			}
 		}
@@ -746,23 +740,19 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditor",
 			on: {
 				active: (): void => {
-					const isDanglingConnectorAllowed = this.isDanglingConnectorAllowed();
 					this._selection.replace((existing) => {
-						return this.replaceElbowConnector(existing, isDanglingConnectorAllowed);
+						return this.replaceElbowConnector(existing);
 					});
 				}
 			}
 		});
 	}
 
-	protected replaceElbowConnector(
-		existing: EShape,
-		isDanglingConnectorAllowed: boolean
-	): EShapeConnectorElbow | null {
+	protected replaceElbowConnector(existing: EShape): EShapeConnectorElbow | null {
 		if (existing.type !== EShapeType.CONNECTOR_ELBOW) {
 			if (existing instanceof EShapeConnectorLine) {
 				return new EShapeConnectorElbow().copy(existing);
-			} else if (isDanglingConnectorAllowed) {
+			} else if (this._isDanglingConnectorAllowed) {
 				return this.replaceConnector(existing, new EShapeConnectorElbow());
 			}
 		}
@@ -2213,13 +2203,27 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		this.state.isDisabled = selection.isEmpty();
 		const last = selection.last();
 
-		// Shape
+		// Change To
 		const layoutChangeTo = this.layoutChangeTo;
 		if (layoutChangeTo) {
 			layoutChangeTo.state.isEnabled = EShapeCapabilities.contains(
 				last,
 				EShapeCapability.REPLACING
 			);
+
+			// Connector
+			if (!this._isDanglingConnectorAllowed) {
+				let hasConnector = false;
+				const shapes = selection.get();
+				for (let i = 0, imax = shapes.length; i < imax; ++i) {
+					if (shapes[i] instanceof EShapeConnectorLine) {
+						hasConnector = true;
+						break;
+					}
+				}
+				this.buttonLineConnector.state.isEnabled = hasConnector;
+				this.buttonElbowConnector.state.isEnabled = hasConnector;
+			}
 		}
 
 		// Grouping
