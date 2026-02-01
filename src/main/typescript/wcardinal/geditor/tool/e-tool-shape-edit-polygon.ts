@@ -67,42 +67,27 @@ export class EToolShapeEditPolygon<
 		const cy = (boundary[3] + boundary[1]) * 0.5;
 		const sx = boundary[2] - boundary[0];
 		const sy = boundary[3] - boundary[1];
-		if (0 < sx && 0 < sy) {
-			const result = oldShape.clone();
-			const transform = result.transform;
-			const transformPosition = transform.position;
-			const localTransform = oldShape.transform.localTransform;
-			const x = localTransform.a * cx + localTransform.c * cy + transformPosition.x;
-			const y = localTransform.b * cx + localTransform.d * cy + transformPosition.y;
 
+		const result = oldShape.clone();
+		const transform = result.transform;
+		const transformPosition = transform.position;
+		const localTransform = oldShape.transform.localTransform;
+		const x = localTransform.a * cx + localTransform.c * cy + transformPosition.x;
+		const y = localTransform.b * cx + localTransform.d * cy + transformPosition.y;
+
+		result.lock(EShapeLockPart.UPLOADED);
+		result.transform.position.set(x, y);
+		result.size.set(sx, sy);
+		if (0 < sx && 0 < sy && result instanceof EShapePolygon) {
 			const fx = 1 / sx;
 			const fy = 1 / sy;
-			const newValues: number[] = [];
+			const newVertices: number[] = [];
 			for (let i = 0, imax = values.length; i < imax; i += 2) {
-				newValues.push((values[i + 0] - cx) * fx, (values[i + 1] - cy) * fy);
+				newVertices.push((values[i + 0] - cx) * fx, (values[i + 1] - cy) * fy);
 			}
-
-			result.lock(EShapeLockPart.UPLOADED);
-			result.transform.position.set(x, y);
-			result.size.set(sx, sy);
-			if (result instanceof EShapePolygon) {
-				result.vertices = newValues;
-			}
-			result.unlock(EShapeLockPart.UPLOADED, true);
-			return result;
-		} else {
-			const result = oldShape.clone();
-			const transform = result.transform;
-			const transformPosition = transform.position;
-			const localTransform = oldShape.transform.localTransform;
-			const x = localTransform.a * cx + localTransform.c * cy + transformPosition.x;
-			const y = localTransform.b * cx + localTransform.d * cy + transformPosition.y;
-
-			result.lock(EShapeLockPart.UPLOADED);
-			result.transform.position.set(x, y);
-			result.size.set(sx, sy);
-			result.unlock(EShapeLockPart.UPLOADED, true);
-			return result;
+			result.vertices = newVertices;
 		}
+		result.unlock(EShapeLockPart.UPLOADED, true);
+		return result;
 	}
 }
