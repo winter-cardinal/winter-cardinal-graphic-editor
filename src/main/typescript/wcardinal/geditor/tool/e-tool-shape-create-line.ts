@@ -3,6 +3,7 @@ import {
 	DApplications,
 	DControllers,
 	DDiagramEditor,
+	EShape,
 	EShapeDefaults,
 	EShapeLine,
 	EShapePointsStyle,
@@ -181,20 +182,23 @@ export class EToolShapeCreateLine<
 		return result;
 	}
 
+	protected toShape(values: number[]): EShape | null {
+		if (4 <= values.length) {
+			return createLine(values, [], EShapeDefaults.STROKE_WIDTH, EShapePointsStyle.NONE);
+		}
+		return null;
+	}
+
 	protected add(values: number[]): void {
-		const diagram = this._diagram;
-		const layer = diagram.layer;
-		if (layer && 4 <= values.length) {
-			const newLine = createLine(
-				values,
-				[],
-				EShapeDefaults.STROKE_WIDTH,
-				EShapePointsStyle.NONE
-			);
-			newLine.attach(layer);
-			DControllers.getCommandController().push(
-				new ECommandShapeCreate([newLine], layer, this._selection, true)
-			);
+		const layer = this._diagram.layer;
+		if (layer) {
+			const newShape = this.toShape(values);
+			if (newShape != null) {
+				newShape.attach(layer);
+				DControllers.getCommandController().push(
+					new ECommandShapeCreate([newShape], layer, this._selection, true)
+				);
+			}
 		}
 	}
 

@@ -1,6 +1,6 @@
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import pckg from "./package.json" assert { type: "json" };
+import pckg from "./package.json" with { type: "json" };
 import path from "path";
 import copy from "rollup-plugin-copy";
 import terser from "@rollup/plugin-terser";

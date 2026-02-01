@@ -120,6 +120,10 @@ export abstract class FThemeDefaultGraphicEditor implements FThemeGraphicEditor 
 		return this._shapeType.getLabel(EShapeType.LINE);
 	}
 
+	getToolShapeButtonPolygonTitle(): string | undefined {
+		return this._shapeType.getLabel(EShapeType.POLYGON);
+	}
+
 	getToolShapeButtonLineConnectorTitle(): string | undefined {
 		return this._shapeType.getLabel(EShapeType.CONNECTOR_LINE);
 	}

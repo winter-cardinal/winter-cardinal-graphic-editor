@@ -230,6 +230,13 @@ iconBuilder.add(
 );
 
 iconBuilder.add(
+	"shape_polygon",
+	19.2,
+	19.2,
+	`<path d="M32 480 L240 32 L480 272 L480 480z" stroke-width="53.333" stroke="#fff" fill="none"></path>`
+);
+
+iconBuilder.add(
 	"shape_line_connector",
 	24,
 	24,

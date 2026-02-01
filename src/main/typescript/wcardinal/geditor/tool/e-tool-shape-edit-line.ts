@@ -2,6 +2,8 @@ import {
 	EShape,
 	EShapeCapability,
 	EShapeLockPart,
+	EShapePoints,
+	EShapePointsFormatters,
 	EShapePointsStyle,
 	toPointsBoundary
 } from "@wcardinal/wcardinal-ui";
@@ -9,6 +11,7 @@ import {
 	EToolShapeEditLineBase,
 	EToolShapeEditLineBaseOptions
 } from "./e-tool-shape-edit-line-base";
+import { Matrix, Point } from "pixi.js";
 
 export interface EToolShapeEditLineOptions extends EToolShapeEditLineBaseOptions {}
 
@@ -17,6 +20,37 @@ export class EToolShapeEditLine<
 > extends EToolShapeEditLineBase<OPTIONS> {
 	constructor(options: OPTIONS) {
 		super(options);
+	}
+
+	protected override onShapeSet(shape: EShape): void {
+		const points = shape.points;
+		if (points) {
+			shape.updateTransform();
+			this._points = this.toPoints(points, this.toTransform(shape));
+			const pointsStyle = points.style;
+			this._pointsStyle = pointsStyle;
+			this._formatter =
+				points.formatter ?? EShapePointsFormatters.find(pointsStyle)?.formatter;
+		} else {
+			this._points = [];
+			this._pointsStyle = EShapePointsStyle.NONE;
+			this._formatter = undefined;
+		}
+		this.reshape();
+		const canvas = this._diagram.canvas;
+		if (canvas) {
+			canvas.addChild(this);
+		}
+	}
+
+	protected toPoints(points: EShapePoints, transform: Matrix): Point[] {
+		const result: Point[] = [];
+		const values = points.values;
+		for (let i = 0, imax = values.length; i < imax; i += 2) {
+			const point = new Point(values[i], values[i + 1]);
+			result.push(transform.apply(point, point));
+		}
+		return result;
 	}
 
 	protected override toCapability(shape: EShape | null): EShapeCapability {
