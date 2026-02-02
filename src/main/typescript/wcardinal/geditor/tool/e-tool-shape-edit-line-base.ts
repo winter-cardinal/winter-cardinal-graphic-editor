@@ -315,7 +315,7 @@ export abstract class EToolShapeEditLineBase<
 		const pointsLength = points.length;
 		const pointsStyle = this._pointsStyle;
 		const formatter = this._formatter;
-		const pointsClosed = !!(pointsStyle & EShapePointsStyle.CLOSED);
+		const pointsClosed = this.closed;
 		const capability = this._capability;
 		const hasTail = !!(capability & EShapeCapability.LINE_TAIL);
 		const hasHead = !!(capability & EShapeCapability.LINE_HEAD);
