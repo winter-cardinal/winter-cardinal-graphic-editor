@@ -1,6 +1,6 @@
 {
 	"name": "@wcardinal/wcardinal-geditor",
-	"version": "1.4.3",
+	"version": "1.5.0",
 	"license": "Apache-2.0",
 	"description": "WebGL-based graphic editor, tester and viewer for supervisory systems",
 	"homepage": "https://github.com/winter-cardinal/winter-cardinal-graphic-editor",
