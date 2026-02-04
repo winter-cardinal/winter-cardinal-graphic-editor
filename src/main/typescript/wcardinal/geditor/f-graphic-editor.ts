@@ -1470,9 +1470,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 	protected newToolShapeButtons(): DisplayObject[] {
 		const result: DisplayObject[] = [
 			this.toolShapeButtonSelect,
-			this.toolShapeButtonImage,
 			this.toolShapeButtonLine,
-			this.toolShapeButtonPolygon,
 			this.toolShapeButtonCircle,
 			this.toolShapeButtonSemicircle,
 			this.toolShapeButtonRectangle,
@@ -1480,7 +1478,9 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 			this.toolShapeButtonTriangle,
 			this.toolShapeButtonTriangleRounded,
 			this.toolShapeButtonLineConnector,
-			this.toolShapeButtonElbowConnector
+			this.toolShapeButtonElbowConnector,
+			this.toolShapeButtonPolygon,
+			this.toolShapeButtonImage
 		];
 		if (this._isPieceEnabled) {
 			result.push(this.toolShapeButtonGraphicPiece);
