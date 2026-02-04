@@ -8,7 +8,7 @@ import {
 	EShapeConnectorBodies,
 	EShapeConnectorLine,
 	EShapeLockPart,
-	EShapePoints,
+	EShapePointsFormatters,
 	EShapePointsStyle,
 	toPointsBoundary
 } from "@wcardinal/wcardinal-ui";
@@ -129,7 +129,28 @@ export class EToolShapeEditLineConnector<
 		}
 	}
 
-	protected override toPoints(shape: EShape, points: EShapePoints, transform: Matrix): Point[] {
+	protected override onShapeSet(shape: EShape): void {
+		const points = shape.points;
+		if (points) {
+			shape.updateTransform();
+			this._points = this.toPoints(shape, this.toTransform(shape));
+			const pointsStyle = points.style;
+			this._pointsStyle = pointsStyle;
+			this._formatter =
+				points.formatter ?? EShapePointsFormatters.find(pointsStyle)?.formatter;
+		} else {
+			this._points = [];
+			this._pointsStyle = EShapePointsStyle.NONE;
+			this._formatter = undefined;
+		}
+		this.reshape();
+		const canvas = this._diagram.canvas;
+		if (canvas) {
+			canvas.addChild(this);
+		}
+	}
+
+	protected toPoints(shape: EShape, transform: Matrix): Point[] {
 		const result: Point[] = [];
 		if (shape instanceof EShapeConnectorLine) {
 			const edge = shape.edge;

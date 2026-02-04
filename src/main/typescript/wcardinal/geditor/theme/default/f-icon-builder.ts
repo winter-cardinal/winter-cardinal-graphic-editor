@@ -230,6 +230,15 @@ iconBuilder.add(
 );
 
 iconBuilder.add(
+	"shape_polygon",
+	24,
+	24,
+	`<g transform="scale(0.667,0.667) translate(0, 960)">` +
+		`<path d="M272-120 64-480l208-360h416l208 360-208 360H272Zm46-80h324l161-280-161-280H318L156-480l162 280Zm162-280Z" fill="#fff"/>` +
+		`</g>`
+);
+
+iconBuilder.add(
 	"shape_line_connector",
 	24,
 	24,

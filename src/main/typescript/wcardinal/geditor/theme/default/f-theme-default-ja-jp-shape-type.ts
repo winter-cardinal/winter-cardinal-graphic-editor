@@ -56,6 +56,8 @@ export class FThemeDefaultJaJpShapeType extends FThemeDefaultShapeType {
 				return "半円";
 			case EShapeType.EMBEDDED_ACCEPTOR_EDGE:
 				return "接続点";
+			case EShapeType.POLYGON:
+				return "多角形";
 			default:
 				if (EShapeType.EXTENSION <= shapeType) {
 					return "拡張";

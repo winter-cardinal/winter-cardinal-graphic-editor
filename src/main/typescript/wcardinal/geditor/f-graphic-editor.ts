@@ -33,6 +33,7 @@ import {
 	EShapeConnectorLine,
 	EShapeEmbeddeds,
 	EShapeLine,
+	EShapePolygon,
 	EShapeRectangle,
 	EShapeRectangleRounded,
 	EShapeResourceManagerDeserializationMode,
@@ -104,6 +105,8 @@ import { ECommandDocumentOpen } from "./command/e-command-document-open";
 import { FThemeGraphicEditor } from "./f-theme-graphic-editor";
 import { EDialogCanvas, EDialogCanvasValue } from "./editor/e-dialog-canvas";
 import { UtilCanvas, UtilCanvasOptions } from "./util/util-canvas";
+import { EToolShapeCreatePolygon } from "./tool/e-tool-shape-create-polygon";
+import { EToolShapeEditPolygon } from "./tool/e-tool-shape-edit-polygon";
 
 /**
  * {@link FGraphicEditor} controller options
@@ -272,6 +275,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 	protected _toolShapeButtonTriangle?: DButton<string>;
 	protected _toolShapeButtonTriangleRounded?: DButton<string>;
 	protected _toolShapeButtonLine?: DButton<string>;
+	protected _toolShapeButtonPolygon?: DButton<string>;
 	protected _toolShapeButtonLineConnector?: DButton<string>;
 	protected _toolShapeButtonElbowConnector?: DButton<string>;
 	protected _toolShapeButtonImage?: DButton<string>;
@@ -317,9 +321,11 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 	protected _toolShapeSelect?: EToolSelect;
 	protected _toolShapeCreate?: EToolShapeCreate;
 	protected _toolShapeCreateLine?: EToolShapeCreateLine;
+	protected _toolShapeCreatePolygon?: EToolShapeCreatePolygon;
 	protected _toolShapeCreateLineConnector?: EToolShapeCreateLineConnector;
 	protected _toolShapeCreateElbowConnector?: EToolShapeCreateElbowConnector;
 	protected _toolShapeEditLine?: EToolShapeEditLine;
+	protected _toolShapeEditPolygon?: EToolShapeEditPolygon;
 	protected _toolShapeEditLineConnector?: EToolShapeEditLineConnector;
 
 	protected _dialogSaveProcessing?: DDialogProcessing;
@@ -1082,6 +1088,47 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 		this.toolGroup.deactivate(this.toolShapeCreateLine);
 	}
 
+	protected get toolShapeButtonPolygon(): DButton<string> {
+		return (this._toolShapeButtonPolygon ??= this.newToolShapeButtonPolygon());
+	}
+
+	protected newToolShapeButtonPolygon(): DButton<string> {
+		const theme = this._theme;
+		const result = new DButton<string>({
+			group: this.toolShapeButtonGroup,
+			toggle: true,
+			title: theme.getToolShapeButtonPolygonTitle(),
+			theme: theme.getToolShapeButtonTheme(),
+			image: {
+				source: this._icons.shape_polygon
+			},
+			on: {
+				active: (): void => {
+					this.onToolShapeButtonPolygonActive();
+				},
+				inactive: (): void => {
+					this.onToolShapeButtonPolygonInactive();
+				}
+			}
+		});
+		this.toolShapeSelect.on("edit", (shape: EShape): void => {
+			if (shape instanceof EShapePolygon) {
+				const toolShapeEditPolygon = this.toolShapeEditPolygon;
+				toolShapeEditPolygon.shape = shape;
+				this.toolGroup.activate(toolShapeEditPolygon);
+			}
+		});
+		return result;
+	}
+
+	protected onToolShapeButtonPolygonActive(): void {
+		this.toolGroup.activate(this.toolShapeCreatePolygon);
+	}
+
+	protected onToolShapeButtonPolygonInactive(): void {
+		this.toolGroup.deactivate(this.toolShapeCreatePolygon);
+	}
+
 	protected get toolShapeButtonLineConnector(): DButton<string> {
 		return (this._toolShapeButtonLineConnector ??= this.newToolShapeButtonLineConnector());
 	}
@@ -1432,6 +1479,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 			this.toolShapeButtonTriangleRounded,
 			this.toolShapeButtonLineConnector,
 			this.toolShapeButtonElbowConnector,
+			this.toolShapeButtonPolygon,
 			this.toolShapeButtonImage
 		];
 		if (this._isPieceEnabled) {
@@ -2378,6 +2426,24 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 		return result;
 	}
 
+	protected get toolShapeCreatePolygon(): EToolShapeCreatePolygon {
+		return (this._toolShapeCreatePolygon ??= this.newToolShapeCreatePolygon());
+	}
+
+	protected newToolShapeCreatePolygon(): EToolShapeCreatePolygon {
+		const result = new EToolShapeCreatePolygon({
+			selection: this.toolShapeSelect.selection,
+			diagram: this.diagram
+		});
+		result.on("done", (): void => {
+			this.toolShapeButtonSelect.activate();
+		});
+		result.on("cancel", (): void => {
+			this.toolShapeButtonSelect.activate();
+		});
+		return result;
+	}
+
 	protected get toolShapeCreateLineConnector(): EToolShapeCreateLineConnector {
 		return (this._toolShapeCreateLineConnector ??= this.newToolShapeCreateLineConnector());
 	}
@@ -2426,6 +2492,24 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 
 	protected newToolShapeEditLine(): EToolShapeEditLine {
 		const result = new EToolShapeEditLine({
+			selection: this.toolShapeSelect.selection,
+			diagram: this.diagram
+		});
+		result.on("done", (): void => {
+			this.toolGroup.activate(this.toolShapeSelect);
+		});
+		result.on("cancel", (): void => {
+			this.toolGroup.activate(this.toolShapeSelect);
+		});
+		return result;
+	}
+
+	protected get toolShapeEditPolygon(): EToolShapeEditPolygon {
+		return (this._toolShapeEditPolygon ??= this.newToolShapeEditPolygon());
+	}
+
+	protected newToolShapeEditPolygon(): EToolShapeEditPolygon {
+		const result = new EToolShapeEditPolygon({
 			selection: this.toolShapeSelect.selection,
 			diagram: this.diagram
 		});

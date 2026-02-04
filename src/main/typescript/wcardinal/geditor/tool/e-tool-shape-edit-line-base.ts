@@ -5,10 +5,8 @@ import {
 	DDiagramEditor,
 	EShape,
 	EShapeCapability,
-	EShapePoints,
 	EShapePointsFormattedWithoutBoundary,
 	EShapePointsFormatter,
-	EShapePointsFormatters,
 	EShapePointsStyle,
 	UtilKeyboardEvent,
 	UtilPointerEvent
@@ -257,35 +255,23 @@ export abstract class EToolShapeEditLineBase<
 			this._capability = capability;
 			this._isEdited = false;
 			if (shape == null) {
-				this._points = [];
-				this._pointsStyle = EShapePointsStyle.NONE;
-				this._formatter = undefined;
-				const parent = this.parent;
-				if (parent) {
-					parent.removeChild(this);
-					DApplications.update(this);
-				}
+				this.onShapeUnset();
 			} else {
-				const points = shape.points;
-				if (points) {
-					shape.updateTransform();
-					this._points = this.toPoints(shape, points, this.toTransform(shape));
-					const pointsStyle = points.style;
-					this._pointsStyle = pointsStyle;
-					this._formatter =
-						points.formatter ?? EShapePointsFormatters.find(pointsStyle)?.formatter;
-				} else {
-					this._points = [];
-					this._pointsStyle = EShapePointsStyle.NONE;
-					this._formatter = undefined;
-				}
-
-				this.reshape();
-				const canvas = this._diagram.canvas;
-				if (canvas) {
-					canvas.addChild(this);
-				}
+				this.onShapeSet(shape);
 			}
+		}
+	}
+
+	protected abstract onShapeSet(shape: EShape): void;
+
+	protected onShapeUnset(): void {
+		this._points = [];
+		this._pointsStyle = EShapePointsStyle.NONE;
+		this._formatter = undefined;
+		const parent = this.parent;
+		if (parent) {
+			parent.removeChild(this);
+			DApplications.update(this);
 		}
 	}
 
@@ -300,16 +286,6 @@ export abstract class EToolShapeEditLineBase<
 			result.prepend(parent.transform.localTransform);
 		}
 
-		return result;
-	}
-
-	protected toPoints(shape: EShape, points: EShapePoints, transform: Matrix): Point[] {
-		const result: Point[] = [];
-		const values = points.values;
-		for (let i = 0, imax = values.length; i < imax; i += 2) {
-			const point = new Point(values[i + 0], values[i + 1]);
-			result.push(transform.apply(point, point));
-		}
 		return result;
 	}
 
@@ -339,7 +315,7 @@ export abstract class EToolShapeEditLineBase<
 		const pointsLength = points.length;
 		const pointsStyle = this._pointsStyle;
 		const formatter = this._formatter;
-		const pointsClosed = !!(pointsStyle & EShapePointsStyle.CLOSED);
+		const pointsClosed = this.closed;
 		const capability = this._capability;
 		const hasTail = !!(capability & EShapeCapability.LINE_TAIL);
 		const hasHead = !!(capability & EShapeCapability.LINE_HEAD);

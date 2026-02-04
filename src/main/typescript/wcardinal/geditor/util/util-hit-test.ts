@@ -24,7 +24,7 @@ export class UtilHitTest {
 		const x = global.x;
 		const y = global.y;
 		if (interactionManager) {
-			for (let i = 0, imax = offsets.length; i < imax; i += 1) {
+			for (let i = 0, imax = offsets.length; i < imax; i += 2) {
 				work.set(x + offsets[i], y + offsets[i + 1]);
 				const result = interactionManager.hitTest(work, target as any);
 				if (result != null) {
@@ -32,7 +32,7 @@ export class UtilHitTest {
 				}
 			}
 		} else {
-			for (let i = 0, imax = offsets.length; i < imax; i += 1) {
+			for (let i = 0, imax = offsets.length; i < imax; i += 2) {
 				work.set(x + offsets[i], y + offsets[i + 1]);
 				const result = target.hitTest(work);
 				if (result != null) {

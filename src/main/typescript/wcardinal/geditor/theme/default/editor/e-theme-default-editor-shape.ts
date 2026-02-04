@@ -52,6 +52,10 @@ export abstract class EThemeDefaultEditorShape
 		return this._shapeType.getLabel(EShapeType.LINE);
 	}
 
+	getButtonPolygonTitle(): string | undefined {
+		return this._shapeType.getLabel(EShapeType.POLYGON);
+	}
+
 	getButtonLineConnectorTitle(): string | undefined {
 		return this._shapeType.getLabel(EShapeType.CONNECTOR_LINE);
 	}

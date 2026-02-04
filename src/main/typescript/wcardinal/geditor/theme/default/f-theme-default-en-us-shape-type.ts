@@ -56,6 +56,8 @@ export class FThemeDefaultEnUsShapeType extends FThemeDefaultShapeType {
 				return "Semicircle";
 			case EShapeType.EMBEDDED_ACCEPTOR_EDGE:
 				return "Acceptor Edge";
+			case EShapeType.POLYGON:
+				return "Polygon";
 			default:
 				if (EShapeType.EXTENSION <= shapeType) {
 					return "Extension";

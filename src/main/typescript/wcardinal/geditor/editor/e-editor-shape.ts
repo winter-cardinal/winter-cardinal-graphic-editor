@@ -1,5 +1,6 @@
 import {
 	createLine,
+	createPolygon,
 	DButton,
 	DButtonAmbient,
 	DButtonCheck,
@@ -46,6 +47,7 @@ import {
 	EShapePointsFormatters,
 	EShapePointsMarkerType,
 	EShapePointsStyle,
+	EShapePolygon,
 	EShapeRectangle,
 	EShapeRectangleRounded,
 	EShapeResourceManagerDeserializationMode,
@@ -160,6 +162,7 @@ export interface EThemeEditorShape extends DThemePane {
 	getButtonTriangleTitle(): string | undefined;
 	getButtonTriangleRoundedTitle(): string | undefined;
 	getButtonLineTitle(): string | undefined;
+	getButtonPolygonTitle(): string | undefined;
 	getButtonLineConnectorTitle(): string | undefined;
 	getButtonElbowConnectorTitle(): string | undefined;
 	getButtonImageTitle(): string | undefined;
@@ -221,6 +224,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	protected _buttonLineConnector?: DButton<string>;
 	protected _buttonElbowConnector?: DButton<string>;
 	protected _buttonLine?: DButton<string>;
+	protected _buttonPolygon?: DButton<string>;
 	protected _buttonImage?: DButtonFile<string>;
 	protected _buttonGraphicPiece?: DButton<string> | null;
 	protected _dialogSelectGraphicPiece?: Promise<DDialogSelect<DDiagramSerializedName, string>>;
@@ -388,6 +392,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			this.buttonLine,
 			this.buttonLineConnector,
 			this.buttonElbowConnector,
+			this.buttonPolygon,
 			this.buttonImage,
 			this.buttonGraphicPiece
 		];
@@ -675,7 +680,8 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 
 	protected replaceLine(existing: EShape): EShapeLine | null {
 		if (existing.type !== EShapeType.LINE) {
-			if (existing instanceof EShapeConnectorLine) {
+			const points = existing.points;
+			if (points != null) {
 				return new EShapeLine().copy(existing);
 			} else {
 				const size = existing.size;
@@ -687,6 +693,47 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 					EShapeDefaults.STROKE_WIDTH,
 					EShapePointsStyle.NONE
 				).copy(
+					existing,
+					EShapeCopyPart.ALL & ~(EShapeCopyPart.SIZE | EShapeCopyPart.POINTS)
+				);
+			}
+		}
+		return null;
+	}
+
+	protected get buttonPolygon(): DButton<string> {
+		return (this._buttonPolygon ??= this.newButtonPolygon());
+	}
+
+	protected newButtonPolygon(): DButton<string> {
+		return new DButtonAmbient<string>({
+			image: {
+				source: this._icons.shape_polygon
+			},
+			title: this.theme.getButtonPolygonTitle(),
+			theme: "EButtonEditor",
+			on: {
+				active: (): void => {
+					this._selection.replace((existing) => {
+						return this.replacePolygon(existing);
+					});
+				}
+			}
+		});
+	}
+
+	protected replacePolygon(existing: EShape): EShapePolygon | null {
+		if (existing.type !== EShapeType.POLYGON) {
+			const points = existing.points;
+			if (points != null && 3 <= points.length) {
+				const result = new EShapePolygon().copy(existing);
+				result.points.style |= EShapePointsStyle.CLOSED;
+				return result;
+			} else {
+				const size = existing.size;
+				const sxh = size.x * 0.5;
+				const syh = size.y * 0.5;
+				return createPolygon([-sxh, -syh, sxh, -syh, sxh, +syh, -sxh, +syh]).copy(
 					existing,
 					EShapeCopyPart.ALL & ~(EShapeCopyPart.SIZE | EShapeCopyPart.POINTS)
 				);

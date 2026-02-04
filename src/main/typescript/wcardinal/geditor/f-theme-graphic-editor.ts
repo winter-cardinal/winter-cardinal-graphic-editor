@@ -34,6 +34,7 @@ export interface FThemeGraphicEditor {
 	getToolShapeButtonTriangleTitle(): string | undefined;
 	getToolShapeButtonTriangleRoundedTitle(): string | undefined;
 	getToolShapeButtonLineTitle(): string | undefined;
+	getToolShapeButtonPolygonTitle(): string | undefined;
 	getToolShapeButtonLineConnectorTitle(): string | undefined;
 	getToolShapeButtonElbowConnectorTitle(): string | undefined;
 	getToolShapeButtonImageTitle(): string | undefined;
