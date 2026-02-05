@@ -36,6 +36,8 @@ export class EThemeDefaultJaJpShapeActionValue extends EThemeDefaultShapeActionV
 			case EShapeActionValueType.CHANGE_COLOR:
 			case EShapeActionValueType.CHANGE_COLOR_LEGACY:
 				return "色変更";
+			case EShapeActionValueType.CHANGE_FILL_PERCENT:
+				return "塗り％";
 			case EShapeActionValueType.CHANGE_TEXT:
 				return "テキスト変更";
 			case EShapeActionValueType.CHANGE_CURSOR:

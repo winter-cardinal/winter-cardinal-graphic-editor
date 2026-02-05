@@ -36,6 +36,8 @@ export class EThemeDefaultEnUsShapeActionValue extends EThemeDefaultShapeActionV
 			case EShapeActionValueType.CHANGE_COLOR:
 			case EShapeActionValueType.CHANGE_COLOR_LEGACY:
 				return "Change Color";
+			case EShapeActionValueType.CHANGE_FILL_PERCENT:
+				return "Change Fill Percent";
 			case EShapeActionValueType.CHANGE_TEXT:
 				return "Change Text";
 			case EShapeActionValueType.CHANGE_CURSOR:
