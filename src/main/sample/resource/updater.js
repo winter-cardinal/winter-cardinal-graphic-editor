@@ -22,7 +22,7 @@
 				viewer.diagram.data.set(id, value, now);
 			});
 			viewer.application.update();
-			setTimeout(update, 32);
+			setTimeout(() => this.update(), 32);
 		}
 	}
 }(window.common ||= {}));

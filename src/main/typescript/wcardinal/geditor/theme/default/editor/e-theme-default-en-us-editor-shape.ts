@@ -27,6 +27,30 @@ export class EThemeDefaultEnUsEditorShape extends EThemeDefaultEditorShape {
 		return "Fill";
 	}
 
+	override getButtonFillColorTitle(): string | undefined {
+		return "Fill Color";
+	}
+
+	override getInputFillPercentTitle(): string | undefined {
+		return "Fill Percent";
+	}
+
+	override getButtonFillDirectionTopTitle(): string | undefined {
+		return "Fill Top to Bottom";
+	}
+
+	override getButtonFillDirectionRightTitle(): string | undefined {
+		return "Fill Right to Left";
+	}
+
+	override getButtonFillDirectionBottomTitle(): string | undefined {
+		return "Fill Bottom to Top";
+	}
+
+	override getButtonFillDirectionLeftTitle(): string | undefined {
+		return "Fill Left to Right";
+	}
+
 	override getButtonStrokeLabel(): string | undefined {
 		return "Stroke";
 	}

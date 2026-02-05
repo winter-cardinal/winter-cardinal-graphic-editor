@@ -86,6 +86,18 @@ export abstract class EThemeDefaultEditorShape
 
 	abstract getButtonFillLabel(): string | undefined;
 
+	abstract getButtonFillColorTitle(): string | undefined;
+
+	abstract getInputFillPercentTitle(): string | undefined;
+
+	abstract getButtonFillDirectionTopTitle(): string | undefined;
+
+	abstract getButtonFillDirectionRightTitle(): string | undefined;
+
+	abstract getButtonFillDirectionBottomTitle(): string | undefined;
+
+	abstract getButtonFillDirectionLeftTitle(): string | undefined;
+
 	abstract getButtonStrokeLabel(): string | undefined;
 
 	abstract getInputStrokeWidthLabel(): string | undefined;

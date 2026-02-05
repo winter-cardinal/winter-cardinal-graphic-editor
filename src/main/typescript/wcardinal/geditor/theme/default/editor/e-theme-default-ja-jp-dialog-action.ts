@@ -159,6 +159,7 @@ export class EThemeDefaultJaJpDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("fill.enable", "boolean", "シェイプの塗りが有効かどうかの真偽値"));
 		result.push(this.newKeyword("fill.color", "number", "シェイプの塗りのRGB色"));
 		result.push(this.newKeyword("fill.alpha", "number", "シェイプの塗りの透明度"));
+		result.push(this.newKeyword("fill.percent", "number", "シェイプの塗り%"));
 		result.push(this.newKeyword("stroke.enable", "boolean", "シェイプの境界線が有効かどうかの真偽値"));
 		result.push(this.newKeyword("stroke.color", "number", "シェイプの境界線のRGB色"));
 		result.push(this.newKeyword("stroke.alpha", "number", "シェイプの境界線の透明度"));

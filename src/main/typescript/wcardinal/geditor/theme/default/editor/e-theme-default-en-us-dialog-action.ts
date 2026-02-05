@@ -159,6 +159,7 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("fill.enable", "boolean", "True if a fill of a shape is enabled."));
 		result.push(this.newKeyword("fill.color", "number", "A fill color of a shape."));
 		result.push(this.newKeyword("fill.alpha", "number", "A fill alpha of a shape."));
+		result.push(this.newKeyword("fill.percent", "number", "A fill percent of a shape."));
 		result.push(this.newKeyword("stroke.enable", "boolean", "True if a shape stroke is enabled."));
 		result.push(this.newKeyword("stroke.color", "number", "A stroke color of a shape."));
 		result.push(this.newKeyword("stroke.alpha", "number", "A stroke alpha of a shape."));

@@ -9,6 +9,7 @@ import {
 	DButtonColorGradient,
 	DButtonFile,
 	DButtonFileAs,
+	DButtonGroup,
 	DColorAndAlpha,
 	DColorGradientObservable,
 	DContentOptions,
@@ -38,6 +39,7 @@ import {
 	EShapeCorner,
 	EShapeDefaults,
 	EShapeEmbeddeds,
+	EShapeFillDirection,
 	EShapeGradientLike,
 	EShapeGroup,
 	EShapeImage,
@@ -91,6 +93,8 @@ export interface EEditorShapeSelection {
 
 	setFill(color: number, alpha: number): void;
 	setFillEnabled(enable: boolean): void;
+	setFillPercent(percent: number): void;
+	setFillDirection(direction: EShapeFillDirection): void;
 
 	setStroke(color: number, alpha: number): void;
 	setStrokeEnabled(enable: boolean): void;
@@ -172,6 +176,12 @@ export interface EThemeEditorShape extends DThemePane {
 	getButtonUngroupTitle(): string | undefined;
 	getButtonUngroupShortcut(): string | undefined;
 	getButtonFillLabel(): string | undefined;
+	getButtonFillColorTitle(): string | undefined;
+	getInputFillPercentTitle(): string | undefined;
+	getButtonFillDirectionTopTitle(): string | undefined;
+	getButtonFillDirectionRightTitle(): string | undefined;
+	getButtonFillDirectionBottomTitle(): string | undefined;
+	getButtonFillDirectionLeftTitle(): string | undefined;
 	getButtonStrokeLabel(): string | undefined;
 	getInputStrokeWidthLabel(): string | undefined;
 	getInputStrokeAlignLabel(): string | undefined;
@@ -233,6 +243,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 
 	protected _buttonFill?: DButtonCheckRight<string>;
 	protected _buttonFillColor?: DButtonColor;
+	protected _inputFillPercent?: DInputReal;
+	protected _layoutFillDirection?: DLayoutHorizontal;
+	protected _buttonFillDirectionGroup?: DButtonGroup;
+	protected _buttonFillDirectionTop?: DButtonCheck<string>;
+	protected _buttonFillDirectionRight?: DButtonCheck<string>;
+	protected _buttonFillDirectionBottom?: DButtonCheck<string>;
+	protected _buttonFillDirectionLeft?: DButtonCheck<string>;
 
 	protected _buttonStroke?: DButtonCheckRight<string>;
 	protected _buttonStrokeColor?: DButtonColor;
@@ -334,6 +351,8 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 				this.buttonFill,
 				this.buttonFillColor,
 				this.layoutTexture,
+				this.inputFillPercent,
+				this.layoutFillDirection,
 
 				this.buttonStroke,
 				this.buttonStrokeColor,
@@ -1104,6 +1123,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	protected newButtonFillColor(): DButtonColor {
 		const result = new DButtonColor({
 			width: "100%",
+			title: this.theme.getButtonFillColorTitle(),
 			on: {
 				change: (value: DColorAndAlpha): void => {
 					this._selection.setFill(value.color, value.alpha);
@@ -1118,6 +1138,145 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			dialogNew.alpha = dialogCurrent.alpha;
 		});
 		return result;
+	}
+
+	protected get inputFillPercent(): DInputReal {
+		return (this._inputFillPercent ??= this.newInputFillPercent());
+	}
+
+	protected newInputFillPercent(): DInputReal {
+		return new DInputReal({
+			width: "100%",
+			min: 0,
+			step: 1,
+			max: 100,
+			title: this.theme.getInputFillPercentTitle(),
+			text: {
+				formatter: (value: number): string => {
+					return `${+(value * 100).toFixed(2)} %`;
+				}
+			},
+			editing: {
+				formatter: (value: number): string => {
+					return `${+(value * 100).toFixed(2)}`;
+				},
+				unformatter: (text: string): number => {
+					return parseFloat(text) * 0.01;
+				}
+			},
+			on: {
+				change: (value: number): void => {
+					this._selection.setFillPercent(value);
+				}
+			}
+		});
+	}
+
+	protected get layoutFillDirection(): DLayoutHorizontal {
+		return (this._layoutFillDirection ??= this.newLayoutFillDirection());
+	}
+
+	protected newLayoutFillDirection(): DLayoutHorizontal {
+		return new DLayoutHorizontal({
+			width: "100%",
+			height: "auto",
+			children: [
+				new DLayoutSpace({ weight: 1 }),
+				this.buttonFillDirectionTop,
+				this.buttonFillDirectionRight,
+				this.buttonFillDirectionBottom,
+				this.buttonFillDirectionLeft,
+				new DLayoutSpace({ weight: 1 })
+			]
+		});
+	}
+
+	protected get buttonFillDirectionGroup(): DButtonGroup {
+		return (this._buttonFillDirectionGroup ??= new DButtonGroup());
+	}
+
+	protected get buttonFillDirectionTop(): DButtonCheck<string> {
+		return (this._buttonFillDirectionTop ??= this.newButtonFillDirectionTop());
+	}
+
+	protected newButtonFillDirectionTop(): DButtonCheck<string> {
+		const selection = this._selection;
+		return new DButtonCheck<string>({
+			image: {
+				source: this._icons.fill_direction_top
+			},
+			title: this.theme.getButtonFillDirectionTopTitle(),
+			group: this.buttonFillDirectionGroup,
+			theme: "EButtonEditorCheck",
+			on: {
+				active: (): void => {
+					selection.setFillDirection(EShapeFillDirection.TOP);
+				}
+			}
+		});
+	}
+
+	protected get buttonFillDirectionRight(): DButtonCheck<string> {
+		return (this._buttonFillDirectionRight ??= this.newButtonFillDirectionRight());
+	}
+
+	protected newButtonFillDirectionRight(): DButtonCheck<string> {
+		const selection = this._selection;
+		return new DButtonCheck<string>({
+			image: {
+				source: this._icons.fill_direction_right
+			},
+			title: this.theme.getButtonFillDirectionRightTitle(),
+			group: this.buttonFillDirectionGroup,
+			theme: "EButtonEditorCheck",
+			on: {
+				active: (): void => {
+					selection.setFillDirection(EShapeFillDirection.RIGHT);
+				}
+			}
+		});
+	}
+
+	protected get buttonFillDirectionBottom(): DButtonCheck<string> {
+		return (this._buttonFillDirectionBottom ??= this.newButtonFillDirectionBottom());
+	}
+
+	protected newButtonFillDirectionBottom(): DButtonCheck<string> {
+		const selection = this._selection;
+		return new DButtonCheck<string>({
+			image: {
+				source: this._icons.fill_direction_bottom
+			},
+			title: this.theme.getButtonFillDirectionBottomTitle(),
+			group: this.buttonFillDirectionGroup,
+			theme: "EButtonEditorCheck",
+			on: {
+				active: (): void => {
+					selection.setFillDirection(EShapeFillDirection.BOTTOM);
+				}
+			}
+		});
+	}
+
+	protected get buttonFillDirectionLeft(): DButtonCheck<string> {
+		return (this._buttonFillDirectionLeft ??= this.newButtonFillDirectionLeft());
+	}
+
+	protected newButtonFillDirectionLeft(): DButtonCheck<string> {
+		const selection = this._selection;
+		return new DButtonCheck<string>({
+			image: {
+				source: this._icons.fill_direction_left
+			},
+			title: this.theme.getButtonFillDirectionLeftTitle(),
+			group: this.buttonFillDirectionGroup,
+			theme: "EButtonEditorCheck",
+			on: {
+				active: (): void => {
+					selection.setFillDirection(EShapeFillDirection.LEFT);
+				}
+			}
+		});
 	}
 
 	protected get buttonStroke(): DButtonCheckRight<string> {
@@ -2296,13 +2455,33 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 
 		// Fill
 		if (last != null) {
-			this.buttonFill.state.isActive = last.fill.enable;
 			const fill = last.fill;
+			const fillEnable = fill.enable;
+
+			this.buttonFill.state.isActive = fillEnable;
 			const buttonFillColor = this.buttonFillColor;
 			const value = buttonFillColor.value;
 			value.color = fill.color;
 			value.alpha = fill.alpha;
-			buttonFillColor.state.isEnabled = fill.enable;
+			buttonFillColor.state.isEnabled = fillEnable;
+
+			const inputFillPercent = this.inputFillPercent;
+			inputFillPercent.value = fill.percent;
+			inputFillPercent.state.isEnabled = fillEnable;
+
+			const buttonFillDirectionTop = this.buttonFillDirectionTop;
+			const buttonFillDirectionRight = this.buttonFillDirectionRight;
+			const buttonFillDirectionBottom = this.buttonFillDirectionBottom;
+			const buttonFillDirectionLeft = this.buttonFillDirectionLeft;
+			buttonFillDirectionTop.state.isEnabled = fillEnable;
+			buttonFillDirectionRight.state.isEnabled = fillEnable;
+			buttonFillDirectionBottom.state.isEnabled = fillEnable;
+			buttonFillDirectionLeft.state.isEnabled = fillEnable;
+			const fillDirection = fill.direction;
+			buttonFillDirectionTop.state.isActive = fillDirection === EShapeFillDirection.TOP;
+			buttonFillDirectionRight.state.isActive = fillDirection === EShapeFillDirection.RIGHT;
+			buttonFillDirectionBottom.state.isActive = fillDirection === EShapeFillDirection.BOTTOM;
+			buttonFillDirectionLeft.state.isActive = fillDirection === EShapeFillDirection.LEFT;
 		}
 
 		// Stroke

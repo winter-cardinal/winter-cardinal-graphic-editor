@@ -39,7 +39,8 @@ import {
 	DDiagramCanvasEditor,
 	EShapeResourceManagerDeserializationMode,
 	DBase,
-	EShapeImageLike
+	EShapeImageLike,
+	EShapeFillDirection
 } from "@wcardinal/wcardinal-ui";
 import { IPoint, Matrix, Point, Rectangle, utils } from "pixi.js";
 import { ECommandComposition } from "../command/e-command-composition";
@@ -141,6 +142,8 @@ import { UtilShapeConnectorTransforms } from "../util/util-shape-connector-trans
 import { ECommandShapePropertyLineStyle } from "../command/e-command-shape-property-line-style";
 import { UtilShapeDeleter } from "../util/util-shape-deleter";
 import { UtilShapeSearch } from "../util/util-shape-search";
+import { ECommandShapePropertyFillPercent } from "../command/e-command-shape-property-fill-percent";
+import { ECommandShapePropertyFillDirection } from "../command/e-command-shape-property-fill-direction";
 
 export type EToolSelectSelectionStored = EShape[];
 
@@ -1235,6 +1238,24 @@ export class EToolSelectSelection extends utils.EventEmitter {
 		if (0 < shapes.length) {
 			DControllers.getCommandController().push(
 				new ECommandShapePropertyFillEnable(this, enable)
+			);
+		}
+	}
+
+	setFillPercent(percent: number): void {
+		const shapes = this._shapes;
+		if (0 < shapes.length) {
+			DControllers.getCommandController().push(
+				new ECommandShapePropertyFillPercent(this, percent)
+			);
+		}
+	}
+
+	setFillDirection(direction: EShapeFillDirection): void {
+		const shapes = this._shapes;
+		if (0 < shapes.length) {
+			DControllers.getCommandController().push(
+				new ECommandShapePropertyFillDirection(this, direction)
 			);
 		}
 	}

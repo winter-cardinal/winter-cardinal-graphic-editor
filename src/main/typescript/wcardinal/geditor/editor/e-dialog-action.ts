@@ -73,7 +73,8 @@ import {
 	DButton,
 	DApplications,
 	EShapeActionMiscExtensions,
-	EShapeActionValueMiscExtension
+	EShapeActionValueMiscExtension,
+	EShapeActionValueChangeFillPercent
 } from "@wcardinal/wcardinal-ui";
 import { DisplayObject, Texture } from "pixi.js";
 import { EShapeActionExtensions } from "../extension";
@@ -354,6 +355,12 @@ export class EDialogAction extends DDialogLayered<
 				value: EShapeActionValueType.CHANGE_COLOR,
 				text: {
 					value: themeShape.toTypeLabel(EShapeActionValueType.CHANGE_COLOR)
+				}
+			},
+			{
+				value: EShapeActionValueType.CHANGE_FILL_PERCENT,
+				text: {
+					value: themeShape.toTypeLabel(EShapeActionValueType.CHANGE_FILL_PERCENT)
 				}
 			},
 			{
@@ -1999,21 +2006,26 @@ export class EDialogAction extends DDialogLayered<
 
 	protected onChangeContents(select: number | null): void {
 		const contents = this.contents;
-		if (select === EShapeActionValueType.CHANGE_TEXT) {
-			contents.show();
-		} else if (select === EShapeActionValueType.MISC) {
-			switch (this.miscType.value) {
-				case EShapeActionValueMiscType.WRITE_BOTH:
-				case EShapeActionValueMiscType.WRITE_LOCAL:
-				case EShapeActionValueMiscType.WRITE_REMOTE:
-					contents.show();
-					break;
-				default:
-					contents.hide();
-					break;
-			}
-		} else {
-			contents.hide();
+		switch (select) {
+			case EShapeActionValueType.CHANGE_TEXT:
+			case EShapeActionValueType.CHANGE_FILL_PERCENT:
+				contents.show();
+				break;
+			case EShapeActionValueType.MISC:
+				switch (this.miscType.value) {
+					case EShapeActionValueMiscType.WRITE_BOTH:
+					case EShapeActionValueMiscType.WRITE_LOCAL:
+					case EShapeActionValueMiscType.WRITE_REMOTE:
+						contents.show();
+						break;
+					default:
+						contents.hide();
+						break;
+				}
+				break;
+			default:
+				contents.hide();
+				break;
 		}
 	}
 
@@ -3062,6 +3074,11 @@ export class EDialogAction extends DDialogLayered<
 							);
 					}
 					break;
+				case EShapeActionValueType.CHANGE_FILL_PERCENT:
+					return new EShapeActionValueChangeFillPercent(
+						condition,
+						this.contents.input.value
+					);
 				case EShapeActionValueType.CHANGE_TEXT:
 					const changeTextType =
 						this.changeTextType.value || EShapeActionValueChangeTextType.TEXT;
@@ -3282,6 +3299,9 @@ export class EDialogAction extends DDialogLayered<
 				this.originX.value = value.originX;
 				this.originY.value = value.originY;
 				this.amount.input.value = value.amount;
+			} else if (value instanceof EShapeActionValueChangeFillPercent) {
+				this.condition.input.value = value.condition;
+				this.contents.input.value = value.value;
 			} else if (value instanceof EShapeActionValueChangeText) {
 				this.condition.input.value = value.condition;
 				this.changeTextType.value = value.subtype;

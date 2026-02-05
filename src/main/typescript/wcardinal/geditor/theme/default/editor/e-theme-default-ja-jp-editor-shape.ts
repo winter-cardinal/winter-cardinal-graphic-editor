@@ -27,6 +27,30 @@ export class EThemeDefaultJaJpEditorShape extends EThemeDefaultEditorShape {
 		return "塗り";
 	}
 
+	override getButtonFillColorTitle(): string | undefined {
+		return "塗り色";
+	}
+
+	override getInputFillPercentTitle(): string | undefined {
+		return "塗り%";
+	}
+
+	override getButtonFillDirectionTopTitle(): string | undefined {
+		return "上から下に塗る";
+	}
+
+	override getButtonFillDirectionRightTitle(): string | undefined {
+		return "右から左に塗る";
+	}
+
+	override getButtonFillDirectionBottomTitle(): string | undefined {
+		return "下から上に塗る";
+	}
+
+	override getButtonFillDirectionLeftTitle(): string | undefined {
+		return "左から右に塗る";
+	}
+
 	override getButtonStrokeLabel(): string | undefined {
 		return "輪郭線";
 	}
