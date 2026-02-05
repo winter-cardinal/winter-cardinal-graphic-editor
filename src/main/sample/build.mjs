@@ -6,9 +6,9 @@
 import path from "path";
 import { promises as fs } from "fs";
 import rimraf from "rimraf";
-import PIXI_PCKG from "pixi.js/package.json" assert { type: "json" };
-import WCUI_PCKG from "@wcardinal/wcardinal-ui/package.json" assert { type: "json" };
-import WCGE_PCKG from "../../../package.json" assert { type: "json" };
+import PIXI_PCKG from "pixi.js/package.json" with { type: "json" };
+import WCUI_PCKG from "@wcardinal/wcardinal-ui/package.json" with { type: "json" };
+import WCGE_PCKG from "../../../package.json" with { type: "json" };
 const PIXI_VERSION = PIXI_PCKG.version;
 const WCUI_VERSION = WCUI_PCKG.version;
 const WCGE_VERSION = WCGE_PCKG.version;

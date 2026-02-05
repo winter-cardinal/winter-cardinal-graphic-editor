@@ -21,10 +21,10 @@
 </head>
 <body>
 	<script src="../../js/pixi/5.3.12/pixi.min.js"></script>
-	<script src="../../js/wcardinal-ui/0.452.0/wcardinal-ui.min.js"></script>
-	<script src="../../js/wcardinal-ui/0.452.0/wcardinal-ui-theme-white.min.js"></script>
-	<script src="../../js/wcardinal-geditor/1.1.0/wcardinal-geditor.min.js"></script>
-	<script src="../../js/wcardinal-geditor/1.1.0/wcardinal-geditor-theme-default-en-us.min.js"></script>
+	<script src="../../js/wcardinal-ui/0.459.0/wcardinal-ui.min.js"></script>
+	<script src="../../js/wcardinal-ui/0.459.0/wcardinal-ui-theme-white.min.js"></script>
+	<script src="../../js/wcardinal-geditor/1.6.0/wcardinal-geditor.min.js"></script>
+	<script src="../../js/wcardinal-geditor/1.6.0/wcardinal-geditor-theme-default-en-us.min.js"></script>
 	<script src="../../resource/graphic-controller.js"></script>
 	<script src="../../resource/new-header.js"></script>
 	<script>
@@ -55,7 +55,21 @@
 		// The same setting is required when creating a graphic viewer or tester.
 		wcardinal.ui.EShapeActionMiscExtensions.add({
 			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 0,
-			label: "My Misc. Extension",
+			label: "My Misc. Extension 1",
+			executor: (argument, shape, diagram, environment) => {
+				// Called to execute this misc. action.
+			}
+		});
+		wcardinal.ui.EShapeActionMiscExtensions.add({
+			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 1,
+			label: "My Misc. Extension 2",
+			executor: (argument, shape, diagram, environment) => {
+				// Called to execute this misc. action.
+			}
+		});
+		wcardinal.ui.EShapeActionMiscExtensions.add({
+			type: wcardinal.ui.EShapeActionValueMiscType.EXTENSION + 2,
+			label: "My Misc. Extension 3",
 			executor: (argument, shape, diagram, environment) => {
 				// Called to execute this misc. action.
 			}
