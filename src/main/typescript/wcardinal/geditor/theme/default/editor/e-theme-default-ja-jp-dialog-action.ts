@@ -142,6 +142,7 @@ export class EThemeDefaultJaJpDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("isUnfocusable", "boolean", "シェイプがフォーカス不可能かどうかの真偽値"));
 		result.push(this.newKeyword("isClicked", "boolean", "シェイプがクリックされた時に真となる真偽値"));
 		result.push(this.newKeyword("isDblClicked", "boolean", "シェイプがダブルクリックされた時に真となる真偽値"));
+		result.push(this.newKeyword("isDragged", "boolean", "シェイプがドラッグされようとしている時に真となる真偽値"));
 		result.push(this.newKeyword("isDown", "boolean", "シェイプ上でポインターかキーが押下された時に真となる真偽値"));
 		result.push(this.newKeyword("isUp", "boolean", "シェイプ上でポインターかキーが離された時に真となる真偽値"));
 		result.push(this.newKeyword("isUpOutside", "boolean", "シェイプ外でポインターかキーが離された時に真となる真偽値"));

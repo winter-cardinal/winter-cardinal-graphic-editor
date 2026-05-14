@@ -142,6 +142,7 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("isUnfocusable", "boolean", "True if a shape is not focusable."));
 		result.push(this.newKeyword("isClicked", "boolean", "True when a shape is clicked."));
 		result.push(this.newKeyword("isDblClicked", "boolean", "True when a shape is double-clicked."));
+		result.push(this.newKeyword("isDragged", "boolean", "True when a shape is about to be dragged."));
 		result.push(this.newKeyword("isDown", "boolean", "True when a pointer or a key gets down on a shape."));
 		result.push(this.newKeyword("isUp", "boolean", "True when a pointer or a key gets up on a shape."));
 		result.push(this.newKeyword("isUpOutside", "boolean", "True when a pointer or a key gets up outside of a shape."));
