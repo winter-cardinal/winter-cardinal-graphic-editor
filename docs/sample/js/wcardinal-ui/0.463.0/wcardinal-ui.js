@@ -1,5 +1,5 @@
 /*
- Winter Cardinal UI v0.461.0
+ Winter Cardinal UI v0.462.0
  Copyright (C) 2019 Toshiba Corporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -1416,6 +1416,7 @@
     var INDEX = 16;
     var VERTEX_AND_STEP = VERTEX | STEP;
     var VERTEX_STEP_AND_UV = VERTEX_AND_STEP | UV;
+    var VERTEX_STEP_AND_INDEX = VERTEX | STEP | INDEX;
     var VERTEX_STEP_UV_AND_INDEX = VERTEX_STEP_AND_UV | INDEX;
     var ALL$1 = VERTEX | STEP | COLOR | UV | INDEX;
     var BuilderFlag = {
@@ -1427,6 +1428,7 @@
         INDEX: INDEX,
         VERTEX_AND_STEP: VERTEX_AND_STEP,
         VERTEX_STEP_AND_UV: VERTEX_STEP_AND_UV,
+        VERTEX_STEP_AND_INDEX: VERTEX_STEP_AND_INDEX,
         VERTEX_STEP_UV_AND_INDEX: VERTEX_STEP_UV_AND_INDEX,
         ALL: ALL$1
     };
@@ -16673,7 +16675,7 @@
      * SPDX-License-Identifier: Apache-2.0
      */
     var VERTEX_SHADER$1 = "\nattribute highp vec2 aPosition;\nattribute highp vec2 aStepA;\nattribute highp vec4 aStepB;\nattribute highp vec3 aColor;\nattribute highp vec2 aUv;\n\nuniform mat3 projectionMatrix;\nuniform mat3 translationMatrix;\nuniform mediump float shapeScale;\nuniform mediump float antialiasWeight;\n\nvarying mediump float vType;\nvarying mediump vec2 vStepA;\nvarying mediump vec4 vStepB;\nvarying mediump vec4 vLength;\nvarying mediump vec4 vColorFill;\nvarying mediump vec4 vColorStroke;\nvarying mediump vec2 vUv;\n\nvec2 toInverse(in vec2 v) {\n\treturn vec2(-v.y, v.x);\n}\n\nvec4 toGeneral(in float v) {\n\tvec4 c = vec4(1.0, 1.0/64.0, 1.0/64.0/64.0, 1.0/64.0/64.0/64.0) * v;\n\tc -= fract(c);\n\tc -= c.yzwx * vec4(64.0, 64.0, 64.0, 0.0);\n\treturn c;\n}\n\nfloat toStrokeWidthScale(in float scale) {\n\treturn (\n\t\tscale == 3.0 || scale == 7.0 ?\n\t\tshapeScale : (\n\t\t\tscale == 1.0 || scale == 5.0 ?\n\t\t\tmin(1.0, shapeScale) : (\n\t\t\t\tscale == 2.0 || scale == 6.0 ?\n\t\t\t\tmax(1.0, shapeScale) : 1.0\n\t\t\t)\n\t\t)\n\t);\n}\n\nvec2 toUnpackedF2x1024(in float v) {\n\tvec2 c = vec2(1.0, 1.0/1024.0) * v;\n\tc -= fract(c);\n\tc -= c.yx * vec2(1024.0, 0.0);\n\tc /= vec2(1023.0, 1023.0);\n\treturn c;\n}\n\nvec3 toUnpackedF3x256(in float v) {\n\tvec3 c = vec3(1.0, 1.0/256.0, 1.0/256.0/256.0) * v;\n\tc -= fract(c);\n\tc -= c.yzx * vec3(256.0, 256.0, 0.0);\n\tc /= 255.0;\n\treturn c;\n}\n\nvec2 toPosition012(in vec2 v) {\n\treturn (projectionMatrix * translationMatrix * vec3(v, 1.0)).xy;\n}\n\nvec4 toStepB01(in vec4 sb) {\n\treturn vec4(sb.xy, toUnpackedF2x1024(sb.z));\n}\n\nvec4 toStepB2(in vec4 sb, in float strokeWidth) {\n\tfloat x = min(0.4, 0.4 / 12.0 * sb.x * antialiasWeight);\n\tfloat w = clamp(strokeWidth, 0.0, 1.0) * 0.4;\n\tfloat p = w * sb.y + sb.z;\n\tfloat y = 0.5 - p;\n\tfloat z = 0.5 - p - w;\n\treturn vec4(y, z, y - max(0.01, y - x), z - max(0.01, z - x));\n}\n\nvec2 toPosition3(in float type, in vec2 p, in float npacked, in float length, in float strokeWidth, out float shift) {\n\tvec3 t = vec3(1.0, 1.0/1024.0, 1.0/1024.0/1024.0) * npacked;\n\tt -= fract(t);\n\tt -= t.yzx * vec3(1024.0, 1024.0, 0.0);\n\tt *= vec3(1.0/511.5, 1.0/511.5, 1.0);\n\tt -= vec3(1.0, 1.0, 0.0);\n\tvec2 n0 = vec2(t.x, ((0.5 < t.z && t.z < 1.5) || 2.5 < t.z ? +1.0 : -1.0) * sqrt(max(0.0, 1.0 - t.x * t.x)));\n\tvec2 n1 = vec2(t.y, (1.5 < t.z ? +1.0 : -1.0) * sqrt(max(0.0, 1.0 - t.y * t.y)));\n\n\tvec2 n0i = toInverse(n0);\n\tvec2 n1i = toInverse(n1);\n\tfloat direction = sign(4.5 - type);\n\n\t// Offset\n\tfloat cross = dot(n0i, n1);\n\tbool bcross = 0.00001 < abs(cross);\n\tfloat crossi = (bcross ? 1.0 / cross : 0.0);\n\tfloat b = dot(n1 - n0, n0) * crossi;\n\tfloat offsetSize = direction * strokeWidth * 0.5;\n\tvec2 offset = n1 + n1i * b;\n\n\t// Miter\n\tvec2 pmiter = p + offsetSize * offset;\n\tfloat miterAngle0 = dot( n0i, offsetSize * offset - length * n0i );\n\tfloat miterAngle1 = dot( n1i, offsetSize * offset + length * n1i );\n\tfloat miterLength = dot( offset, offset );\n\tfloat miterSide = direction * cross;\n\n\t// Bevel\n\tvec2 n = (type == 4.0 || type == 6.0 ? n1 : n0);\n\tvec2 pbevel = p + offsetSize * n;\n\n\t//\n\tvec2 presult = (\n\t\t0.0 <= miterSide ?\n\t\t(miterAngle0 < 0.0 && 0.0 <= miterAngle1 && bcross ? pmiter : pbevel) :\n\t\t(miterLength < 6.0 && bcross ? pmiter : pbevel)\n\t);\n\tvec2 ni = (type == 4.0 || type == 6.0 ? n1i : n0i);\n\tshift = dot(ni, p - presult);\n\treturn toPosition012(presult);\n}\n\nvec2 toStepA3(in float type, in float strokeWidth) {\n\treturn vec2(type < 4.5 ? 1.0 : 0.0, strokeWidth);\n}\n\nfloat toDotWidth(in float strokeScaling, in float strokeWidthScale) {\n\treturn aStepA.x * (\n\t\tstrokeScaling == 4.0 || strokeScaling == 5.0 ||\n\t\tstrokeScaling == 6.0 || strokeScaling == 7.0 ?\n\t\tstrokeWidthScale : 1.0\n\t);\n}\n\nvec2 toDotPattern(in float dash) {\n\treturn (dash < 0.5 ?\n\t\tvec2(1.0, 0.0) :\n\t\t(dash < 3.5 ?\n\t\t\t(dash < 1.5 ?\n\t\t\t\tvec2(1.0, 1.0) :\n\t\t\t\t(2.5 < dash ?\n\t\t\t\t\tvec2(1.0, 2.0) :\n\t\t\t\t\tvec2(1.0, 0.5)\n\t\t\t\t)\n\t\t\t) :\n\t\t\t(dash < 4.5 ?\n\t\t\t\tvec2(2.0, 1.0) :\n\t\t\t\t(5.5 < dash ?\n\t\t\t\t\tvec2(2.0, 2.0) :\n\t\t\t\t\tvec2(2.0, 0.5)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t);\n}\n\nvec4 toLength3(in float shift, in float dash, in float strokeScaling, in float strokeWidthScale) {\n\tfloat width = toDotWidth(strokeScaling, strokeWidthScale);\n\tvec2 pattern = toDotPattern(dash);\n\treturn vec4(aStepB.y + shift, pattern.x * width, pattern.y * width, aStepB.z);\n}\n\nvec4 toLength7(in float type, in float strokeScaling, in float strokeWidthScale) {\n\tfloat width = toDotWidth(strokeScaling, strokeWidthScale);\n\tvec2 pattern = toDotPattern(type - 7.0);\n\treturn vec4(aStepB.w, pattern.x * width, pattern.y * width, -1.0);\n}\n\nvoid toColors(in vec3 source, out vec4 fillColor, out vec4 strokeColor) {\n\tvec2 a = toUnpackedF2x1024(source.z);\n\tfillColor.xyz = toUnpackedF3x256(source.x).zyx * a.x;\n\tfillColor.w = a.x;\n\tstrokeColor.xyz = toUnpackedF3x256(source.y).zyx * a.y;\n\tstrokeColor.w = a.y;\n}\n\nvoid main(void) {\n\tvec4 general = toGeneral(aStepA.y);\n\tfloat type = general.x;\n\tfloat strokeScaling = general.y;\n\tfloat strokeWidthScale = toStrokeWidthScale(strokeScaling);\n\tfloat strokeWidth = strokeWidthScale * aStepA.x;\n\n\tvType = type;\n\tif (type < 2.5 || 6.5 < type) {\n\t\tgl_Position = vec4(toPosition012(aPosition), 0.0, 1.0);\n\t\tvStepA = strokeWidth * general.zw;\n\t\tif (type < 1.5) {\n\t\t\tvStepB = toStepB01(aStepB);\n\t\t\tvLength = vec4(-1.0, 0.0, 0.0, -1.0);\n\t\t} else if (type < 2.5) {\n\t\t\tvStepB = toStepB2(aStepB, strokeWidth);\n\t\t\tvLength = vec4(-1.0, 0.0, 0.0, -1.0);\n\t\t} else {\n\t\t\tvStepB = toStepB01(aStepB);\n\t\t\tvLength = toLength7(type, strokeScaling, strokeWidthScale);\n\t\t}\n\t} else {\n\t\tfloat shift3 = 0.0;\n\t\tgl_Position = vec4(toPosition3(type, aPosition, aStepB.x, aStepB.w, strokeWidth, shift3), 0.0, 1.0);\n\t\tvStepA = toStepA3(type, strokeWidth);\n\t\tvStepB = vec4(0.0);\n\t\tvLength = toLength3(shift3, general.z, strokeScaling, strokeWidthScale);\n\t}\n\ttoColors(aColor, vColorFill, vColorStroke);\n\tvUv = aUv;\n}";
-    var FRAGMENT_SHADER$1 = "\nvarying mediump float vType;\nvarying mediump vec2 vStepA;\nvarying mediump vec4 vStepB;\nvarying mediump vec4 vLength;\nvarying mediump vec4 vColorFill;\nvarying mediump vec4 vColorStroke;\nvarying mediump vec2 vUv;\n\nuniform sampler2D sampler;\nuniform mediump float antialiasWeight;\n\nvec4 toColor0(in vec4 texture) {\n\tvec2 f = vec2(1.0) / vStepB.xy;\n\tvec2 c = vStepB.zw;\n\tvec2 awd = antialiasWeight * f;\n\tvec2 swd = vStepA * f;\n\tvec2 one = vec2(1.0);\n\tvec2 zero = vec2(0.0);\n\tvec2 p0 = clamp(one - awd, zero, one);\n\tvec2 p1 = clamp(one - swd, zero, one);\n\tvec2 p2 = clamp(one - swd - awd, zero, one);\n\tvec2 s0 = smoothstep(p0, one, c);\n\tvec2 s1 = smoothstep(p2, p1, c);\n\tfloat s2 = max(s0.x, s0.y);\n\tfloat s3 = max(s1.x, s1.y);\n\n\treturn texture * (\n\t\tvColorStroke * (s3 - s2) +\n\t\tvColorFill * (1.0 - s3)\n\t);\n}\n\nvec4 toColor1(in vec4 texture) {\n\tvec2 d = vStepB.xy;\n\tvec2 c = vStepB.zw;\n\tvec2 awd = antialiasWeight / d;\n\tvec2 swd = vStepA / d;\n\tvec2 one = vec2(1.0);\n\tvec2 zero = vec2(0.0);\n\tfloat s0 = smoothstep(length(c), length(c/clamp(one - awd, zero, one)), 1.0);\n\tfloat s1 = smoothstep(length(c/clamp(one - swd, zero, one)), length(c/clamp(one - swd - awd, zero, one)), 1.0);\n\treturn texture * (\n\t\tvColorStroke * (s0 - s1) +\n\t\tvColorFill * s1\n\t);\n}\n\nvec4 toColor2(in vec4 texture) {\n\tvec2 p0 = vStepB.xy;\n\tvec2 p1 = vStepB.zw;\n\tvec2 d = vec2(dot(texture, vec4(1.0, 1.0/255.0, 1.0/255.0/255.0, 0.0)));\n\tvec2 s = smoothstep(p0 - p1, p0 + p1, d);\n\treturn vColorStroke * (s.y - s.x) + vColorFill * s.x;\n}\n\nfloat toLineStep(in vec4 parameters) {\n\tfloat l = parameters.x;\n\tfloat lp0 = parameters.y;\n\tfloat lp1 = parameters.z;\n\tfloat lt = parameters.w;\n\tfloat ld = antialiasWeight;\n\tfloat lm = mod(l, lp0 + lp1);\n\tfloat s0 = (0.0 < lp1 ? smoothstep(0.0, ld, lm) - smoothstep(lp0, lp0 + ld, lm) : 1.0);\n\tfloat s1 = (0.0 <= lt ? smoothstep(0.0, ld, l) - smoothstep(lt - ld, lt, l) : 1.0);\n\treturn s0 * s1;\n}\n\nvec4 toColor3(in vec4 texture) {\n\tfloat c = vStepA.x;\n\tfloat awd = antialiasWeight / vStepA.y;\n\tfloat p0 = clamp(awd, 0.0, 1.0);\n\tfloat p1 = clamp(1.0 - awd, 0.0, 1.0);\n\tfloat s0 = smoothstep(0.0, p0, c);\n\tfloat s1 = smoothstep(p1, 1.0, c);\n\treturn texture * vColorStroke * (s0 - s1) * toLineStep(vLength);\n}\n\nvec4 toColor7(in vec4 texture) {\n\tfloat awd = antialiasWeight * vStepB.x;\n\tfloat swd = vStepA.x * vStepB.x;\n\tfloat p0 = clamp(1.0 - awd, 0.0, 1.0);\n\tfloat p1 = clamp(1.0 - swd, 0.0, 1.0);\n\tfloat p2 = clamp(1.0 - swd - awd, 0.0, 1.0);\n\tfloat s0 = smoothstep(p0, 1.0, vStepB.z);\n\tfloat s1 = smoothstep(p2, p1, vStepB.z) * toLineStep(vLength);\n\tfloat s2 = smoothstep(-antialiasWeight, 0.0, vStepB.y);\n\treturn texture * (\n\t\tvColorStroke * (s1 - s0) +\n\t\tvColorFill * (1.0 - s1) * s2\n\t);\n}\n\nvoid main(void) {\n\tvec4 texture = texture2D(sampler, vUv);\n\tif (vType < 0.5) {\n\t\tgl_FragColor = toColor0(texture);\n\t} else if (vType < 1.5) {\n\t\tgl_FragColor = toColor1(texture);\n\t} else if (vType < 2.5) {\n\t\tgl_FragColor = toColor2(texture);\n\t} else if (vType < 6.5) {\n\t\tgl_FragColor = toColor3(texture);\n\t} else {\n\t\tgl_FragColor = toColor7(texture);\n\t}\n}";
+    var FRAGMENT_SHADER$1 = "\nvarying mediump float vType;\nvarying mediump vec2 vStepA;\nvarying mediump vec4 vStepB;\nvarying mediump vec4 vLength;\nvarying mediump vec4 vColorFill;\nvarying mediump vec4 vColorStroke;\nvarying mediump vec2 vUv;\n\nuniform sampler2D sampler;\nuniform mediump float antialiasWeight;\n\nvec4 toColor0(in vec4 texture) {\n\tvec2 f = vec2(1.0) / vStepB.xy;\n\tvec2 c = vStepB.zw;\n\tvec2 awd = 0.5 * antialiasWeight * f;\n\tvec2 swd = vStepA * f;\n\tvec2 one = vec2(1.0);\n\tvec2 s0 = smoothstep(one - awd, one + awd, c);\n\tvec2 s1 = smoothstep(one - swd - awd, one - swd + awd, c);\n\tfloat s2 = max(s0.x, s0.y);\n\tfloat s3 = max(s1.x, s1.y);\n\n\treturn texture * (\n\t\tvColorStroke * (s3 - s2) +\n\t\tvColorFill * (1.0 - s3)\n\t);\n}\n\nvec4 toColor1(in vec4 texture) {\n\tvec2 d = vStepB.xy;\n\tvec2 c = vStepB.zw;\n\tvec2 awd = 0.5 * antialiasWeight / d;\n\tvec2 swd = vStepA / d;\n\tvec2 one = vec2(1.0);\n\tfloat s0 = smoothstep(length(c/(one + awd)), length(c/(one - awd)), 1.0);\n\tfloat s1 = smoothstep(length(c/(one - swd + awd)), length(c/(one - swd - awd)), 1.0);\n\treturn texture * (\n\t\tvColorStroke * (s0 - s1) +\n\t\tvColorFill * s1\n\t);\n}\n\nvec4 toColor2(in vec4 texture) {\n\tvec2 p0 = vStepB.xy;\n\tvec2 p1 = vStepB.zw;\n\tvec2 d = vec2(dot(texture, vec4(1.0, 1.0/255.0, 1.0/255.0/255.0, 0.0)));\n\tvec2 s = smoothstep(p0 - p1, p0 + p1, d);\n\treturn vColorStroke * (s.y - s.x) + vColorFill * s.x;\n}\n\nfloat toLineStep(in vec4 parameters) {\n\tfloat l = parameters.x;\n\tfloat lp0 = parameters.y;\n\tfloat lp1 = parameters.z;\n\tfloat lt = parameters.w;\n\tfloat ld = 0.5 * antialiasWeight;\n\tfloat lm = mod(l, lp0 + lp1);\n\tfloat s0 = (0.0 < lp1 ? smoothstep(-ld, ld, lm) - smoothstep(lp0 - ld, lp0 + ld, lm) : 1.0);\n\tfloat s1 = (0.0 <= lt ? smoothstep(-ld, ld, l) - smoothstep(lt - ld, lt + ld, l) : 1.0);\n\treturn s0 * s1;\n}\n\nvec4 toColor3(in vec4 texture) {\n\tfloat c = vStepA.x;\n\tfloat awd = 0.5 * antialiasWeight / vStepA.y;\n\tfloat s0 = smoothstep(-awd, awd, c);\n\tfloat s1 = smoothstep(1.0 - awd, 1.0 + awd, c);\n\treturn texture * vColorStroke * (s0 - s1) * toLineStep(vLength);\n}\n\nvec4 toColor7(in vec4 texture) {\n\tfloat aw = 0.5 * antialiasWeight;\n\tfloat awd = aw * vStepB.x;\n\tfloat swd = vStepA.x * vStepB.x;\n\tfloat s0 = smoothstep(1.0 - awd, 1.0 + awd, vStepB.z);\n\tfloat s1 = smoothstep(1.0 - swd - awd, 1.0 - swd + awd, vStepB.z) * toLineStep(vLength);\n\tfloat s2 = smoothstep(-aw, +aw, vStepB.y);\n\treturn texture * (\n\t\tvColorStroke * (s1 - s0) +\n\t\tvColorFill * (1.0 - s1) * s2\n\t);\n}\n\nvoid main(void) {\n\tvec4 texture = texture2D(sampler, vUv);\n\tif (vType < 0.5) {\n\t\tgl_FragColor = toColor0(texture);\n\t} else if (vType < 1.5) {\n\t\tgl_FragColor = toColor1(texture);\n\t} else if (vType < 2.5) {\n\t\tgl_FragColor = toColor2(texture);\n\t} else if (vType < 6.5) {\n\t\tgl_FragColor = toColor3(texture);\n\t} else {\n\t\tgl_FragColor = toColor7(texture);\n\t}\n}";
     var EShapeRenderer = /** @class */ (function (_super) {
         __extends(EShapeRenderer, _super);
         function EShapeRenderer(renderer) {
@@ -16768,7 +16770,7 @@
             if (shader != null && (shape != null || 0 < shapes.length)) {
                 var resolution = renderer.resolution;
                 var buffers = container.getBuffers();
-                var antialiasWeight = container.toAntialiasWeight(resolution);
+                var antialiasWeight = container.getAntialiasWeight();
                 // Update textures
                 if (isDirty) {
                     // Atlases
@@ -16872,8 +16874,10 @@
             _this._fontAtlases = new DynamicSDFFontAtlases();
             _this._pixelScale = 1;
             _this._pixelScaleId = -2; // Since this._shapeScaleId starts from -1.
+            _this._pixelScaleResolution = 1;
             _this._shapeScale = 1;
             _this._shapeScaleId = -1; // Since Transform._worldID starts from zero.
+            _this._antialiasWeight = 1;
             _this._work = new pixi_js.Point();
             _this._buffers = [];
             return _this;
@@ -16951,8 +16955,9 @@
         EShapeContainer.prototype.toPixelScale = function (resolution) {
             var shapeScale = this.toShapeScale();
             var shapeScaleId = this._shapeScaleId;
-            if (this._pixelScaleId !== shapeScaleId) {
+            if (this._pixelScaleId !== shapeScaleId || this._pixelScaleResolution !== resolution) {
                 this._pixelScaleId = shapeScaleId;
+                this._pixelScaleResolution = resolution;
                 this._pixelScale = (1 / resolution) * shapeScale;
             }
             return this._pixelScale;
@@ -16960,8 +16965,8 @@
         EShapeContainer.prototype.getPixelScale = function () {
             return this._pixelScale;
         };
-        EShapeContainer.prototype.toAntialiasWeight = function (resolution) {
-            return 1.25 / resolution;
+        EShapeContainer.prototype.getAntialiasWeight = function () {
+            return this._antialiasWeight;
         };
         EShapeContainer.prototype.hitTest = function (global, onHit) {
             var local = this._work;
@@ -24532,10 +24537,21 @@
             var _a;
             var _this = _super.call(this, options) || this;
             _this._serialized = null;
-            _this._tileFactory = options === null || options === void 0 ? void 0 : options.tile;
-            _this._controller = options === null || options === void 0 ? void 0 : options.controller;
-            _this._isAmbient = (_a = options === null || options === void 0 ? void 0 : options.ambient) !== null && _a !== void 0 ? _a : _this.theme.isAmbient();
-            _this._snapshot = new DDiagramSnapshot(_this, options === null || options === void 0 ? void 0 : options.snapshot);
+            var theme = _this.theme;
+            if (options != null) {
+                _this._tileFactory = options.tile;
+                _this._controller = options.controller;
+                _this._isAmbient = (_a = options.ambient) !== null && _a !== void 0 ? _a : theme.isAmbient();
+                _this._antialias = options.antialias;
+                _this._snapshot = new DDiagramSnapshot(_this, options.snapshot);
+            }
+            else {
+                _this._tileFactory = undefined;
+                _this._controller = undefined;
+                _this._isAmbient = theme.isAmbient();
+                _this._antialias = undefined;
+                _this._snapshot = new DDiagramSnapshot(_this);
+            }
             _this._mode = _this.toMode(options);
             return _this;
         }
@@ -24628,7 +24644,8 @@
                     factory: this._tileFactory,
                     mapping: (_a = serialized.tile) === null || _a === void 0 ? void 0 : _a.mapping
                 },
-                ambient: isAmbient
+                ambient: isAmbient,
+                antialias: this._antialias
             };
         };
         DDiagramBase.prototype.toCanvasBaseBackgroundOptions = function (serialized, theme, isAmbient) {
@@ -25465,7 +25482,7 @@
      */
     var DDiagramLayer = /** @class */ (function (_super) {
         __extends(DDiagramLayer, _super);
-        function DDiagramLayer(name) {
+        function DDiagramLayer(name, antialiasWeight) {
             var _this = _super.call(this) || this;
             _this.name = name;
             _this.interactive = false;
@@ -25474,6 +25491,7 @@
             shape.parent = _this;
             _this._shape = shape;
             _this.interactives = [];
+            _this._antialiasWeight = antialiasWeight;
             return _this;
         }
         Object.defineProperty(DDiagramLayer.prototype, "width", {
@@ -25645,9 +25663,9 @@
                 isInteractive | isDraggable | isPinchable
             ];
         };
-        DDiagramLayer.deserialize = function (serialized, manager, width, height) {
+        DDiagramLayer.deserialize = function (serialized, manager, width, height, antialiasWeight) {
             var _a, _b, _c;
-            var result = new DDiagramLayer(this.deserializeName(serialized[0], manager));
+            var result = new DDiagramLayer(this.deserializeName(serialized[0], manager), antialiasWeight);
             var shape = result._shape;
             var visibility = serialized[1];
             if (visibility != null) {
@@ -25699,11 +25717,12 @@
      */
     var DDiagramLayerContainer = /** @class */ (function (_super) {
         __extends(DDiagramLayerContainer, _super);
-        function DDiagramLayerContainer(width, height) {
+        function DDiagramLayerContainer(width, height, antialiasWeight) {
             var _this = _super.call(this) || this;
             _this._active = null;
             _this._width = width;
             _this._height = height;
+            _this._antialiasWeight = antialiasWeight;
             _this.interactive = false;
             _this.interactiveChildren = false;
             return _this;
@@ -25731,7 +25750,7 @@
             configurable: true
         });
         DDiagramLayerContainer.prototype.create = function (name, activate) {
-            var result = new DDiagramLayer(name);
+            var result = new DDiagramLayer(name, this._antialiasWeight);
             this.attach(result, activate);
             return result;
         };
@@ -25860,7 +25879,7 @@
                 var width = this._width;
                 var height = this._height;
                 for (var i = 0; i < serializedLayersLength; ++i) {
-                    this.addChild(DDiagramLayer.deserialize(serializedLayers[i], manager, width, height));
+                    this.addChild(DDiagramLayer.deserialize(serializedLayers[i], manager, width, height, this._antialiasWeight));
                 }
                 this.onLayerChange();
                 DApplications.update(this);
@@ -25876,7 +25895,7 @@
     var DDiagramCanvasBase = /** @class */ (function (_super) {
         __extends(DDiagramCanvasBase, _super);
         function DDiagramCanvasBase(options) {
-            var _a, _b, _c, _d;
+            var _a, _b, _c, _d, _e, _f;
             var _this = _super.call(this, options) || this;
             // Background
             var theme = _this.theme;
@@ -25884,15 +25903,15 @@
                 _this._background = new DDiagramCanvasEditorBackground(_this._background, _this.toBackgroundBase(theme, options));
             }
             // Layer
-            var layer = new DDiagramLayerContainer(_this.width, _this.height);
+            var layer = new DDiagramLayerContainer(_this.width, _this.height, Math.max(theme.getAntialiasWeightLowerBound(), (_b = (_a = options === null || options === void 0 ? void 0 : options.antialias) === null || _a === void 0 ? void 0 : _a.weight) !== null && _b !== void 0 ? _b : theme.getAntialiasWeight()));
             _this._layer = layer;
             _this.addChild(layer);
             // Label, Category, Summary and Description
             if (options != null) {
-                _this._label = (_a = options.label) !== null && _a !== void 0 ? _a : "";
-                _this._category = (_b = options.category) !== null && _b !== void 0 ? _b : null;
-                _this._summary = (_c = options.summary) !== null && _c !== void 0 ? _c : "";
-                _this._description = (_d = options.description) !== null && _d !== void 0 ? _d : "";
+                _this._label = (_c = options.label) !== null && _c !== void 0 ? _c : "";
+                _this._category = (_d = options.category) !== null && _d !== void 0 ? _d : null;
+                _this._summary = (_e = options.summary) !== null && _e !== void 0 ? _e : "";
+                _this._description = (_f = options.description) !== null && _f !== void 0 ? _f : "";
             }
             else {
                 _this._label = "";
@@ -42194,6 +42213,11 @@
     var LINE_FMIN = 0.00001;
     var LINE_NPREV = [0, 1];
     var LINE_NNEXT = [0, 1];
+    /**
+     * Extends line segments at the start and the end a little bit
+     * to apply the antialiasing at the start and the end.
+     */
+    var LINE_EXTRA_LENGTH = 5;
     var toPointCount = function (points) {
         if (points) {
             return points.formatted.plength;
@@ -42220,7 +42244,7 @@
         var iimax = (ioffset + icount) * 3 - 1;
         var io = voffset;
         for (; ii < iimax;) {
-            indices[++ii] = io + 0;
+            indices[++ii] = io;
             indices[++ii] = io + 2;
             indices[++ii] = io + 1;
             indices[++ii] = io + 1;
@@ -42228,6 +42252,40 @@
             indices[++ii] = io + 3;
             io += 2;
         }
+    };
+    /**
+     * Builds normal (non-degenerate) triangle indices for a contiguous vertex range.
+     * vcount is the number of vertices in the segment.
+     * Returns the updated index write position.
+     */
+    var buildLineSegmentIndex = function (indices, ii, vstart, vcount) {
+        var io = vstart;
+        var iomax = vstart + vcount - 2;
+        for (; io < iomax; io += 2) {
+            indices[++ii] = io;
+            indices[++ii] = io + 2;
+            indices[++ii] = io + 1;
+            indices[++ii] = io + 1;
+            indices[++ii] = io + 2;
+            indices[++ii] = io + 3;
+        }
+        return ii;
+    };
+    /**
+     * Fills degenerate triangles for a given number of index pairs.
+     * qcount is the number of quads (each produces 2 triangles = 6 indices).
+     * Returns the updated index write position.
+     */
+    var buildLineDegenerateIndex = function (indices, ii, vertex, qcount) {
+        for (var i = 0; i < qcount; ++i) {
+            indices[++ii] = vertex;
+            indices[++ii] = vertex;
+            indices[++ii] = vertex;
+            indices[++ii] = vertex;
+            indices[++ii] = vertex;
+            indices[++ii] = vertex;
+        }
+        return ii;
     };
     var buildLineUv = function (uvs, steps, voffset, vcount, textureUvs, length) {
         var lengthInverse = 1 / Math.max(LINE_FMIN, length);
@@ -42255,7 +42313,7 @@
         }
     };
     var TRANSFORMED_POINT_VALUES;
-    var buildLineVertexStep = function (vertices, steps, voffset, vcount, pointCount, pointsClosed, pointValues, pointSegments, strokeWidth, strokeStyle, internalTransform) {
+    var buildLineVertexStepAndIndex = function (vertices, steps, indices, ioffset, icount, voffset, vcount, pointCount, pointsClosed, pointValues, pointSegments, strokeWidth, strokeStyle, internalTransform) {
         var transformedPointValues = TRANSFORMED_POINT_VALUES;
         if (transformedPointValues == null) {
             transformedPointValues = [];
@@ -42274,7 +42332,7 @@
             transformedPointValues[iv] = a * x + c * y + tx;
             transformedPointValues[iv + 1] = b * x + d * y + ty;
         }
-        return buildTransformedLineVertexStep(vertices, steps, voffset, vcount, pointCount, pointsClosed, transformedPointValues, pointSegments, strokeWidth, strokeStyle);
+        return buildTransformedLineVertexStepAndIndex(vertices, steps, indices, ioffset, icount, voffset, vcount, pointCount, pointsClosed, transformedPointValues, pointSegments, strokeWidth, strokeStyle);
     };
     var fillTransformedLineVertexStep = function (iv, vertices, is, steps, px, py, strokeWidth, nprev, nnext, lprev, lnext, llo, e0, e1) {
         var d = toNormalPacked(nprev, nnext);
@@ -42296,13 +42354,14 @@
         steps[++is] = llo;
         steps[++is] = l;
     };
-    var buildTransformedLineVertexStep = function (vertices, steps, voffset, vcount, lineVertexCount, lineIsClosed, lineVertices, lineSegments, strokeWidth, strokeStyle) {
+    var buildTransformedLineVertexStepAndIndex = function (vertices, steps, indices, ioffset, icount, voffset, vcount, lineVertexCount, lineIsClosed, lineVertices, lineSegments, strokeWidth, strokeStyle) {
         var lineSegmentsLength = lineSegments.length;
         if (0 < lineSegmentsLength) {
             if (lineIsClosed) {
                 var lmax = 0;
                 var lprev = 0;
                 var ivoffset = voffset;
+                var ii = ioffset * 3 - 1;
                 var iseg = 0;
                 var iprevseg = lineSegments[0];
                 for (var i = 1; i < lineSegmentsLength; ++i) {
@@ -42310,7 +42369,9 @@
                     if (2 <= iseg - iprevseg) {
                         lprev = buildTransformedLineOpenSegmentVertexStep(vertices, steps, ivoffset, -1, lineVertices, iprevseg, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
                         lmax = Math.max(lmax, lprev);
-                        ivoffset += toLineVertexCount(iseg - iprevseg, false);
+                        var lvcount = toLineVertexCount(iseg - iprevseg, false);
+                        ii = buildLineSegmentIndex(indices, ii, ivoffset, lvcount);
+                        ivoffset += lvcount;
                     }
                     iprevseg = iseg;
                 }
@@ -42319,10 +42380,17 @@
                 if (2 <= iseg - iprevseg) {
                     lprev = buildTransformedLineOpenSegmentVertexStep(vertices, steps, ivoffset, voffset + vcount - ivoffset, lineVertices, iprevseg, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
                     lmax = Math.max(lmax, lprev);
-                    ivoffset += toLineVertexCount(iseg - iprevseg, false);
+                    var lvcount = toLineVertexCount(iseg - iprevseg, false);
+                    ii = buildLineSegmentIndex(indices, ii, ivoffset, lvcount);
+                    ivoffset += lvcount;
                 }
                 else {
                     buildTransformedLineEmptyVertexStep(vertices, steps, ivoffset, voffset + vcount - ivoffset, lineVertices, iprevseg, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
+                }
+                // Fill remaining indices with degenerate triangles
+                var rvcount = ((ioffset + icount) * 3 - 1 - ii) / 6;
+                if (0 < rvcount) {
+                    ii = buildLineDegenerateIndex(indices, ii, Math.max(ivoffset - 1, voffset), rvcount);
                 }
                 return lmax;
             }
@@ -42330,12 +42398,15 @@
                 var lmax = 0;
                 var lprev = 0;
                 var ivoffset = voffset;
+                var ii = ioffset * 3 - 1;
                 // First
                 var iseg = lineSegments[0];
                 if (2 <= iseg) {
                     lprev = buildTransformedLineOpenSegmentVertexStep(vertices, steps, ivoffset, -1, lineVertices, 0, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
                     lmax = Math.max(lmax, lprev);
-                    ivoffset += toLineVertexCount(iseg, false);
+                    var lvcount = toLineVertexCount(iseg, false);
+                    ii = buildLineSegmentIndex(indices, ii, ivoffset, lvcount);
+                    ivoffset += lvcount;
                 }
                 // Middle
                 var iprevseg = iseg;
@@ -42344,7 +42415,9 @@
                     if (2 <= iseg - iprevseg) {
                         lprev = buildTransformedLineOpenSegmentVertexStep(vertices, steps, ivoffset, -1, lineVertices, iprevseg, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
                         lmax = Math.max(lmax, lprev);
-                        ivoffset += toLineVertexCount(iseg - iprevseg, false);
+                        var lvcount = toLineVertexCount(iseg - iprevseg, false);
+                        ii = buildLineSegmentIndex(indices, ii, ivoffset, lvcount);
+                        ivoffset += lvcount;
                     }
                     iprevseg = iseg;
                 }
@@ -42353,15 +42426,23 @@
                 if (2 <= iseg - iprevseg) {
                     lprev = buildTransformedLineOpenSegmentVertexStep(vertices, steps, ivoffset, voffset + vcount - ivoffset, lineVertices, iprevseg, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
                     lmax = Math.max(lmax, lprev);
-                    ivoffset += toLineVertexCount(iseg - iprevseg, false);
+                    var lvcount = toLineVertexCount(iseg - iprevseg, false);
+                    ii = buildLineSegmentIndex(indices, ii, ivoffset, lvcount);
+                    ivoffset += lvcount;
                 }
                 else {
                     buildTransformedLineEmptyVertexStep(vertices, steps, ivoffset, voffset + vcount - ivoffset, lineVertices, iprevseg, iseg, lineVertexCount, strokeWidth, strokeStyle, lprev);
+                }
+                // Fill remaining indices with degenerate triangles
+                var rvcount = ((ioffset + icount) * 3 - 1 - ii) / 6;
+                if (0 < rvcount) {
+                    ii = buildLineDegenerateIndex(indices, ii, Math.max(ivoffset - 1, voffset), rvcount);
                 }
                 return lmax;
             }
         }
         else {
+            buildLineIndex(indices, voffset, ioffset, icount);
             if (lineIsClosed) {
                 return buildTransformedLineClosedSegmentVertexStep(vertices, steps, voffset, vcount, lineVertices, 0, lineVertexCount, lineVertexCount, strokeWidth, strokeStyle);
             }
@@ -42430,10 +42511,13 @@
         var iv = (voffset << 1) - 1;
         var is = voffset * 6 - 1;
         var l = 0;
-        fillTransformedLineVertexStep(iv, vertices, is, steps, px, py, strokeWidth, nprev, nnext, lprev, lnext, length, e3, e5);
+        var headx = px - nprev[1] * LINE_EXTRA_LENGTH;
+        var heady = py + nprev[0] * LINE_EXTRA_LENGTH;
+        var lhead = -LINE_EXTRA_LENGTH;
+        fillTransformedLineVertexStep(iv, vertices, is, steps, headx, heady, strokeWidth, nprev, nnext, lprev, lnext, lhead, e3, e5);
         iv += 4;
         is += 12;
-        fillTransformedLineVertexStep(iv, vertices, is, steps, px, py, strokeWidth, nprev, nnext, lprev, lnext, l, e4, e6);
+        fillTransformedLineVertexStep(iv, vertices, is, steps, headx, heady, strokeWidth, nprev, nnext, lprev, lnext, lhead, e4, e6);
         iv += 4;
         is += 12;
         // Middle segments
@@ -42472,18 +42556,18 @@
         toVector(px, py, pnextx, pnexty, nnext);
         toNormal(nnext, lnext);
         l += lprev;
-        fillTransformedLineVertexStep(iv, vertices, is, steps, px, py, strokeWidth, nprev, nnext, lprev, lnext, l, e3, e5);
+        var tailx = px + nnext[1] * LINE_EXTRA_LENGTH;
+        var taily = py - nnext[0] * LINE_EXTRA_LENGTH;
+        var ltrail = l + LINE_EXTRA_LENGTH;
+        fillTransformedLineVertexStep(iv, vertices, is, steps, tailx, taily, strokeWidth, nprev, nnext, lprev, lnext, ltrail, e3, e5);
         iv += 4;
         is += 12;
-        fillTransformedLineVertexStep(iv, vertices, is, steps, px, py, strokeWidth, nprev, nnext, lprev, lnext, l, e4, e6);
+        fillTransformedLineVertexStep(iv, vertices, is, steps, tailx, taily, strokeWidth, nprev, nnext, lprev, lnext, ltrail, e4, e6);
         iv += 4;
         is += 12;
         // Total length
         var is0 = voffset * 6 - 1;
-        for (var i = is0, imax = is0 + 12; i < imax; i += 6) {
-            steps[i + 5] = length;
-        }
-        for (var i = is0 + 12; i < is; i += 6) {
+        for (var i = is0; i < is; i += 6) {
             steps[i + 5] = l;
         }
         // Fill the rest
@@ -42621,12 +42705,7 @@
             _this.length = 1;
             return _this;
         }
-        BuilderLine.prototype.init = function () {
-            var buffer = this.buffer;
-            buffer.updateIndices();
-            buildLineIndex(buffer.indices, this.vertexOffset, this.indexOffset, this.indexCount);
-            this.inited |= BuilderFlag.INDEX;
-        };
+        BuilderLine.prototype.init = function () { };
         BuilderLine.prototype.reinit = function (buffer, shape, vertexOffset, indexOffset) {
             var pointCount = toLinePointCount(shape.points);
             var vertexCount = toLineVertexCount(pointCount, true);
@@ -42660,11 +42739,11 @@
         };
         BuilderLine.prototype.update = function (shape) {
             var buffer = this.buffer;
-            this.updateLineVertexStep(buffer, shape);
+            this.updateLineVertexStepAndIndex(buffer, shape);
             this.updateColor(buffer, shape);
             this.updateLineUv(buffer, shape);
         };
-        BuilderLine.prototype.updateLineVertexStep = function (buffer, shape) {
+        BuilderLine.prototype.updateLineVertexStepAndIndex = function (buffer, shape) {
             var points = shape.points;
             if (points) {
                 var pointId = points.id;
@@ -42680,9 +42759,9 @@
                 var isStrokeWidthChanged = this.strokeWidth !== strokeWidth || this.strokeStyle !== strokeStyle;
                 var transformLocalId = toTransformLocalId(shape);
                 var isTransformChanged = this.transformLocalId !== transformLocalId;
-                var isNotInited = !(this.inited & BuilderFlag.VERTEX_AND_STEP);
+                var isNotInited = !(this.inited & BuilderFlag.VERTEX_STEP_AND_INDEX);
                 if (isNotInited || isPointChanged || isTransformChanged || isStrokeWidthChanged) {
-                    this.inited |= BuilderFlag.VERTEX_AND_STEP;
+                    this.inited |= BuilderFlag.VERTEX_STEP_AND_INDEX;
                     this.pointId = pointId;
                     this.pointCount = pointCount;
                     this.pointsClosed = pointsClosed;
@@ -42695,7 +42774,8 @@
                     }
                     buffer.updateVertices();
                     buffer.updateSteps();
-                    this.length = buildLineVertexStep(buffer.vertices, buffer.steps, this.vertexOffset, this.vertexCount, this.pointCount, this.pointsClosed, formatted.values, formatted.segments, strokeWidth, strokeStyle, shape.transform.internalTransform);
+                    buffer.updateIndices();
+                    this.length = buildLineVertexStepAndIndex(buffer.vertices, buffer.steps, buffer.indices, this.indexOffset, this.indexCount, this.vertexOffset, this.vertexCount, this.pointCount, this.pointsClosed, formatted.values, formatted.segments, strokeWidth, strokeStyle, shape.transform.internalTransform);
                 }
             }
         };
@@ -83649,7 +83729,7 @@
         toLineIndexCount: toLineIndexCount,
         buildLineIndex: buildLineIndex,
         buildLineUv: buildLineUv,
-        buildLineVertexStep: buildLineVertexStep,
+        buildLineVertexStepAndIndex: buildLineVertexStepAndIndex,
         buildNullIndex: buildNullIndex,
         buildNullVertex: buildNullVertex,
         buildNullStep: buildNullStep,
