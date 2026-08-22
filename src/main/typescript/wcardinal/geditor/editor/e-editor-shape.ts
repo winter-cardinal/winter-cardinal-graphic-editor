@@ -106,6 +106,8 @@ export interface EEditorShapeSelection {
 	setStrokeStyleCosmetic(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 	setStrokeStyleScaling(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 
+	/** @deprecated in favor of {@link setStrokeStyleCosmetic} and {@link setStrokeStyleScaling} */
+	setLineStyle(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 	setLineTailType(type: EShapePointsMarkerType): void;
 	setLineTailSizeX(size: number): void;
 	setLineTailSizeY(size: number): void;
