@@ -5,6 +5,9 @@ import { ECommandShapeProperty } from "./e-command-shape-property";
 type PROPERTY = EShapeStrokeStyle;
 type INITIAL_PROPERTY = [EShapeStrokeStyle, EShapeStrokeStyle];
 
+/**
+ * @deprecated in favor of {@link ECommandShapePropertyStrokeStyleCosmetic} and {@link ECommandShapePropertyStrokeStyleScaling}
+ */
 export class ECommandShapePropertyStrokeStyle extends ECommandShapeProperty<
 	PROPERTY,
 	INITIAL_PROPERTY

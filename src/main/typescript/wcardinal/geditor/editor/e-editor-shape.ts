@@ -101,7 +101,8 @@ export interface EEditorShapeSelection {
 	setStrokeWidth(width: number): void;
 	setStrokeAlign(align: number): void;
 	setStrokeSide(side: number, isOn: boolean): void;
-	setStrokeStyle(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
+	setStrokeStyleCosmetic(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
+	setStrokeStyleScaling(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 
 	setLineTailType(type: EShapePointsMarkerType): void;
 	setLineTailSizeX(size: number): void;
@@ -1551,7 +1552,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			},
 			on: {
 				change: (value: EShapeStrokeStyle | null): void => {
-					this._selection.setStrokeStyle(
+					this._selection.setStrokeStyleCosmetic(
 						value ?? EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK
 					);
@@ -1854,13 +1855,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditorCheck",
 			on: {
 				active: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.NON_EXPANDING_WIDTH
 					);
 				},
 				inactive: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NON_EXPANDING_WIDTH,
 						EShapeStrokeStyle.NONE
 					);
@@ -1883,13 +1884,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditorCheck",
 			on: {
 				active: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.NON_SHRINKING_WIDTH
 					);
 				},
 				inactive: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NON_SHRINKING_WIDTH,
 						EShapeStrokeStyle.NONE
 					);
@@ -1912,13 +1913,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditorCheck",
 			on: {
 				active: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH
 					);
 				},
 				inactive: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH,
 						EShapeStrokeStyle.NONE
 					);
