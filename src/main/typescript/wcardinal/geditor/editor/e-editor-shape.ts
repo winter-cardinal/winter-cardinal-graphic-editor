@@ -191,13 +191,13 @@ export interface EThemeEditorShape extends DThemePane {
 	getButtonStrokeExpandableTitle(): string | undefined;
 	getButtonStrokeShrinkableTitle(): string | undefined;
 	getButtonStrokeScalableDotDashTitle(): string | undefined;
-	getSelectStrokeStyleLabel(style: EShapeStrokeStyle): string | undefined;
 	getTextCornerLabel(): string | undefined;
 	getButtonCornerTopLeftTitle(): string | undefined;
 	getButtonCornerTopRightTitle(): string | undefined;
 	getButtonCornerBottomRightTitle(): string | undefined;
 	getButtonCornerBottomLeftTitle(): string | undefined;
 	getTextLineLabel(): string | undefined;
+	getSelectLineStyleLabel(style: EShapeStrokeStyle): string | undefined;
 	getSelectLineTypeLabel(style: EShapePointsStyle): string | undefined;
 	getButtonLineClosedTitle(): string | undefined;
 	getTextLineTailLabel(): string | undefined;
@@ -1508,43 +1508,43 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 					{
 						value: EShapeStrokeStyle.NONE,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.NONE)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.NONE)
 						}
 					},
 					{
 						value: EShapeStrokeStyle.DOTTED,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.DOTTED)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED)
 						}
 					},
 					{
 						value: EShapeStrokeStyle.DOTTED_DENSELY,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.DOTTED_DENSELY)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED_DENSELY)
 						}
 					},
 					{
 						value: EShapeStrokeStyle.DOTTED_LOOSELY,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.DOTTED_LOOSELY)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED_LOOSELY)
 						}
 					},
 					{
 						value: EShapeStrokeStyle.DASHED,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.DASHED)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED)
 						}
 					},
 					{
 						value: EShapeStrokeStyle.DASHED_DENSELY,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.DASHED_DENSELY)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED_DENSELY)
 						}
 					},
 					{
 						value: EShapeStrokeStyle.DASHED_LOOSELY,
 						text: {
-							value: theme.getSelectStrokeStyleLabel(EShapeStrokeStyle.DASHED_LOOSELY)
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED_LOOSELY)
 						}
 					}
 				]
@@ -2523,18 +2523,26 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			buttonStrokeSideBottom.state.isActive = !!(side & EShapeStrokeSide.BOTTOM);
 			buttonStrokeSideLeft.state.isActive = !!(side & EShapeStrokeSide.LEFT);
 
-			// Stroke style
+			// Stroke style (Cosmetic)
 			const style = stroke.style;
+			const hasStrokeStyleCosmetic =
+				strokeEnable &&
+				EShapeCapabilities.contains(last, EShapeCapability.STROKE_STYLE_COSMETIC);
 			const selectStrokeStyle = this.selectStrokeStyle;
 			selectStrokeStyle.value =
 				last.stroke.style & (EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK);
-			selectStrokeStyle.state.isEnabled = strokeEnable;
+			selectStrokeStyle.state.isEnabled = hasStrokeStyleCosmetic;
+
+			// Stroke Style (Scaling)
+			const hasStrokeStyleScaling =
+				strokeEnable &&
+				EShapeCapabilities.contains(last, EShapeCapability.STROKE_STYLE_SCALING);
 			const buttonStrokeExpandable = this.buttonStrokeExpandable;
 			const buttonStrokeShrinkable = this.buttonStrokeShrinkable;
 			const buttonStrokeScalableDotDash = this.buttonStrokeScalableDotDash;
-			buttonStrokeExpandable.state.isEnabled = strokeEnable;
-			buttonStrokeShrinkable.state.isEnabled = strokeEnable;
-			buttonStrokeScalableDotDash.state.isEnabled = strokeEnable;
+			buttonStrokeExpandable.state.isEnabled = hasStrokeStyleScaling;
+			buttonStrokeShrinkable.state.isEnabled = hasStrokeStyleScaling;
+			buttonStrokeScalableDotDash.state.isEnabled = hasStrokeStyleScaling;
 			buttonStrokeExpandable.state.isActive = !(
 				style & EShapeStrokeStyle.NON_EXPANDING_WIDTH
 			);

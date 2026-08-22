@@ -91,7 +91,31 @@ export class EThemeDefaultEnUsEditorShape extends EThemeDefaultEditorShape {
 		return "Scalable Dot / Dash";
 	}
 
-	override getSelectStrokeStyleLabel(style: EShapeStrokeStyle): string | undefined {
+	override getTextCornerLabel(): string | undefined {
+		return "Corner Radius";
+	}
+
+	override getButtonCornerTopLeftTitle(): string | undefined {
+		return "Top-Left Corner";
+	}
+
+	override getButtonCornerTopRightTitle(): string | undefined {
+		return "Top-Right Corner";
+	}
+
+	override getButtonCornerBottomRightTitle(): string | undefined {
+		return "Bottom-Right Corner";
+	}
+
+	override getButtonCornerBottomLeftTitle(): string | undefined {
+		return "Bottom-Left Corner";
+	}
+
+	override getTextLineLabel(): string | undefined {
+		return "Line";
+	}
+
+	override getSelectLineStyleLabel(style: EShapeStrokeStyle): string | undefined {
 		switch (style) {
 			case EShapeStrokeStyle.NONE:
 				return "Solid";
@@ -115,30 +139,6 @@ export class EThemeDefaultEnUsEditorShape extends EThemeDefaultEditorShape {
 				return "Loosely Dashed";
 		}
 		return "Unknown";
-	}
-
-	override getTextCornerLabel(): string | undefined {
-		return "Corner Radius";
-	}
-
-	override getButtonCornerTopLeftTitle(): string | undefined {
-		return "Top-Left Corner";
-	}
-
-	override getButtonCornerTopRightTitle(): string | undefined {
-		return "Top-Right Corner";
-	}
-
-	override getButtonCornerBottomRightTitle(): string | undefined {
-		return "Bottom-Right Corner";
-	}
-
-	override getButtonCornerBottomLeftTitle(): string | undefined {
-		return "Bottom-Left Corner";
-	}
-
-	override getTextLineLabel(): string | undefined {
-		return "Line";
 	}
 
 	override getSelectLineTypeLabel(style: EShapePointsStyle): string | undefined {

@@ -1,5 +1,5 @@
 import {
-	EShapeCircle,
+	EShapeCircleLegacy,
 	EShapeContainer,
 	EShapeLockPart,
 	EShapeRectangle,
@@ -21,7 +21,7 @@ export class EToolSelectModifier extends EShapeContainer {
 	protected _lastHitAnchor: ESnapperModifierAnchor;
 	group: boolean;
 
-	protected _anchorRotate: EShapeCircle;
+	protected _anchorRotate: EShapeCircleLegacy;
 	protected _anchorsScale: EShapeRectangle[];
 	protected _anchorBase: EShapeRectangle;
 
@@ -60,7 +60,7 @@ export class EToolSelectModifier extends EShapeContainer {
 			new EShapeRectangle().attach(this),
 			new EShapeRectangle().attach(this)
 		];
-		this._anchorRotate = new EShapeCircle().attach(this);
+		this._anchorRotate = new EShapeCircleLegacy().attach(this);
 	}
 
 	protected onPrerender(): void {
