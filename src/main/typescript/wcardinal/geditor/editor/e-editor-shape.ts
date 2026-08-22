@@ -101,6 +101,8 @@ export interface EEditorShapeSelection {
 	setStrokeWidth(width: number): void;
 	setStrokeAlign(align: number): void;
 	setStrokeSide(side: number, isOn: boolean): void;
+	/** @deprecated in favor of {@link setStrokeStyleCosmetic} and {@link setStrokeStyleScaling} */
+	setStrokeStyle(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 	setStrokeStyleCosmetic(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 	setStrokeStyleScaling(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 
