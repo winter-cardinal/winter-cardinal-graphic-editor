@@ -118,6 +118,8 @@ export abstract class EThemeDefaultEditorShape
 
 	abstract getButtonStrokeScalableDotDashTitle(): string | undefined;
 
+	abstract getSelectStrokeStyleLabel(style: EShapeStrokeStyle): string | undefined;
+
 	abstract getTextCornerLabel(): string | undefined;
 
 	abstract getButtonCornerTopLeftTitle(): string | undefined;
@@ -129,8 +131,6 @@ export abstract class EThemeDefaultEditorShape
 	abstract getButtonCornerBottomLeftTitle(): string | undefined;
 
 	abstract getTextLineLabel(): string | undefined;
-
-	abstract getSelectLineStyleLabel(style: EShapeStrokeStyle): string | undefined;
 
 	abstract getSelectLineTypeLabel(style: EShapePointsStyle): string | undefined;
 

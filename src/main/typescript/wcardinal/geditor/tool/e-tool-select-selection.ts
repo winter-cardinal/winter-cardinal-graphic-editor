@@ -139,7 +139,6 @@ import { ECommandShapePropertyTextSizeDelta } from "../command/e-command-shape-p
 import { ECommandShapePropertyTextFitting } from "../command/e-command-shape-property-text-fitting";
 import { UtilShapeTransforms } from "../util/util-shape-transforms";
 import { UtilShapeConnectorTransforms } from "../util/util-shape-connector-transforms";
-import { ECommandShapePropertyLineStyle } from "../command/e-command-shape-property-line-style";
 import { UtilShapeDeleter } from "../util/util-shape-deleter";
 import { UtilShapeSearch } from "../util/util-shape-search";
 import { ECommandShapePropertyFillPercent } from "../command/e-command-shape-property-fill-percent";
@@ -1316,15 +1315,6 @@ export class EToolSelectSelection extends utils.EventEmitter {
 		if (0 < shapes.length) {
 			DControllers.getCommandController().push(
 				new ECommandShapePropertyStrokeEnable(this, enable)
-			);
-		}
-	}
-
-	setLineStyle(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void {
-		const shapes = this._shapes;
-		if (0 < shapes.length) {
-			DControllers.getCommandController().push(
-				new ECommandShapePropertyLineStyle(this, add, remove)
 			);
 		}
 	}

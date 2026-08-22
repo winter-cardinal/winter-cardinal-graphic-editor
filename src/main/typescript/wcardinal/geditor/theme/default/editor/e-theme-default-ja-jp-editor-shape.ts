@@ -91,31 +91,7 @@ export class EThemeDefaultJaJpEditorShape extends EThemeDefaultEditorShape {
 		return "点線／破線の拡大縮小を許可";
 	}
 
-	override getTextCornerLabel(): string | undefined {
-		return "角の丸み";
-	}
-
-	override getButtonCornerTopLeftTitle(): string | undefined {
-		return "左上角を丸める";
-	}
-
-	override getButtonCornerTopRightTitle(): string | undefined {
-		return "右上角を丸める";
-	}
-
-	override getButtonCornerBottomRightTitle(): string | undefined {
-		return "右下角を丸める";
-	}
-
-	override getButtonCornerBottomLeftTitle(): string | undefined {
-		return "左下角を丸める";
-	}
-
-	override getTextLineLabel(): string | undefined {
-		return "線";
-	}
-
-	override getSelectLineStyleLabel(style: EShapeStrokeStyle): string | undefined {
+	override getSelectStrokeStyleLabel(style: EShapeStrokeStyle): string | undefined {
 		switch (style) {
 			case EShapeStrokeStyle.NONE:
 				return "実線";
@@ -139,6 +115,30 @@ export class EThemeDefaultJaJpEditorShape extends EThemeDefaultEditorShape {
 				return "破線（疎）";
 		}
 		return "Unknown";
+	}
+
+	override getTextCornerLabel(): string | undefined {
+		return "角の丸み";
+	}
+
+	override getButtonCornerTopLeftTitle(): string | undefined {
+		return "左上角を丸める";
+	}
+
+	override getButtonCornerTopRightTitle(): string | undefined {
+		return "右上角を丸める";
+	}
+
+	override getButtonCornerBottomRightTitle(): string | undefined {
+		return "右下角を丸める";
+	}
+
+	override getButtonCornerBottomLeftTitle(): string | undefined {
+		return "左下角を丸める";
+	}
+
+	override getTextLineLabel(): string | undefined {
+		return "線";
 	}
 
 	override getSelectLineTypeLabel(style: EShapePointsStyle): string | undefined {
