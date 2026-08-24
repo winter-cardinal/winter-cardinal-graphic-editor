@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.6.3
+ WinterCardinal Graphic Editor v1.8.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -4613,6 +4613,9 @@
       return ECommandShapePropertyStrokeSideOn;
   }(ECommandShapePropertyRecursive));
 
+  /**
+   * @deprecated in favor of {@link ECommandShapePropertyStrokeStyleCosmetic} and {@link ECommandShapePropertyStrokeStyleScaling}
+   */
   var ECommandShapePropertyStrokeStyle = /** @class */ (function (_super) {
       __extends(ECommandShapePropertyStrokeStyle, _super);
       function ECommandShapePropertyStrokeStyle(selection, added, removed) {
@@ -21660,6 +21663,7 @@
                   this.layoutFillDirection,
                   this.buttonStroke,
                   this.buttonStrokeColor,
+                  this.selectStrokeStyle,
                   this.inputStrokeWidth,
                   this.inputStrokeAlign,
                   this.layoutStrokeSide,
@@ -21667,7 +21671,6 @@
                   this.inputCornerRadius,
                   this.layoutCorner,
                   this.layoutLine,
-                  this.selectLineStyle,
                   this.selectLineType,
                   this.layoutLineTail,
                   this.selectLineTailType,
@@ -22825,6 +22828,73 @@
               }
           });
       };
+      Object.defineProperty(EEditorShape.prototype, "selectStrokeStyle", {
+          get: function () {
+              var _a;
+              return ((_a = this._selectStrokeStyle) !== null && _a !== void 0 ? _a : (this._selectStrokeStyle = this.newSelectStrokeStyle()));
+          },
+          enumerable: false,
+          configurable: true
+      });
+      EEditorShape.prototype.newSelectStrokeStyle = function () {
+          var _this = this;
+          var theme = this.theme;
+          return new wcardinalUi.DSelect({
+              width: "100%",
+              value: wcardinalUi.EShapeStrokeStyle.NONE,
+              menu: {
+                  items: [
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.NONE,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.NONE)
+                          }
+                      },
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.DOTTED,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DOTTED)
+                          }
+                      },
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.DOTTED_DENSELY,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DOTTED_DENSELY)
+                          }
+                      },
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.DOTTED_LOOSELY,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DOTTED_LOOSELY)
+                          }
+                      },
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.DASHED,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DASHED)
+                          }
+                      },
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.DASHED_DENSELY,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DASHED_DENSELY)
+                          }
+                      },
+                      {
+                          value: wcardinalUi.EShapeStrokeStyle.DASHED_LOOSELY,
+                          text: {
+                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DASHED_LOOSELY)
+                          }
+                      }
+                  ]
+              },
+              on: {
+                  change: function (value) {
+                      _this._selection.setStrokeStyleCosmetic(value !== null && value !== void 0 ? value : wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.DOTTED_MASK | wcardinalUi.EShapeStrokeStyle.DASHED_MASK);
+                  }
+              }
+          });
+      };
       Object.defineProperty(EEditorShape.prototype, "textCorner", {
           get: function () {
               var _a;
@@ -23067,73 +23137,6 @@
           }
           return false;
       };
-      Object.defineProperty(EEditorShape.prototype, "selectLineStyle", {
-          get: function () {
-              var _a;
-              return ((_a = this._selectLineStyle) !== null && _a !== void 0 ? _a : (this._selectLineStyle = this.newSelectLineStyle()));
-          },
-          enumerable: false,
-          configurable: true
-      });
-      EEditorShape.prototype.newSelectLineStyle = function () {
-          var _this = this;
-          var theme = this.theme;
-          return new wcardinalUi.DSelect({
-              width: "100%",
-              value: wcardinalUi.EShapeStrokeStyle.NONE,
-              menu: {
-                  items: [
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.NONE,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.NONE)
-                          }
-                      },
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.DOTTED,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DOTTED)
-                          }
-                      },
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.DOTTED_DENSELY,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DOTTED_DENSELY)
-                          }
-                      },
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.DOTTED_LOOSELY,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DOTTED_LOOSELY)
-                          }
-                      },
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.DASHED,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DASHED)
-                          }
-                      },
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.DASHED_DENSELY,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DASHED_DENSELY)
-                          }
-                      },
-                      {
-                          value: wcardinalUi.EShapeStrokeStyle.DASHED_LOOSELY,
-                          text: {
-                              value: theme.getSelectLineStyleLabel(wcardinalUi.EShapeStrokeStyle.DASHED_LOOSELY)
-                          }
-                      }
-                  ]
-              },
-              on: {
-                  change: function (value) {
-                      _this._selection.setLineStyle(value !== null && value !== void 0 ? value : wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.DOTTED_MASK | wcardinalUi.EShapeStrokeStyle.DASHED_MASK);
-                  }
-              }
-          });
-      };
       Object.defineProperty(EEditorShape.prototype, "selectLineType", {
           get: function () {
               var _a;
@@ -23220,10 +23223,10 @@
               theme: "EButtonEditorCheck",
               on: {
                   active: function () {
-                      selection.setStrokeStyle(wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.NON_EXPANDING_WIDTH);
+                      selection.setStrokeStyleScaling(wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.NON_EXPANDING_WIDTH);
                   },
                   inactive: function () {
-                      selection.setStrokeStyle(wcardinalUi.EShapeStrokeStyle.NON_EXPANDING_WIDTH, wcardinalUi.EShapeStrokeStyle.NONE);
+                      selection.setStrokeStyleScaling(wcardinalUi.EShapeStrokeStyle.NON_EXPANDING_WIDTH, wcardinalUi.EShapeStrokeStyle.NONE);
                   }
               }
           });
@@ -23246,10 +23249,10 @@
               theme: "EButtonEditorCheck",
               on: {
                   active: function () {
-                      selection.setStrokeStyle(wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.NON_SHRINKING_WIDTH);
+                      selection.setStrokeStyleScaling(wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.NON_SHRINKING_WIDTH);
                   },
                   inactive: function () {
-                      selection.setStrokeStyle(wcardinalUi.EShapeStrokeStyle.NON_SHRINKING_WIDTH, wcardinalUi.EShapeStrokeStyle.NONE);
+                      selection.setStrokeStyleScaling(wcardinalUi.EShapeStrokeStyle.NON_SHRINKING_WIDTH, wcardinalUi.EShapeStrokeStyle.NONE);
                   }
               }
           });
@@ -23272,10 +23275,10 @@
               theme: "EButtonEditorCheck",
               on: {
                   active: function () {
-                      selection.setStrokeStyle(wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH);
+                      selection.setStrokeStyleScaling(wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH);
                   },
                   inactive: function () {
-                      selection.setStrokeStyle(wcardinalUi.EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH, wcardinalUi.EShapeStrokeStyle.NONE);
+                      selection.setStrokeStyleScaling(wcardinalUi.EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH, wcardinalUi.EShapeStrokeStyle.NONE);
                   }
               }
           });
@@ -23938,14 +23941,23 @@
               buttonStrokeSideRight.state.isActive = !!(side & wcardinalUi.EShapeStrokeSide.RIGHT);
               buttonStrokeSideBottom.state.isActive = !!(side & wcardinalUi.EShapeStrokeSide.BOTTOM);
               buttonStrokeSideLeft.state.isActive = !!(side & wcardinalUi.EShapeStrokeSide.LEFT);
-              // Stroke style
+              // Stroke style (Cosmetic)
               var style = stroke.style;
+              var hasStrokeStyleCosmetic = strokeEnable &&
+                  wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.STROKE_STYLE_COSMETIC);
+              var selectStrokeStyle = this.selectStrokeStyle;
+              selectStrokeStyle.value =
+                  last.stroke.style & (wcardinalUi.EShapeStrokeStyle.DOTTED_MASK | wcardinalUi.EShapeStrokeStyle.DASHED_MASK);
+              selectStrokeStyle.state.isEnabled = hasStrokeStyleCosmetic;
+              // Stroke Style (Scaling)
+              var hasStrokeStyleScaling = strokeEnable &&
+                  wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.STROKE_STYLE_SCALING);
               var buttonStrokeExpandable = this.buttonStrokeExpandable;
               var buttonStrokeShrinkable = this.buttonStrokeShrinkable;
               var buttonStrokeScalableDotDash = this.buttonStrokeScalableDotDash;
-              buttonStrokeExpandable.state.isEnabled = strokeEnable;
-              buttonStrokeShrinkable.state.isEnabled = strokeEnable;
-              buttonStrokeScalableDotDash.state.isEnabled = strokeEnable;
+              buttonStrokeExpandable.state.isEnabled = hasStrokeStyleScaling;
+              buttonStrokeShrinkable.state.isEnabled = hasStrokeStyleScaling;
+              buttonStrokeScalableDotDash.state.isEnabled = hasStrokeStyleScaling;
               buttonStrokeExpandable.state.isActive = !(style & wcardinalUi.EShapeStrokeStyle.NON_EXPANDING_WIDTH);
               buttonStrokeShrinkable.state.isActive = !(style & wcardinalUi.EShapeStrokeStyle.NON_SHRINKING_WIDTH);
               buttonStrokeScalableDotDash.state.isActive = !(style & wcardinalUi.EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH);
@@ -23953,7 +23965,6 @@
           // Line
           var layoutLine = this.layoutLine;
           var buttonLineLock = this.buttonLineLock;
-          var selectLineStyle = this.selectLineStyle;
           var selectLineType = this.selectLineType;
           var buttonLineClosed = this.buttonLineClosed;
           var layoutLineTail = this.layoutLineTail;
@@ -23976,9 +23987,6 @@
               layoutLine.state.isEnabled = true;
               buttonLineLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE);
               buttonLineLock.state.isEnabled = true;
-              var lineStrokeMask = wcardinalUi.EShapeStrokeStyle.DOTTED_MASK | wcardinalUi.EShapeStrokeStyle.DASHED_MASK;
-              selectLineStyle.value = last.stroke.style & lineStrokeMask;
-              selectLineStyle.state.isEnabled = hasLine;
               selectLineType.value = points.style & wcardinalUi.EShapePointsStyle.FORMATTER_MASK;
               selectLineType.state.isEnabled = hasLine;
               buttonLineClosed.state.isActive = (points.style & wcardinalUi.EShapePointsStyle.CLOSED) !== 0;
@@ -24033,7 +24041,6 @@
           else {
               layoutLine.state.isEnabled = false;
               buttonLineLock.state.isEnabled = false;
-              selectLineStyle.state.isEnabled = false;
               selectLineType.state.isEnabled = false;
               buttonLineClosed.state.isEnabled = false;
               layoutLineTail.state.isEnabled = false;
@@ -26686,7 +26693,7 @@
               new wcardinalUi.EShapeRectangle().attach(_this),
               new wcardinalUi.EShapeRectangle().attach(_this)
           ];
-          _this._anchorRotate = new wcardinalUi.EShapeCircle().attach(_this);
+          _this._anchorRotate = new wcardinalUi.EShapeCircleLegacy().attach(_this);
           return _this;
       }
       EToolSelectModifier.prototype.onPrerender = function () {
@@ -26905,6 +26912,9 @@
       return UtilShapeConnectorTransforms;
   }());
 
+  /**
+   * @deprecated in favor of {@link ECommandShapePropertyStrokeStyleCosmetic} and {@link ECommandShapePropertyStrokeStyleScaling}
+   */
   var ECommandShapePropertyLineStyle = /** @class */ (function (_super) {
       __extends(ECommandShapePropertyLineStyle, _super);
       function ECommandShapePropertyLineStyle() {
@@ -26917,6 +26927,34 @@
           return wcardinalUi.EShapeCapability.NONE;
       };
       return ECommandShapePropertyLineStyle;
+  }(ECommandShapePropertyStrokeStyle));
+
+  var ECommandShapePropertyStrokeStyleScaling = /** @class */ (function (_super) {
+      __extends(ECommandShapePropertyStrokeStyleScaling, _super);
+      function ECommandShapePropertyStrokeStyleScaling() {
+          return _super !== null && _super.apply(this, arguments) || this;
+      }
+      ECommandShapePropertyStrokeStyleScaling.prototype.toCapability = function (shape) {
+          if (wcardinalUi.EShapeCapabilities.contains(shape, wcardinalUi.EShapeCapability.STROKE_STYLE_SCALING)) {
+              return wcardinalUi.EShapeCapability.STROKE_STYLE_SCALING;
+          }
+          return wcardinalUi.EShapeCapability.NONE;
+      };
+      return ECommandShapePropertyStrokeStyleScaling;
+  }(ECommandShapePropertyStrokeStyle));
+
+  var ECommandShapePropertyStrokeStyleCosmetic = /** @class */ (function (_super) {
+      __extends(ECommandShapePropertyStrokeStyleCosmetic, _super);
+      function ECommandShapePropertyStrokeStyleCosmetic() {
+          return _super !== null && _super.apply(this, arguments) || this;
+      }
+      ECommandShapePropertyStrokeStyleCosmetic.prototype.toCapability = function (shape) {
+          if (wcardinalUi.EShapeCapabilities.contains(shape, wcardinalUi.EShapeCapability.STROKE_STYLE_COSMETIC)) {
+              return wcardinalUi.EShapeCapability.STROKE_STYLE_COSMETIC;
+          }
+          return wcardinalUi.EShapeCapability.NONE;
+      };
+      return ECommandShapePropertyStrokeStyleCosmetic;
   }(ECommandShapePropertyStrokeStyle));
 
   var initLeft = function (rect) {
@@ -27881,10 +27919,23 @@
               }
           }
       };
+      /** @deprecated in favor of {@link setStrokeStyleCosmetic} and {@link setStrokeStyleScaling} */
       EToolSelectSelection.prototype.setStrokeStyle = function (add, remove) {
           var shapes = this._shapes;
           if (0 < shapes.length) {
               wcardinalUi.DControllers.getCommandController().push(new ECommandShapePropertyStrokeStyle(this, add, remove));
+          }
+      };
+      EToolSelectSelection.prototype.setStrokeStyleCosmetic = function (add, remove) {
+          var shapes = this._shapes;
+          if (0 < shapes.length) {
+              wcardinalUi.DControllers.getCommandController().push(new ECommandShapePropertyStrokeStyleCosmetic(this, add, remove));
+          }
+      };
+      EToolSelectSelection.prototype.setStrokeStyleScaling = function (add, remove) {
+          var shapes = this._shapes;
+          if (0 < shapes.length) {
+              wcardinalUi.DControllers.getCommandController().push(new ECommandShapePropertyStrokeStyleScaling(this, add, remove));
           }
       };
       EToolSelectSelection.prototype.setStrokeEnabled = function (enable) {
@@ -27893,6 +27944,7 @@
               wcardinalUi.DControllers.getCommandController().push(new ECommandShapePropertyStrokeEnable(this, enable));
           }
       };
+      /** @deprecated in favor of {@link setStrokeStyleCosmetic} and {@link setStrokeStyleScaling} */
       EToolSelectSelection.prototype.setLineStyle = function (add, remove) {
           var shapes = this._shapes;
           if (0 < shapes.length) {
@@ -29608,7 +29660,7 @@
           var color = wcardinalUi.EShapeDefaults.STROKE_COLOR;
           var alpha = wcardinalUi.EShapeDefaults.STROKE_ALPHA;
           for (var i = 0, imax = 64; i < imax; ++i) {
-              var shape = new wcardinalUi.EShapeCircle();
+              var shape = new wcardinalUi.EShapeCircleLegacy();
               shape.stroke.set(false);
               shape.fill.set(true, color, alpha);
               shape.visible = false;
