@@ -101,8 +101,12 @@ export interface EEditorShapeSelection {
 	setStrokeWidth(width: number): void;
 	setStrokeAlign(align: number): void;
 	setStrokeSide(side: number, isOn: boolean): void;
+	/** @deprecated in favor of {@link setStrokeStyleCosmetic} and {@link setStrokeStyleScaling} */
 	setStrokeStyle(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
+	setStrokeStyleCosmetic(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
+	setStrokeStyleScaling(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 
+	/** @deprecated in favor of {@link setStrokeStyleCosmetic} and {@link setStrokeStyleScaling} */
 	setLineStyle(add: EShapeStrokeStyle, remove: EShapeStrokeStyle): void;
 	setLineTailType(type: EShapePointsMarkerType): void;
 	setLineTailSizeX(size: number): void;
@@ -263,6 +267,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	protected _buttonStrokeExpandable?: DButtonCheck<string>;
 	protected _buttonStrokeShrinkable?: DButtonCheck<string>;
 	protected _buttonStrokeScalableDotDash?: DButtonCheck<string>;
+	protected _selectStrokeStyle?: DSelect<EShapeStrokeStyle>;
 
 	protected _textCorner?: DText<string>;
 	protected _inputCornerRadius?: DInputReal;
@@ -275,7 +280,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	protected _layoutLine?: DLayoutHorizontal;
 	protected _textLine?: DText<string>;
 	protected _buttonLineLock?: DButtonCheck<string>;
-	protected _selectLineStyle?: DSelect<EShapeStrokeStyle>;
 	protected _selectLineType?: DSelect<EShapePointsStyle>;
 	protected _buttonLineClosed?: DButtonCheck<string>;
 
@@ -356,6 +360,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 
 				this.buttonStroke,
 				this.buttonStrokeColor,
+				this.selectStrokeStyle,
 				this.inputStrokeWidth,
 				this.inputStrokeAlign,
 				this.layoutStrokeSide,
@@ -365,7 +370,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 				this.layoutCorner,
 
 				this.layoutLine,
-				this.selectLineStyle,
 				this.selectLineType,
 
 				this.layoutLineTail,
@@ -1495,6 +1499,72 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		});
 	}
 
+	protected get selectStrokeStyle(): DSelect<EShapeStrokeStyle> {
+		return (this._selectStrokeStyle ??= this.newSelectStrokeStyle());
+	}
+
+	protected newSelectStrokeStyle(): DSelect<EShapeStrokeStyle> {
+		const theme = this.theme;
+		return new DSelect<EShapeStrokeStyle>({
+			width: "100%",
+			value: EShapeStrokeStyle.NONE,
+			menu: {
+				items: [
+					{
+						value: EShapeStrokeStyle.NONE,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.NONE)
+						}
+					},
+					{
+						value: EShapeStrokeStyle.DOTTED,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED)
+						}
+					},
+					{
+						value: EShapeStrokeStyle.DOTTED_DENSELY,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED_DENSELY)
+						}
+					},
+					{
+						value: EShapeStrokeStyle.DOTTED_LOOSELY,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED_LOOSELY)
+						}
+					},
+					{
+						value: EShapeStrokeStyle.DASHED,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED)
+						}
+					},
+					{
+						value: EShapeStrokeStyle.DASHED_DENSELY,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED_DENSELY)
+						}
+					},
+					{
+						value: EShapeStrokeStyle.DASHED_LOOSELY,
+						text: {
+							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED_LOOSELY)
+						}
+					}
+				]
+			},
+			on: {
+				change: (value: EShapeStrokeStyle | null): void => {
+					this._selection.setStrokeStyleCosmetic(
+						value ?? EShapeStrokeStyle.NONE,
+						EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK
+					);
+				}
+			}
+		});
+	}
+
 	protected get textCorner(): DText<string> {
 		return (this._textCorner ??= this.newTextCorner());
 	}
@@ -1710,72 +1780,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		return false;
 	}
 
-	protected get selectLineStyle(): DSelect<EShapeStrokeStyle> {
-		return (this._selectLineStyle ??= this.newSelectLineStyle());
-	}
-
-	protected newSelectLineStyle(): DSelect<EShapeStrokeStyle> {
-		const theme = this.theme;
-		return new DSelect<EShapeStrokeStyle>({
-			width: "100%",
-			value: EShapeStrokeStyle.NONE,
-			menu: {
-				items: [
-					{
-						value: EShapeStrokeStyle.NONE,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.NONE)
-						}
-					},
-					{
-						value: EShapeStrokeStyle.DOTTED,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED)
-						}
-					},
-					{
-						value: EShapeStrokeStyle.DOTTED_DENSELY,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED_DENSELY)
-						}
-					},
-					{
-						value: EShapeStrokeStyle.DOTTED_LOOSELY,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DOTTED_LOOSELY)
-						}
-					},
-					{
-						value: EShapeStrokeStyle.DASHED,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED)
-						}
-					},
-					{
-						value: EShapeStrokeStyle.DASHED_DENSELY,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED_DENSELY)
-						}
-					},
-					{
-						value: EShapeStrokeStyle.DASHED_LOOSELY,
-						text: {
-							value: theme.getSelectLineStyleLabel(EShapeStrokeStyle.DASHED_LOOSELY)
-						}
-					}
-				]
-			},
-			on: {
-				change: (value: EShapeStrokeStyle | null): void => {
-					this._selection.setLineStyle(
-						value ?? EShapeStrokeStyle.NONE,
-						EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK
-					);
-				}
-			}
-		});
-	}
-
 	protected get selectLineType(): DSelect<EShapePointsStyle> {
 		return (this._selectLineType ??= this.newSelectLineType());
 	}
@@ -1855,13 +1859,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditorCheck",
 			on: {
 				active: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.NON_EXPANDING_WIDTH
 					);
 				},
 				inactive: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NON_EXPANDING_WIDTH,
 						EShapeStrokeStyle.NONE
 					);
@@ -1884,13 +1888,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditorCheck",
 			on: {
 				active: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.NON_SHRINKING_WIDTH
 					);
 				},
 				inactive: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NON_SHRINKING_WIDTH,
 						EShapeStrokeStyle.NONE
 					);
@@ -1913,13 +1917,13 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			theme: "EButtonEditorCheck",
 			on: {
 				active: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH
 					);
 				},
 				inactive: (): void => {
-					selection.setStrokeStyle(
+					selection.setStrokeStyleScaling(
 						EShapeStrokeStyle.NON_SCALING_DOT_AND_DASH,
 						EShapeStrokeStyle.NONE
 					);
@@ -2524,14 +2528,26 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			buttonStrokeSideBottom.state.isActive = !!(side & EShapeStrokeSide.BOTTOM);
 			buttonStrokeSideLeft.state.isActive = !!(side & EShapeStrokeSide.LEFT);
 
-			// Stroke style
+			// Stroke style (Cosmetic)
 			const style = stroke.style;
+			const hasStrokeStyleCosmetic =
+				strokeEnable &&
+				EShapeCapabilities.contains(last, EShapeCapability.STROKE_STYLE_COSMETIC);
+			const selectStrokeStyle = this.selectStrokeStyle;
+			selectStrokeStyle.value =
+				last.stroke.style & (EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK);
+			selectStrokeStyle.state.isEnabled = hasStrokeStyleCosmetic;
+
+			// Stroke Style (Scaling)
+			const hasStrokeStyleScaling =
+				strokeEnable &&
+				EShapeCapabilities.contains(last, EShapeCapability.STROKE_STYLE_SCALING);
 			const buttonStrokeExpandable = this.buttonStrokeExpandable;
 			const buttonStrokeShrinkable = this.buttonStrokeShrinkable;
 			const buttonStrokeScalableDotDash = this.buttonStrokeScalableDotDash;
-			buttonStrokeExpandable.state.isEnabled = strokeEnable;
-			buttonStrokeShrinkable.state.isEnabled = strokeEnable;
-			buttonStrokeScalableDotDash.state.isEnabled = strokeEnable;
+			buttonStrokeExpandable.state.isEnabled = hasStrokeStyleScaling;
+			buttonStrokeShrinkable.state.isEnabled = hasStrokeStyleScaling;
+			buttonStrokeScalableDotDash.state.isEnabled = hasStrokeStyleScaling;
 			buttonStrokeExpandable.state.isActive = !(
 				style & EShapeStrokeStyle.NON_EXPANDING_WIDTH
 			);
@@ -2546,7 +2562,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		// Line
 		const layoutLine = this.layoutLine;
 		const buttonLineLock = this.buttonLineLock;
-		const selectLineStyle = this.selectLineStyle;
 		const selectLineType = this.selectLineType;
 		const buttonLineClosed = this.buttonLineClosed;
 
@@ -2572,9 +2587,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			layoutLine.state.isEnabled = true;
 			buttonLineLock.state.isActive = this.isLocked(last, EShapeCapability.LINE);
 			buttonLineLock.state.isEnabled = true;
-			const lineStrokeMask = EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK;
-			selectLineStyle.value = last.stroke.style & lineStrokeMask;
-			selectLineStyle.state.isEnabled = hasLine;
 			selectLineType.value = points.style & EShapePointsStyle.FORMATTER_MASK;
 			selectLineType.state.isEnabled = hasLine;
 			buttonLineClosed.state.isActive = (points.style & EShapePointsStyle.CLOSED) !== 0;
@@ -2628,7 +2640,6 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		} else {
 			layoutLine.state.isEnabled = false;
 			buttonLineLock.state.isEnabled = false;
-			selectLineStyle.state.isEnabled = false;
 			selectLineType.state.isEnabled = false;
 			buttonLineClosed.state.isEnabled = false;
 

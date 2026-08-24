@@ -2,7 +2,7 @@ import {
 	DApplications,
 	DDiagramCanvasEditor,
 	EShapeAcceptorEdgeType,
-	EShapeCircle,
+	EShapeCircleLegacy,
 	EShapeContainer,
 	EShapeDefaults,
 	EShapeLockPart
@@ -12,7 +12,7 @@ import { EToolShapeAcceptorEdge, EToolShapeAcceptorEdgeFound } from "./e-tool-sh
 
 export class EToolShapeAcceptorEdgeRenderer extends EShapeContainer {
 	protected _edge: EToolShapeAcceptorEdge;
-	protected _circles: EShapeCircle[];
+	protected _circles: EShapeCircleLegacy[];
 	protected _foundEdges: EToolShapeAcceptorEdgeFound[];
 	protected _radius: number;
 
@@ -59,12 +59,12 @@ export class EToolShapeAcceptorEdgeRenderer extends EShapeContainer {
 		};
 	}
 
-	protected newCircles(): EShapeCircle[] {
-		const result: EShapeCircle[] = [];
+	protected newCircles(): EShapeCircleLegacy[] {
+		const result: EShapeCircleLegacy[] = [];
 		const color = EShapeDefaults.STROKE_COLOR;
 		const alpha = EShapeDefaults.STROKE_ALPHA;
 		for (let i = 0, imax = 64; i < imax; ++i) {
-			const shape = new EShapeCircle();
+			const shape = new EShapeCircleLegacy();
 			shape.stroke.set(false);
 			shape.fill.set(true, color, alpha);
 			shape.visible = false;
