@@ -52,7 +52,7 @@
 		"prepublishOnly": "npm run build"
 	},
 	"peerDependencies": {
-		"@wcardinal/wcardinal-ui": "^0.464.0-rc.2",
+		"@wcardinal/wcardinal-ui": "^0.464.0",
 		"pixi.js": "~5.3.12"
 	},
 	"devDependencies": {
