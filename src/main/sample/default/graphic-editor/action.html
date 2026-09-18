@@ -34,20 +34,26 @@
 		// Add a custom open action.
 		// The same setting is required when creating a graphic viewer or tester.
 		wcardinal.ui.EShapeActionOpenExtensions.add({
+			// The type must be unique across the application and EShapeActionValueOpenType.EXTENSION or larger.
 			type: wcardinal.ui.EShapeActionValueOpenType.EXTENSION + 0,
+			// Any string can be set for the label. The string specified here will be used as an option in the action settings dialog.
 			label: "My Open Extension",
 			opener: (target, inNewWindow, shape, diagram, environment) => {
-				// Called to open the target.
+				// If the "when" expression evaluates to trythy and "target" expression evaluates to a non-null value,
+				// this function is called to open the target.
 			}
 		});
 
 		// Add a custom open dialog action.
 		// The same setting is required when creating a graphic viewer or tester.
 		wcardinal.ui.EShapeActionOpenDialogExtensions.add({
+			// The type must be unique across the application and EShapeActionValueOpenDialogType.EXTENSION or larger.
 			type: wcardinal.ui.EShapeActionValueOpenDialogType.EXTENSION + 0,
+			// Any string can be set for the label. The string specified here will be used as an option in the action settings dialog.
 			label: "My Dialog Open Extension",
 			opener: (target, argument, shape, diagram, environment) => {
-				// Called to open the target in dialogs.
+				// If the "when" expression evaluates to truthy and the "target" expression evaluates to a non-null value,
+				// this function is called to open the target dialogs, e.g., dialogSelect.open(shape) where dialogSelect is the DDialogSelect instance.
 			}
 		});
 
