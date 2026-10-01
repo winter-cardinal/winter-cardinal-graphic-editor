@@ -19,6 +19,9 @@
 	"types": "dist/types/wcardinal-geditor.esm.d.ts",
 	"module": "dist/wcardinal-geditor.esm.js",
 	"sideEffects": false,
+	"engines": {
+		"node": "^20.19.0 || ^22.13.0 || >=24"
+	},
 	"files": [
 		"dist/types",
 		"dist/wcardinal",
