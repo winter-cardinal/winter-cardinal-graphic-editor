@@ -2,9 +2,7 @@ import { DThemes } from "@wcardinal/wcardinal-ui";
 import { ESubthemeEditorShapeChartLine } from "../../../../extension/chart-line/e-editor-shape-chart-line";
 import { EThemeShapeChartLine } from "../../../../extension/chart-line/e-theme-shape-chart-line";
 
-export abstract class ESubthemeDefaultEditorShapeChartLine
-	implements ESubthemeEditorShapeChartLine
-{
+export abstract class ESubthemeDefaultEditorShapeChartLine implements ESubthemeEditorShapeChartLine {
 	protected _chartLine: EThemeShapeChartLine;
 
 	constructor() {

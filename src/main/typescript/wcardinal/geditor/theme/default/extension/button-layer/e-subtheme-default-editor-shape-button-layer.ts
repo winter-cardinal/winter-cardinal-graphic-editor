@@ -2,9 +2,7 @@ import { DThemes } from "@wcardinal/wcardinal-ui";
 import { ESubthemeEditorShapeButtonLayer } from "../../../../extension/button-layer/e-editor-shape-button-layer";
 import { EThemeShapeButtonLayer } from "../../../../extension/button-layer/e-theme-shape-button-layer";
 
-export abstract class ESubthemeDefaultEditorShapeButtonLayer
-	implements ESubthemeEditorShapeButtonLayer
-{
+export abstract class ESubthemeDefaultEditorShapeButtonLayer implements ESubthemeEditorShapeButtonLayer {
 	protected _buttonLayer: EThemeShapeButtonLayer;
 
 	constructor() {

@@ -104,8 +104,7 @@ export interface FGraphicTesterDataMappingRow {
 	value: GraphicTesterObjectValue;
 }
 
-export interface FGraphicTesterDataFilter
-	extends DTableDataFilterObject<FGraphicTesterDataMappingRow> {
+export interface FGraphicTesterDataFilter extends DTableDataFilterObject<FGraphicTesterDataMappingRow> {
 	word: string;
 }
 

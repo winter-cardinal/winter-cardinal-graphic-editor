@@ -14,8 +14,11 @@ export interface EShapeExtensionEditorOptions extends DPaneOptions {
 	icons: Record<string, Texture>;
 }
 
-export interface EShapeExtensionEditor
-	extends DPane<DThemePane, DContentOptions, EShapeExtensionEditorOptions> {}
+export interface EShapeExtensionEditor extends DPane<
+	DThemePane,
+	DContentOptions,
+	EShapeExtensionEditorOptions
+> {}
 
 export type EShapeExtensionEditorConstructor = new (
 	options: EShapeExtensionEditorOptions

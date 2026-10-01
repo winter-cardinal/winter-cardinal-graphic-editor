@@ -230,7 +230,7 @@ export class EToolShapeAcceptorEdge {
 	}
 
 	protected toCoordinate(ix: number, iy: number): number {
-		return (ix % 1024) + (iy % 1024 << 10);
+		return (ix % 1024) + ((iy % 1024) << 10);
 	}
 
 	protected toGridIndex(x: number): number {

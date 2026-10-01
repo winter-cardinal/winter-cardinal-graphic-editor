@@ -2,9 +2,7 @@ import { DThemes, EShapeAcceptorEdgeSide, EShapeAcceptorEdgeType } from "@wcardi
 import { ESubthemeEditorShapeEmbeddedAcceptorEdge } from "../../../../extension/embedded-acceptor-edge/e-editor-shape-embedded-acceptor-edge";
 import { EThemeShapeEmbeddedAcceptorEdge } from "../../../../extension/embedded-acceptor-edge/e-theme-shape-embedded-acceptor-edge";
 
-export abstract class ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge
-	implements ESubthemeEditorShapeEmbeddedAcceptorEdge
-{
+export abstract class ESubthemeDefaultEditorShapeEmbeddedAcceptorEdge implements ESubthemeEditorShapeEmbeddedAcceptorEdge {
 	protected _embeddedAcceptorEdge: EThemeShapeEmbeddedAcceptorEdge;
 
 	constructor() {

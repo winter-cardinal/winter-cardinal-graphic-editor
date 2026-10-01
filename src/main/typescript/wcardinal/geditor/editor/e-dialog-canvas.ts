@@ -40,8 +40,10 @@ export interface EThemeDialogCanvas extends DThemeDialogLayered {
 	getInputBackgroundLabel(): string | undefined;
 }
 
-export interface EDialogCanvasOptions
-	extends DDialogLayeredOptions<EDialogCanvasValue, EThemeDialogCanvas> {
+export interface EDialogCanvasOptions extends DDialogLayeredOptions<
+	EDialogCanvasValue,
+	EThemeDialogCanvas
+> {
 	canvas: UtilCanvasValue;
 }
 

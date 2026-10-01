@@ -1345,8 +1345,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 
 	protected toExtensionUpdater(
 		updaterCreatorOrOptions:
-			| EShapeExtensionUpdaterCreator
-			| EShapeExtensionUpdaterCreatorOptions
+			EShapeExtensionUpdaterCreator | EShapeExtensionUpdaterCreatorOptions
 	): EShapeExtensionUpdater {
 		const updaterCreator = isFunction(updaterCreatorOrOptions)
 			? updaterCreatorOrOptions

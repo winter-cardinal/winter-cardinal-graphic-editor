@@ -81,8 +81,10 @@ import { EShapeActionExtensions } from "../extension";
 import { EDialogActionExtensionContainer } from "./e-dialog-action-extension-container";
 import { EDialogActionKeywordBoard } from "./e-dialog-action-keyword-board";
 
-export interface EDialogActionOption
-	extends DDialogLayeredOptions<EShapeActionValue | null, EThemeDialogAction> {
+export interface EDialogActionOption extends DDialogLayeredOptions<
+	EShapeActionValue | null,
+	EThemeDialogAction
+> {
 	icons: Record<string, Texture>;
 	diagram: DDiagram | DDiagramEditor;
 }

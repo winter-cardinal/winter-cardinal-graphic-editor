@@ -17,11 +17,10 @@ import {
 import { DisplayObject } from "pixi.js";
 import { EShapeButtonLayerButtonValue } from "./e-shape-button-layer-button-value";
 
-export interface EDialogShapeButtonLayerValueOptions
-	extends DDialogLayeredOptions<
-		EShapeButtonLayerButtonValue | null,
-		EThemeDialogShapeButtonLayerValue
-	> {
+export interface EDialogShapeButtonLayerValueOptions extends DDialogLayeredOptions<
+	EShapeButtonLayerButtonValue | null,
+	EThemeDialogShapeButtonLayerValue
+> {
 	diagram?: DDiagramEditor;
 }
 

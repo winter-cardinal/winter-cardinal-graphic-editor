@@ -20,7 +20,7 @@ export class UtilShapeConnectorTransformData extends EShapeEditor {
 
 export class UtilShapeConnectorTransforms {
 	static prepare(connector: EShapeConnector): void {
-		let editor: UtilShapeConnectorTransformData | null = null;
+		let editor: UtilShapeConnectorTransformData;
 		if (connector.editor instanceof UtilShapeConnectorTransformData) {
 			editor = connector.editor;
 		} else {

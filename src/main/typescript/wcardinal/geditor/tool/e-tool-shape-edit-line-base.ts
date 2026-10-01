@@ -26,8 +26,8 @@ export interface EToolShapeEditLineBaseOptions {
 }
 
 export abstract class EToolShapeEditLineBase<
-		OPTIONS extends EToolShapeEditLineBaseOptions = EToolShapeEditLineBaseOptions
-	>
+	OPTIONS extends EToolShapeEditLineBaseOptions = EToolShapeEditLineBaseOptions
+>
 	extends Graphics
 	implements EToolShapeEditLineHitAreaParent, ETool
 {

@@ -4,8 +4,7 @@ import {
 	EToolShapeCreateLineConnectorOptions
 } from "./e-tool-shape-create-line-connector";
 
-export interface EToolShapeCreateElbowConnectorOptions
-	extends EToolShapeCreateLineConnectorOptions {}
+export interface EToolShapeCreateElbowConnectorOptions extends EToolShapeCreateLineConnectorOptions {}
 
 export class EToolShapeCreateElbowConnector<
 	OPTIONS extends EToolShapeCreateElbowConnectorOptions = EToolShapeCreateElbowConnectorOptions

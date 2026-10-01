@@ -32,8 +32,7 @@ export interface UtilCanvasCategoryOptions {
  * A function returning a canvas category options.
  */
 export type UtilCategoryOptionFunction = () =>
-	| UtilCanvasCategoryOptions
-	| Promise<UtilCanvasCategoryOptions>;
+	UtilCanvasCategoryOptions | Promise<UtilCanvasCategoryOptions>;
 
 /**
  * A canvas category.
