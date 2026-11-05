@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.11.0
+ WinterCardinal Graphic Editor v1.12.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
