@@ -32,12 +32,12 @@ import {
 	EShapeCircle,
 	EShapeConnectorLine,
 	EShapeEmbeddeds,
+	EShapeSector,
 	EShapeLine,
 	EShapePolygon,
 	EShapeRectangle,
 	EShapeRectangleRounded,
 	EShapeResourceManagerDeserializationMode,
-	EShapeSemicircle,
 	EShapeTriangle,
 	EShapeTriangleRounded,
 	EShapeType,
@@ -269,7 +269,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 	protected _toolShapeButtonGroup?: DButtonGroup;
 	protected _toolShapeButtonSelect?: DButton<string>;
 	protected _toolShapeButtonCircle?: DButton<string>;
-	protected _toolShapeButtonSemicircle?: DButton<string>;
+	protected _toolShapeButtonSector?: DButton<string>;
 	protected _toolShapeButtonRectangle?: DButton<string>;
 	protected _toolShapeButtonRectangleRounded?: DButton<string>;
 	protected _toolShapeButtonTriangle?: DButton<string>;
@@ -981,16 +981,16 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 		);
 	}
 
-	protected get toolShapeButtonSemicircle(): DButton<string> {
-		return (this._toolShapeButtonSemicircle ??= this.newToolShapeButtonSemicircle());
+	protected get toolShapeButtonSector(): DButton<string> {
+		return (this._toolShapeButtonSector ??= this.newToolShapeButtonSector());
 	}
 
-	protected newToolShapeButtonSemicircle(): DButton<string> {
+	protected newToolShapeButtonSector(): DButton<string> {
 		const theme = this._theme;
 		return this.newToolShapeButtonCreate(
-			theme.getToolShapeButtonSemicircleTitle(),
-			"shape_semicircle",
-			EShapeSemicircle
+			theme.getToolShapeButtonSectorTitle(),
+			"shape_sector",
+			EShapeSector
 		);
 	}
 
@@ -1472,7 +1472,7 @@ export class FGraphicEditor<OPTIONS extends FGraphicEditorOptions = FGraphicEdit
 			this.toolShapeButtonSelect,
 			this.toolShapeButtonLine,
 			this.toolShapeButtonCircle,
-			this.toolShapeButtonSemicircle,
+			this.toolShapeButtonSector,
 			this.toolShapeButtonRectangle,
 			this.toolShapeButtonRectangleRounded,
 			this.toolShapeButtonTriangle,

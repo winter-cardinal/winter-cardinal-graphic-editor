@@ -28,7 +28,7 @@ export interface FThemeGraphicEditor {
 	getToolShapeButtonTheme(): string | DThemeButton<string> | undefined;
 	getToolShapeButtonSelectTitle(): string | undefined;
 	getToolShapeButtonCircleTitle(): string | undefined;
-	getToolShapeButtonSemicircleTitle(): string | undefined;
+	getToolShapeButtonSectorTitle(): string | undefined;
 	getToolShapeButtonRectangleTitle(): string | undefined;
 	getToolShapeButtonRectangleRoundedTitle(): string | undefined;
 	getToolShapeButtonTriangleTitle(): string | undefined;
