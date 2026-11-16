@@ -119,7 +119,7 @@ export interface EEditorShapeSelection {
 	setLineHeadColor(color: number, alpha: number): void;
 	setLineHeadMargin(margin: number): void;
 
-	setAngle(centralAngle: number): void;
+	setAngle(angle: number): void;
 	setRadius(radius: number): void;
 	setCorner(corner: EShapeCorner, isOn: boolean): void;
 
