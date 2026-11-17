@@ -146,6 +146,7 @@ import { ECommandShapePropertyFillPercent } from "../command/e-command-shape-pro
 import { ECommandShapePropertyFillDirection } from "../command/e-command-shape-property-fill-direction";
 import { ECommandShapePropertyStrokeStyleScaling } from "../command/e-command-shape-property-stroke-style-scaling";
 import { ECommandShapePropertyStrokeStyleCosmetic } from "../command/e-command-shape-property-stroke-style-cosmetic";
+import { ECommandShapePropertyAngle } from "../command/e-command-shape-property-angle";
 
 export type EToolSelectSelectionStored = EShape[];
 
@@ -1675,6 +1676,13 @@ export class EToolSelectSelection extends utils.EventEmitter {
 		const shapes = this._shapes;
 		if (0 < shapes.length) {
 			DControllers.getCommandController().push(new ECommandShapePropertyCursor(this, cursor));
+		}
+	}
+
+	setAngle(angle: number): void {
+		const shapes = this._shapes;
+		if (0 < shapes.length) {
+			DControllers.getCommandController().push(new ECommandShapePropertyAngle(this, angle));
 		}
 	}
 

@@ -53,7 +53,7 @@ import {
 	EShapeRectangle,
 	EShapeRectangleRounded,
 	EShapeResourceManagerDeserializationMode,
-	EShapeSemicircle,
+	EShapeSector,
 	EShapeStrokeSide,
 	EShapeStrokeStyle,
 	EShapeTriangle,
@@ -119,6 +119,7 @@ export interface EEditorShapeSelection {
 	setLineHeadColor(color: number, alpha: number): void;
 	setLineHeadMargin(margin: number): void;
 
+	setAngle(angle: number): void;
 	setRadius(radius: number): void;
 	setCorner(corner: EShapeCorner, isOn: boolean): void;
 
@@ -164,7 +165,7 @@ export interface EThemeEditorShape extends DThemePane {
 	getLabel(): string | undefined;
 	getTextChangeToLabel(): string | undefined;
 	getButtonCircleTitle(): string | undefined;
-	getButtonSemicircleTitle(): string | undefined;
+	getButtonSectorTitle(): string | undefined;
 	getButtonRectangleTitle(): string | undefined;
 	getButtonRectangleRoundedTitle(): string | undefined;
 	getButtonTriangleTitle(): string | undefined;
@@ -196,6 +197,7 @@ export interface EThemeEditorShape extends DThemePane {
 	getButtonStrokeExpandableTitle(): string | undefined;
 	getButtonStrokeShrinkableTitle(): string | undefined;
 	getButtonStrokeScalableDotDashTitle(): string | undefined;
+	getTextAngleLabel(): string | undefined;
 	getTextCornerLabel(): string | undefined;
 	getButtonCornerTopLeftTitle(): string | undefined;
 	getButtonCornerTopRightTitle(): string | undefined;
@@ -230,7 +232,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 
 	protected _layoutChangeTo?: DLayoutVertical | null;
 	protected _buttonCircle?: DButton<string>;
-	protected _buttonSemicircle?: DButton<string>;
+	protected _buttonSector?: DButton<string>;
 	protected _buttonRectangle?: DButton<string>;
 	protected _buttonRectangleRounded?: DButton<string>;
 	protected _buttonTriangle?: DButton<string>;
@@ -268,6 +270,9 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	protected _buttonStrokeShrinkable?: DButtonCheck<string>;
 	protected _buttonStrokeScalableDotDash?: DButtonCheck<string>;
 	protected _selectStrokeStyle?: DSelect<EShapeStrokeStyle>;
+
+	protected _textAngle?: DText<string>;
+	protected _inputAngle?: DInputReal;
 
 	protected _textCorner?: DText<string>;
 	protected _inputCornerRadius?: DInputReal;
@@ -365,6 +370,9 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 				this.inputStrokeAlign,
 				this.layoutStrokeSide,
 
+				this.textAngle,
+				this.inputAngle,
+
 				this.textCorner,
 				this.inputCornerRadius,
 				this.layoutCorner,
@@ -407,7 +415,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		const children = [
 			this.newTextChangeToLabel(),
 			this.buttonCircle,
-			this.buttonSemicircle,
+			this.buttonSector,
 			this.buttonRectangle,
 			this.buttonRectangleRounded,
 			this.buttonTriangle,
@@ -560,22 +568,22 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		});
 	}
 
-	protected get buttonSemicircle(): DButton<string> {
-		return (this._buttonSemicircle ??= this.newButtonSemicircle());
+	protected get buttonSector(): DButton<string> {
+		return (this._buttonSector ??= this.newButtonSector());
 	}
 
-	protected newButtonSemicircle(): DButton<string> {
+	protected newButtonSector(): DButton<string> {
 		return new DButtonAmbient<string>({
 			image: {
-				source: this._icons.shape_semicircle
+				source: this._icons.shape_sector
 			},
-			title: this.theme.getButtonSemicircleTitle(),
+			title: this.theme.getButtonSectorTitle(),
 			theme: "EButtonEditor",
 			on: {
 				active: (): void => {
 					this._selection.replace((existing) => {
-						if (existing.type !== EShapeType.SEMICIRCLE) {
-							return new EShapeSemicircle().copy(existing);
+						if (existing.type !== EShapeType.SECTOR) {
+							return new EShapeSector().copy(existing);
 						}
 						return null;
 					});
@@ -1560,6 +1568,50 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 						value ?? EShapeStrokeStyle.NONE,
 						EShapeStrokeStyle.DOTTED_MASK | EShapeStrokeStyle.DASHED_MASK
 					);
+				}
+			}
+		});
+	}
+
+	protected get textAngle(): DText<string> {
+		return (this._textAngle ??= this.newTextAngle());
+	}
+
+	protected newTextAngle(): DText<string> {
+		return new DText<string>({
+			width: "100%",
+			text: {
+				value: this.theme.getTextAngleLabel()
+			}
+		});
+	}
+
+	protected get inputAngle(): DInputReal {
+		return (this._inputAngle ??= this.newInputAngle());
+	}
+
+	protected newInputAngle(): DInputReal {
+		return new DInputReal({
+			width: "100%",
+			min: 0,
+			step: 1,
+			max: 180,
+			text: {
+				formatter: (value: number): string => {
+					return `${+(value * 360).toFixed(2)}°`;
+				}
+			},
+			editing: {
+				formatter: (value: number): string => {
+					return `${+(value * 360).toFixed(2)}`;
+				},
+				unformatter: (text: string): number => {
+					return parseFloat(text) / 360;
+				}
+			},
+			on: {
+				change: (value: number): void => {
+					this._selection.setAngle(value);
 				}
 			}
 		});
@@ -2568,6 +2620,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		const layoutLineTail = this.layoutLineTail;
 		const buttonLineTailLock = this.buttonLineTailLock;
 		const selectLineTailType = this.selectLineTailType;
+		const layoutLineTailSize = this.layoutLineTailSize;
 		const inputLineTailSizeX = this.inputLineTailSizeX;
 		const inputLineTailSizeY = this.inputLineTailSizeY;
 		const buttonLineTailColor = this.buttonLineTailColor;
@@ -2576,6 +2629,7 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		const layoutLineHead = this.layoutLineHead;
 		const buttonLineHeadLock = this.buttonLineHeadLock;
 		const selectLineHeadType = this.selectLineHeadType;
+		const layoutLineHeadSize = this.layoutLineHeadSize;
 		const inputLineHeadSizeX = this.inputLineHeadSizeX;
 		const inputLineHeadSizeY = this.inputLineHeadSizeY;
 		const buttonLineHeadColor = this.buttonLineHeadColor;
@@ -2584,105 +2638,152 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 		if (last != null && last.points != null) {
 			const points = last.points;
 			const hasLine = EShapeCapabilities.contains(last, EShapeCapability.LINE);
-			layoutLine.state.isEnabled = true;
-			buttonLineLock.state.isActive = this.isLocked(last, EShapeCapability.LINE);
-			buttonLineLock.state.isEnabled = true;
-			selectLineType.value = points.style & EShapePointsStyle.FORMATTER_MASK;
-			selectLineType.state.isEnabled = hasLine;
-			buttonLineClosed.state.isActive = (points.style & EShapePointsStyle.CLOSED) !== 0;
-			buttonLineClosed.state.isEnabled = hasLine;
-
-			const hasLineTail = EShapeCapabilities.contains(last, EShapeCapability.LINE_TAIL);
-			layoutLineTail.state.isEnabled = true;
-			buttonLineTailLock.state.isActive = this.isLocked(last, EShapeCapability.LINE_TAIL);
-			buttonLineTailLock.state.isEnabled = true;
-			const markerTail = points.marker.tail;
-			selectLineTailType.value = markerTail.type;
-			selectLineTailType.state.isEnabled = hasLineTail;
-			inputLineTailSizeX.value = markerTail.size.x;
-			inputLineTailSizeX.state.isEnabled = hasLineTail;
-			inputLineTailSizeY.value = markerTail.size.y;
-			inputLineTailSizeY.state.isEnabled = hasLineTail;
-			const markerTailFill = markerTail.fill;
-			const buttonLineTailColorValue = buttonLineTailColor.value;
-			buttonLineTailColorValue.color = markerTailFill.color;
-			buttonLineTailColorValue.alpha = markerTailFill.alpha;
-			buttonLineTailColor.state.isEnabled = markerTailFill.enable && hasLineTail;
-			if (last instanceof EShapeConnectorLine) {
-				inputLineTailMargin.input.value = last.edge.tail.margin;
-				inputLineTailMargin.state.isEnabled = hasLineTail;
+			if (hasLine) {
+				layoutLine.show();
+				buttonLineLock.state.isActive = this.isLocked(last, EShapeCapability.LINE);
+				buttonLineClosed.state.isActive = (points.style & EShapePointsStyle.CLOSED) !== 0;
+				selectLineType.value = points.style & EShapePointsStyle.FORMATTER_MASK;
+				selectLineType.show();
 			} else {
-				inputLineTailMargin.state.isEnabled = false;
+				layoutLine.hide();
+				selectLineType.hide();
 			}
 
-			const hasLineHead = EShapeCapabilities.contains(last, EShapeCapability.LINE_HEAD);
-			layoutLineHead.state.isEnabled = true;
-			buttonLineHeadLock.state.isActive = this.isLocked(last, EShapeCapability.LINE_HEAD);
-			buttonLineHeadLock.state.isEnabled = true;
-			const markerHead = points.marker.head;
-			selectLineHeadType.value = markerHead.type;
-			selectLineHeadType.state.isEnabled = hasLineHead;
-			inputLineHeadSizeX.value = markerHead.size.x;
-			inputLineHeadSizeX.state.isEnabled = hasLineHead;
-			inputLineHeadSizeY.value = markerHead.size.y;
-			inputLineHeadSizeY.state.isEnabled = hasLineHead;
-			const markerHeadFill = markerHead.fill;
-			const buttonLineHeadColorValue = buttonLineHeadColor.value;
-			buttonLineHeadColorValue.color = markerHeadFill.color;
-			buttonLineHeadColorValue.alpha = markerHeadFill.alpha;
-			buttonLineHeadColor.state.isEnabled = markerHeadFill.enable && hasLineHead;
-			if (last instanceof EShapeConnectorLine) {
-				inputLineHeadMargin.input.value = last.edge.head.margin;
-				inputLineHeadMargin.state.isEnabled = hasLineHead;
+			if (EShapeCapabilities.contains(last, EShapeCapability.LINE_TAIL)) {
+				layoutLineTail.show();
+				buttonLineTailLock.state.isActive = this.isLocked(last, EShapeCapability.LINE_TAIL);
+
+				const markerTail = points.marker.tail;
+				selectLineTailType.show();
+				selectLineTailType.value = markerTail.type;
+
+				layoutLineTailSize.show();
+				inputLineTailSizeX.value = markerTail.size.x;
+				inputLineTailSizeY.value = markerTail.size.y;
+
+				buttonLineTailColor.show();
+				const markerTailFill = markerTail.fill;
+				const buttonLineTailColorValue = buttonLineTailColor.value;
+				buttonLineTailColorValue.color = markerTailFill.color;
+				buttonLineTailColorValue.alpha = markerTailFill.alpha;
+				buttonLineTailColor.state.isEnabled = markerTailFill.enable;
+
+				if (last instanceof EShapeConnectorLine) {
+					inputLineTailMargin.show();
+					inputLineTailMargin.input.value = last.edge.tail.margin;
+				} else {
+					inputLineTailMargin.hide();
+				}
 			} else {
-				inputLineHeadMargin.state.isEnabled = false;
+				layoutLineTail.hide();
+				selectLineTailType.hide();
+				layoutLineTailSize.hide();
+				buttonLineTailColor.hide();
+				inputLineTailMargin.hide();
+			}
+
+			if (EShapeCapabilities.contains(last, EShapeCapability.LINE_HEAD)) {
+				layoutLineHead.show();
+				buttonLineHeadLock.state.isActive = this.isLocked(last, EShapeCapability.LINE_HEAD);
+
+				const markerHead = points.marker.head;
+				selectLineHeadType.show();
+				selectLineHeadType.value = markerHead.type;
+
+				layoutLineHeadSize.show();
+				inputLineHeadSizeX.value = markerHead.size.x;
+				inputLineHeadSizeY.value = markerHead.size.y;
+
+				buttonLineHeadColor.show();
+				const markerHeadFill = markerHead.fill;
+				const buttonLineHeadColorValue = buttonLineHeadColor.value;
+				buttonLineHeadColorValue.color = markerHeadFill.color;
+				buttonLineHeadColorValue.alpha = markerHeadFill.alpha;
+				buttonLineHeadColor.state.isEnabled = markerHeadFill.enable;
+
+				if (last instanceof EShapeConnectorLine) {
+					inputLineHeadMargin.show();
+					inputLineHeadMargin.input.value = last.edge.head.margin;
+				} else {
+					inputLineHeadMargin.hide();
+				}
+			} else {
+				layoutLineHead.hide();
+				selectLineHeadType.hide();
+				layoutLineHeadSize.hide();
+				buttonLineHeadColor.hide();
+				inputLineHeadMargin.hide();
 			}
 		} else {
-			layoutLine.state.isEnabled = false;
-			buttonLineLock.state.isEnabled = false;
-			selectLineType.state.isEnabled = false;
-			buttonLineClosed.state.isEnabled = false;
+			layoutLine.hide();
+			selectLineType.hide();
 
-			layoutLineTail.state.isEnabled = false;
-			buttonLineTailLock.state.isEnabled = false;
-			selectLineTailType.state.isEnabled = false;
-			inputLineTailSizeX.state.isEnabled = false;
-			inputLineTailSizeY.state.isEnabled = false;
-			buttonLineTailColor.state.isEnabled = false;
-			inputLineTailMargin.state.isEnabled = false;
+			layoutLineTail.hide();
+			selectLineTailType.hide();
+			layoutLineTailSize.hide();
+			buttonLineTailColor.hide();
+			inputLineTailMargin.hide();
 
-			layoutLineHead.state.isEnabled = false;
-			buttonLineHeadLock.state.isEnabled = false;
-			selectLineHeadType.state.isEnabled = false;
-			inputLineHeadSizeX.state.isEnabled = false;
-			inputLineHeadSizeY.state.isEnabled = false;
-			buttonLineHeadColor.state.isEnabled = false;
-			inputLineHeadMargin.state.isEnabled = false;
+			layoutLineHead.hide();
+			selectLineHeadType.hide();
+			layoutLineHeadSize.hide();
+			buttonLineHeadColor.hide();
+			inputLineHeadMargin.hide();
+		}
+
+		// Angle
+		const textAngle = this.textAngle;
+		const inputAngle = this.inputAngle;
+		if (last != null) {
+			if (EShapeCapabilities.contains(last, EShapeCapability.ANGLE)) {
+				textAngle.show();
+				inputAngle.show();
+				inputAngle.value = last.angle;
+			} else {
+				textAngle.hide();
+				inputAngle.hide();
+			}
+		} else {
+			textAngle.hide();
+			inputAngle.hide();
 		}
 
 		// Corner
+		const textCorner = this.textCorner;
+		const inputCornerRadius = this.inputCornerRadius;
+		const layoutCorner = this.layoutCorner;
 		if (last != null) {
-			const hasBorderRadius = EShapeCapabilities.contains(
-				last,
-				EShapeCapability.BORDER_RADIUS
-			);
-			this.textCorner.state.isEnabled = hasBorderRadius;
-			this.inputCornerRadius.value = last.radius;
-			this.inputCornerRadius.state.isEnabled = hasBorderRadius;
+			if (EShapeCapabilities.contains(last, EShapeCapability.BORDER_RADIUS)) {
+				textCorner.show();
+				inputCornerRadius.show();
+				inputCornerRadius.value = last.radius;
 
-			this.layoutCorner.state.isEnabled = hasBorderRadius;
-			this.buttonCornerBottomLeft.state.isActive = !!(last.corner & EShapeCorner.BOTTOM_LEFT);
-			this.buttonCornerBottomRight.state.isActive = !!(
-				last.corner & EShapeCorner.BOTTOM_RIGHT
-			);
-			this.buttonCornerTopLeft.state.isActive = !!(last.corner & EShapeCorner.TOP_LEFT);
-			this.buttonCornerTopRight.state.isActive = !!(last.corner & EShapeCorner.TOP_RIGHT);
+				layoutCorner.show();
+				const corner = last.corner;
+				this.buttonCornerBottomLeft.state.isActive = !!(corner & EShapeCorner.BOTTOM_LEFT);
+				this.buttonCornerBottomRight.state.isActive = !!(
+					corner & EShapeCorner.BOTTOM_RIGHT
+				);
+				this.buttonCornerTopLeft.state.isActive = !!(corner & EShapeCorner.TOP_LEFT);
+				this.buttonCornerTopRight.state.isActive = !!(corner & EShapeCorner.TOP_RIGHT);
+			} else {
+				textCorner.hide();
+				inputCornerRadius.hide();
+
+				layoutCorner.hide();
+			}
+		} else {
+			textCorner.hide();
+			inputCornerRadius.hide();
+
+			layoutCorner.hide();
 		}
 
 		// Texture
 		if (last != null) {
-			this.buttonTextureFitTo.state.isDisabled = last.image == null;
-			this.buttonTextureClear.state.isDisabled = last.image == null;
+			const hasImage = last.image != null;
+			this.buttonTextureFitTo.state.isEnabled = hasImage;
+			this.buttonTextureClear.state.isEnabled = hasImage;
 		}
 	}
 

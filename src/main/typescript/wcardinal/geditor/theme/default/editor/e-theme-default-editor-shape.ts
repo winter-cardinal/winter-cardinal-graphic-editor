@@ -28,8 +28,8 @@ export abstract class EThemeDefaultEditorShape
 		return this._shapeType.getLabel(EShapeType.CIRCLE);
 	}
 
-	getButtonSemicircleTitle(): string | undefined {
-		return this._shapeType.getLabel(EShapeType.SEMICIRCLE);
+	getButtonSectorTitle(): string | undefined {
+		return this._shapeType.getLabel(EShapeType.SECTOR);
 	}
 
 	getButtonRectangleTitle(): string | undefined {
@@ -117,6 +117,8 @@ export abstract class EThemeDefaultEditorShape
 	abstract getButtonStrokeShrinkableTitle(): string | undefined;
 
 	abstract getButtonStrokeScalableDotDashTitle(): string | undefined;
+
+	abstract getTextAngleLabel(): string | undefined;
 
 	abstract getTextCornerLabel(): string | undefined;
 

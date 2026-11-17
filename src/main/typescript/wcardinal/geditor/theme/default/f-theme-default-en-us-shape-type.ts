@@ -52,8 +52,8 @@ export class FThemeDefaultEnUsShapeType extends FThemeDefaultShapeType {
 				return "Line Connector";
 			case EShapeType.CONNECTOR_ELBOW:
 				return "Elbow Connector";
-			case EShapeType.SEMICIRCLE:
-				return "Semicircle";
+			case EShapeType.SECTOR:
+				return "Sector";
 			case EShapeType.EMBEDDED_ACCEPTOR_EDGE:
 				return "Acceptor Edge";
 			case EShapeType.POLYGON:

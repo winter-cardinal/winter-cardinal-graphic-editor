@@ -91,6 +91,10 @@ export class EThemeDefaultEnUsEditorShape extends EThemeDefaultEditorShape {
 		return "Scalable Dot / Dash";
 	}
 
+	override getTextAngleLabel(): string | undefined {
+		return "Central Angle";
+	}
+
 	override getTextCornerLabel(): string | undefined {
 		return "Corner Radius";
 	}

@@ -248,7 +248,7 @@ export class EEditorSearch extends DLayoutVertical<EThemeEditorSearch, EEditorSe
 				this.theme.toTypeLabel(EEditorSearchConditionType.NONE)
 			),
 			this.newSelectTypeMenuItemShape(EShapeType.CIRCLE),
-			this.newSelectTypeMenuItemShape(EShapeType.SEMICIRCLE),
+			this.newSelectTypeMenuItemShape(EShapeType.SECTOR),
 			this.newSelectTypeMenuItemShape(EShapeType.RECTANGLE),
 			this.newSelectTypeMenuItemShape(EShapeType.RECTANGLE_ROUNDED),
 			this.newSelectTypeMenuItemShape(EShapeType.TRIANGLE),

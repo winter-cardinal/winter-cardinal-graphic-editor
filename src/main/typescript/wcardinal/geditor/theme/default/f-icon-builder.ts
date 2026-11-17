@@ -255,11 +255,10 @@ iconBuilder.add(
 );
 
 iconBuilder.add(
-	"shape_semicircle",
-	19.2,
-	19.2,
-	`<path d="M32 256 a196 196 0 0 1 448 0z" stroke-width="48" stroke="#fff" fill="none"></path>` +
-		`<path d="M32 256 a196 196 0 0 0 448 0z" stroke-width="48" stroke="#fff" stroke-opacity="0.5" fill="none"></path>`
+	"shape_sector",
+	24,
+	24,
+	`<path d="M320 510.9 L24 340 A341.8 341.8 0 0 1 616 340 z" stroke-width="48" stroke="#fff" stroke-linejoin="round" fill="none"></path>`
 );
 
 iconBuilder.add(

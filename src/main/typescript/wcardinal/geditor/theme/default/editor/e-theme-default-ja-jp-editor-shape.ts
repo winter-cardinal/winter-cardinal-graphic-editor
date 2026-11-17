@@ -91,6 +91,10 @@ export class EThemeDefaultJaJpEditorShape extends EThemeDefaultEditorShape {
 		return "点線／破線の拡大縮小を許可";
 	}
 
+	override getTextAngleLabel(): string | undefined {
+		return "中心角";
+	}
+
 	override getTextCornerLabel(): string | undefined {
 		return "角の丸み";
 	}

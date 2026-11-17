@@ -45,6 +45,7 @@ export * from "./e-command-shape-data-value-send-backward";
 export * from "./e-command-shape-delete";
 export * from "./e-command-shape-group";
 export * from "./e-command-shape-property-all";
+export * from "./e-command-shape-property-angle";
 export * from "./e-command-shape-property-capability-lock";
 export * from "./e-command-shape-property-capability-unlock";
 export * from "./e-command-shape-property-capability";
