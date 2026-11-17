@@ -52,8 +52,6 @@ export class FThemeDefaultJaJpShapeType extends FThemeDefaultShapeType {
 				return "コネクタ";
 			case EShapeType.CONNECTOR_ELBOW:
 				return "コネクタ（カギ線）";
-			case EShapeType.SEMICIRCLE:
-				return "半円";
 			case EShapeType.SECTOR:
 				return "扇";
 			case EShapeType.EMBEDDED_ACCEPTOR_EDGE:
