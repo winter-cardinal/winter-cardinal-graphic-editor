@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.12.0
+ WinterCardinal Graphic Editor v1.13.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -912,8 +912,7 @@
     iconBuilder.add("corner_bottom_right", 16.8, 19.2, "<path d=\"M16 464 h 208 a 208 208 0 0 0 208 -208 v -208 h -416 z\" stroke=\"none\" fill=\"#fff\" fill-opacity=\"0.2\"></path>" +
         "<path d=\"M16 464 h 208 a 208 208 0 0 0 208 -208 v -208\" stroke=\"#fff\" stroke-width=\"53.333\" fill=\"none\"></path>");
     iconBuilder.add("shape_circle", 19.2, 19.2, "<circle cx=\"256\" cy=\"256\" r=\"224\" stroke-width=\"48\" stroke=\"#fff\" fill=\"none\" />");
-    iconBuilder.add("shape_semicircle", 19.2, 19.2, "<path d=\"M32 256 a196 196 0 0 1 448 0z\" stroke-width=\"48\" stroke=\"#fff\" fill=\"none\"></path>" +
-        "<path d=\"M32 256 a196 196 0 0 0 448 0z\" stroke-width=\"48\" stroke=\"#fff\" stroke-opacity=\"0.5\" fill=\"none\"></path>");
+    iconBuilder.add("shape_sector", 24, 24, "<path d=\"M320 510.9 L24 340 A341.8 341.8 0 0 1 616 340 z\" stroke-width=\"48\" stroke=\"#fff\" stroke-linejoin=\"round\" fill=\"none\"></path>");
     iconBuilder.add("shape_line", 19.2, 19.2, "<rect fill=\"#fff\" x=\"0\" y=\"-13.333\" width=\"640\" height=\"53.333\" transform=\"translate(26.666,56) rotate(40)\" rx=\"26.666\" ry=\"26.666\"></rect>");
     iconBuilder.add("shape_polygon", 24, 24, "<g transform=\"scale(0.667,0.667) translate(0, 960)\">" +
         "<path d=\"M272-120 64-480l208-360h416l208 360-208 360H272Zm46-80h324l161-280-161-280H318L156-480l162 280Zm162-280Z\" fill=\"#fff\"/>" +
@@ -1630,8 +1629,8 @@
         EThemeDefaultEditorShape.prototype.getButtonCircleTitle = function () {
             return this._shapeType.getLabel(wcardinalUi.EShapeType.CIRCLE);
         };
-        EThemeDefaultEditorShape.prototype.getButtonSemicircleTitle = function () {
-            return this._shapeType.getLabel(wcardinalUi.EShapeType.SEMICIRCLE);
+        EThemeDefaultEditorShape.prototype.getButtonSectorTitle = function () {
+            return this._shapeType.getLabel(wcardinalUi.EShapeType.SECTOR);
         };
         EThemeDefaultEditorShape.prototype.getButtonRectangleTitle = function () {
             return this._shapeType.getLabel(wcardinalUi.EShapeType.RECTANGLE);
@@ -2674,6 +2673,9 @@
         EThemeDefaultEnUsEditorShape.prototype.getButtonStrokeScalableDotDashTitle = function () {
             return "Scalable Dot / Dash";
         };
+        EThemeDefaultEnUsEditorShape.prototype.getTextAngleLabel = function () {
+            return "Central Angle";
+        };
         EThemeDefaultEnUsEditorShape.prototype.getTextCornerLabel = function () {
             return "Corner Radius";
         };
@@ -3318,8 +3320,8 @@
         FThemeDefaultGraphicEditor.prototype.getToolShapeButtonCircleTitle = function () {
             return this._shapeType.getLabel(wcardinalUi.EShapeType.CIRCLE);
         };
-        FThemeDefaultGraphicEditor.prototype.getToolShapeButtonSemicircleTitle = function () {
-            return this._shapeType.getLabel(wcardinalUi.EShapeType.SEMICIRCLE);
+        FThemeDefaultGraphicEditor.prototype.getToolShapeButtonSectorTitle = function () {
+            return this._shapeType.getLabel(wcardinalUi.EShapeType.SECTOR);
         };
         FThemeDefaultGraphicEditor.prototype.getToolShapeButtonRectangleTitle = function () {
             return this._shapeType.getLabel(wcardinalUi.EShapeType.RECTANGLE);
@@ -3712,8 +3714,8 @@
                     return "Line Connector";
                 case wcardinalUi.EShapeType.CONNECTOR_ELBOW:
                     return "Elbow Connector";
-                case wcardinalUi.EShapeType.SEMICIRCLE:
-                    return "Semicircle";
+                case wcardinalUi.EShapeType.SECTOR:
+                    return "Sector";
                 case wcardinalUi.EShapeType.EMBEDDED_ACCEPTOR_EDGE:
                     return "Acceptor Edge";
                 case wcardinalUi.EShapeType.POLYGON:

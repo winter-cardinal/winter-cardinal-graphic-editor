@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.12.0
+ WinterCardinal Graphic Editor v1.13.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -3612,6 +3612,34 @@
       return ECommandShapePropertyAll;
   }(ECommandShapeProperty));
 
+  var ECommandShapePropertySimple = /** @class */ (function (_super) {
+      __extends(ECommandShapePropertySimple, _super);
+      function ECommandShapePropertySimple() {
+          return _super !== null && _super.apply(this, arguments) || this;
+      }
+      ECommandShapePropertySimple.prototype.initProperty = function (shape, capability, property) {
+          this.setProperty(shape, capability, property);
+      };
+      return ECommandShapePropertySimple;
+  }(ECommandShapeProperty));
+
+  var ECommandShapePropertyAngle = /** @class */ (function (_super) {
+      __extends(ECommandShapePropertyAngle, _super);
+      function ECommandShapePropertyAngle() {
+          return _super !== null && _super.apply(this, arguments) || this;
+      }
+      ECommandShapePropertyAngle.prototype.getProperty = function (shape, capability) {
+          return shape.angle;
+      };
+      ECommandShapePropertyAngle.prototype.setProperty = function (shape, capability, property) {
+          shape.angle = property;
+      };
+      ECommandShapePropertyAngle.prototype.isMergeable = function () {
+          return true;
+      };
+      return ECommandShapePropertyAngle;
+  }(ECommandShapePropertySimple));
+
   var ECommandShapePropertyCapability = /** @class */ (function (_super) {
       __extends(ECommandShapePropertyCapability, _super);
       function ECommandShapePropertyCapability() {
@@ -3692,17 +3720,6 @@
           shape.corner |= property;
       };
       return ECommandShapePropertyCornerOn;
-  }(ECommandShapeProperty));
-
-  var ECommandShapePropertySimple = /** @class */ (function (_super) {
-      __extends(ECommandShapePropertySimple, _super);
-      function ECommandShapePropertySimple() {
-          return _super !== null && _super.apply(this, arguments) || this;
-      }
-      ECommandShapePropertySimple.prototype.initProperty = function (shape, capability, property) {
-          this.setProperty(shape, capability, property);
-      };
-      return ECommandShapePropertySimple;
   }(ECommandShapeProperty));
 
   var ECommandShapePropertyCursor = /** @class */ (function (_super) {
@@ -21243,7 +21260,7 @@
           var result = [
               this.newSelectTypeMenuItem(EEditorSearchConditionType.NONE, this.theme.toTypeLabel(EEditorSearchConditionType.NONE)),
               this.newSelectTypeMenuItemShape(wcardinalUi.EShapeType.CIRCLE),
-              this.newSelectTypeMenuItemShape(wcardinalUi.EShapeType.SEMICIRCLE),
+              this.newSelectTypeMenuItemShape(wcardinalUi.EShapeType.SECTOR),
               this.newSelectTypeMenuItemShape(wcardinalUi.EShapeType.RECTANGLE),
               this.newSelectTypeMenuItemShape(wcardinalUi.EShapeType.RECTANGLE_ROUNDED),
               this.newSelectTypeMenuItemShape(wcardinalUi.EShapeType.TRIANGLE),
@@ -21667,6 +21684,8 @@
                   this.inputStrokeWidth,
                   this.inputStrokeAlign,
                   this.layoutStrokeSide,
+                  this.textAngle,
+                  this.inputAngle,
                   this.textCorner,
                   this.inputCornerRadius,
                   this.layoutCorner,
@@ -21708,7 +21727,7 @@
           var children = [
               this.newTextChangeToLabel(),
               this.buttonCircle,
-              this.buttonSemicircle,
+              this.buttonSector,
               this.buttonRectangle,
               this.buttonRectangleRounded,
               this.buttonTriangle,
@@ -21850,27 +21869,27 @@
               }
           });
       };
-      Object.defineProperty(EEditorShape.prototype, "buttonSemicircle", {
+      Object.defineProperty(EEditorShape.prototype, "buttonSector", {
           get: function () {
               var _a;
-              return ((_a = this._buttonSemicircle) !== null && _a !== void 0 ? _a : (this._buttonSemicircle = this.newButtonSemicircle()));
+              return ((_a = this._buttonSector) !== null && _a !== void 0 ? _a : (this._buttonSector = this.newButtonSector()));
           },
           enumerable: false,
           configurable: true
       });
-      EEditorShape.prototype.newButtonSemicircle = function () {
+      EEditorShape.prototype.newButtonSector = function () {
           var _this = this;
           return new wcardinalUi.DButtonAmbient({
               image: {
-                  source: this._icons.shape_semicircle
+                  source: this._icons.shape_sector
               },
-              title: this.theme.getButtonSemicircleTitle(),
+              title: this.theme.getButtonSectorTitle(),
               theme: "EButtonEditor",
               on: {
                   active: function () {
                       _this._selection.replace(function (existing) {
-                          if (existing.type !== wcardinalUi.EShapeType.SEMICIRCLE) {
-                              return new wcardinalUi.EShapeSemicircle().copy(existing);
+                          if (existing.type !== wcardinalUi.EShapeType.SECTOR) {
+                              return new wcardinalUi.EShapeSector().copy(existing);
                           }
                           return null;
                       });
@@ -22891,6 +22910,57 @@
               on: {
                   change: function (value) {
                       _this._selection.setStrokeStyleCosmetic(value !== null && value !== void 0 ? value : wcardinalUi.EShapeStrokeStyle.NONE, wcardinalUi.EShapeStrokeStyle.DOTTED_MASK | wcardinalUi.EShapeStrokeStyle.DASHED_MASK);
+                  }
+              }
+          });
+      };
+      Object.defineProperty(EEditorShape.prototype, "textAngle", {
+          get: function () {
+              var _a;
+              return ((_a = this._textAngle) !== null && _a !== void 0 ? _a : (this._textAngle = this.newTextAngle()));
+          },
+          enumerable: false,
+          configurable: true
+      });
+      EEditorShape.prototype.newTextAngle = function () {
+          return new wcardinalUi.DText({
+              width: "100%",
+              text: {
+                  value: this.theme.getTextAngleLabel()
+              }
+          });
+      };
+      Object.defineProperty(EEditorShape.prototype, "inputAngle", {
+          get: function () {
+              var _a;
+              return ((_a = this._inputAngle) !== null && _a !== void 0 ? _a : (this._inputAngle = this.newInputAngle()));
+          },
+          enumerable: false,
+          configurable: true
+      });
+      EEditorShape.prototype.newInputAngle = function () {
+          var _this = this;
+          return new wcardinalUi.DInputReal({
+              width: "100%",
+              min: 0,
+              step: 1,
+              max: 180,
+              text: {
+                  formatter: function (value) {
+                      return "".concat(+(value * 360).toFixed(2), "\u00B0");
+                  }
+              },
+              editing: {
+                  formatter: function (value) {
+                      return "".concat(+(value * 360).toFixed(2));
+                  },
+                  unformatter: function (text) {
+                      return parseFloat(text) / 360;
+                  }
+              },
+              on: {
+                  change: function (value) {
+                      _this._selection.setAngle(value);
                   }
               }
           });
@@ -23970,6 +24040,7 @@
           var layoutLineTail = this.layoutLineTail;
           var buttonLineTailLock = this.buttonLineTailLock;
           var selectLineTailType = this.selectLineTailType;
+          var layoutLineTailSize = this.layoutLineTailSize;
           var inputLineTailSizeX = this.inputLineTailSizeX;
           var inputLineTailSizeY = this.inputLineTailSizeY;
           var buttonLineTailColor = this.buttonLineTailColor;
@@ -23977,6 +24048,7 @@
           var layoutLineHead = this.layoutLineHead;
           var buttonLineHeadLock = this.buttonLineHeadLock;
           var selectLineHeadType = this.selectLineHeadType;
+          var layoutLineHeadSize = this.layoutLineHeadSize;
           var inputLineHeadSizeX = this.inputLineHeadSizeX;
           var inputLineHeadSizeY = this.inputLineHeadSizeY;
           var buttonLineHeadColor = this.buttonLineHeadColor;
@@ -23984,96 +24056,142 @@
           if (last != null && last.points != null) {
               var points = last.points;
               var hasLine = wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.LINE);
-              layoutLine.state.isEnabled = true;
-              buttonLineLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE);
-              buttonLineLock.state.isEnabled = true;
-              selectLineType.value = points.style & wcardinalUi.EShapePointsStyle.FORMATTER_MASK;
-              selectLineType.state.isEnabled = hasLine;
-              buttonLineClosed.state.isActive = (points.style & wcardinalUi.EShapePointsStyle.CLOSED) !== 0;
-              buttonLineClosed.state.isEnabled = hasLine;
-              var hasLineTail = wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.LINE_TAIL);
-              layoutLineTail.state.isEnabled = true;
-              buttonLineTailLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE_TAIL);
-              buttonLineTailLock.state.isEnabled = true;
-              var markerTail = points.marker.tail;
-              selectLineTailType.value = markerTail.type;
-              selectLineTailType.state.isEnabled = hasLineTail;
-              inputLineTailSizeX.value = markerTail.size.x;
-              inputLineTailSizeX.state.isEnabled = hasLineTail;
-              inputLineTailSizeY.value = markerTail.size.y;
-              inputLineTailSizeY.state.isEnabled = hasLineTail;
-              var markerTailFill = markerTail.fill;
-              var buttonLineTailColorValue = buttonLineTailColor.value;
-              buttonLineTailColorValue.color = markerTailFill.color;
-              buttonLineTailColorValue.alpha = markerTailFill.alpha;
-              buttonLineTailColor.state.isEnabled = markerTailFill.enable && hasLineTail;
-              if (last instanceof wcardinalUi.EShapeConnectorLine) {
-                  inputLineTailMargin.input.value = last.edge.tail.margin;
-                  inputLineTailMargin.state.isEnabled = hasLineTail;
+              if (hasLine) {
+                  layoutLine.show();
+                  buttonLineLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE);
+                  buttonLineClosed.state.isActive = (points.style & wcardinalUi.EShapePointsStyle.CLOSED) !== 0;
+                  selectLineType.value = points.style & wcardinalUi.EShapePointsStyle.FORMATTER_MASK;
+                  selectLineType.show();
               }
               else {
-                  inputLineTailMargin.state.isEnabled = false;
+                  layoutLine.hide();
+                  selectLineType.hide();
               }
-              var hasLineHead = wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.LINE_HEAD);
-              layoutLineHead.state.isEnabled = true;
-              buttonLineHeadLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE_HEAD);
-              buttonLineHeadLock.state.isEnabled = true;
-              var markerHead = points.marker.head;
-              selectLineHeadType.value = markerHead.type;
-              selectLineHeadType.state.isEnabled = hasLineHead;
-              inputLineHeadSizeX.value = markerHead.size.x;
-              inputLineHeadSizeX.state.isEnabled = hasLineHead;
-              inputLineHeadSizeY.value = markerHead.size.y;
-              inputLineHeadSizeY.state.isEnabled = hasLineHead;
-              var markerHeadFill = markerHead.fill;
-              var buttonLineHeadColorValue = buttonLineHeadColor.value;
-              buttonLineHeadColorValue.color = markerHeadFill.color;
-              buttonLineHeadColorValue.alpha = markerHeadFill.alpha;
-              buttonLineHeadColor.state.isEnabled = markerHeadFill.enable && hasLineHead;
-              if (last instanceof wcardinalUi.EShapeConnectorLine) {
-                  inputLineHeadMargin.input.value = last.edge.head.margin;
-                  inputLineHeadMargin.state.isEnabled = hasLineHead;
+              if (wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.LINE_TAIL)) {
+                  layoutLineTail.show();
+                  buttonLineTailLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE_TAIL);
+                  var markerTail = points.marker.tail;
+                  selectLineTailType.show();
+                  selectLineTailType.value = markerTail.type;
+                  layoutLineTailSize.show();
+                  inputLineTailSizeX.value = markerTail.size.x;
+                  inputLineTailSizeY.value = markerTail.size.y;
+                  buttonLineTailColor.show();
+                  var markerTailFill = markerTail.fill;
+                  var buttonLineTailColorValue = buttonLineTailColor.value;
+                  buttonLineTailColorValue.color = markerTailFill.color;
+                  buttonLineTailColorValue.alpha = markerTailFill.alpha;
+                  buttonLineTailColor.state.isEnabled = markerTailFill.enable;
+                  if (last instanceof wcardinalUi.EShapeConnectorLine) {
+                      inputLineTailMargin.show();
+                      inputLineTailMargin.input.value = last.edge.tail.margin;
+                  }
+                  else {
+                      inputLineTailMargin.hide();
+                  }
               }
               else {
-                  inputLineHeadMargin.state.isEnabled = false;
+                  layoutLineTail.hide();
+                  selectLineTailType.hide();
+                  layoutLineTailSize.hide();
+                  buttonLineTailColor.hide();
+                  inputLineTailMargin.hide();
+              }
+              if (wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.LINE_HEAD)) {
+                  layoutLineHead.show();
+                  buttonLineHeadLock.state.isActive = this.isLocked(last, wcardinalUi.EShapeCapability.LINE_HEAD);
+                  var markerHead = points.marker.head;
+                  selectLineHeadType.show();
+                  selectLineHeadType.value = markerHead.type;
+                  layoutLineHeadSize.show();
+                  inputLineHeadSizeX.value = markerHead.size.x;
+                  inputLineHeadSizeY.value = markerHead.size.y;
+                  buttonLineHeadColor.show();
+                  var markerHeadFill = markerHead.fill;
+                  var buttonLineHeadColorValue = buttonLineHeadColor.value;
+                  buttonLineHeadColorValue.color = markerHeadFill.color;
+                  buttonLineHeadColorValue.alpha = markerHeadFill.alpha;
+                  buttonLineHeadColor.state.isEnabled = markerHeadFill.enable;
+                  if (last instanceof wcardinalUi.EShapeConnectorLine) {
+                      inputLineHeadMargin.show();
+                      inputLineHeadMargin.input.value = last.edge.head.margin;
+                  }
+                  else {
+                      inputLineHeadMargin.hide();
+                  }
+              }
+              else {
+                  layoutLineHead.hide();
+                  selectLineHeadType.hide();
+                  layoutLineHeadSize.hide();
+                  buttonLineHeadColor.hide();
+                  inputLineHeadMargin.hide();
               }
           }
           else {
-              layoutLine.state.isEnabled = false;
-              buttonLineLock.state.isEnabled = false;
-              selectLineType.state.isEnabled = false;
-              buttonLineClosed.state.isEnabled = false;
-              layoutLineTail.state.isEnabled = false;
-              buttonLineTailLock.state.isEnabled = false;
-              selectLineTailType.state.isEnabled = false;
-              inputLineTailSizeX.state.isEnabled = false;
-              inputLineTailSizeY.state.isEnabled = false;
-              buttonLineTailColor.state.isEnabled = false;
-              inputLineTailMargin.state.isEnabled = false;
-              layoutLineHead.state.isEnabled = false;
-              buttonLineHeadLock.state.isEnabled = false;
-              selectLineHeadType.state.isEnabled = false;
-              inputLineHeadSizeX.state.isEnabled = false;
-              inputLineHeadSizeY.state.isEnabled = false;
-              buttonLineHeadColor.state.isEnabled = false;
-              inputLineHeadMargin.state.isEnabled = false;
+              layoutLine.hide();
+              selectLineType.hide();
+              layoutLineTail.hide();
+              selectLineTailType.hide();
+              layoutLineTailSize.hide();
+              buttonLineTailColor.hide();
+              inputLineTailMargin.hide();
+              layoutLineHead.hide();
+              selectLineHeadType.hide();
+              layoutLineHeadSize.hide();
+              buttonLineHeadColor.hide();
+              inputLineHeadMargin.hide();
+          }
+          // Angle
+          var textAngle = this.textAngle;
+          var inputAngle = this.inputAngle;
+          if (last != null) {
+              if (wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.ANGLE)) {
+                  textAngle.show();
+                  inputAngle.show();
+                  inputAngle.value = last.angle;
+              }
+              else {
+                  textAngle.hide();
+                  inputAngle.hide();
+              }
+          }
+          else {
+              textAngle.hide();
+              inputAngle.hide();
           }
           // Corner
+          var textCorner = this.textCorner;
+          var inputCornerRadius = this.inputCornerRadius;
+          var layoutCorner = this.layoutCorner;
           if (last != null) {
-              var hasBorderRadius = wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.BORDER_RADIUS);
-              this.textCorner.state.isEnabled = hasBorderRadius;
-              this.inputCornerRadius.value = last.radius;
-              this.inputCornerRadius.state.isEnabled = hasBorderRadius;
-              this.layoutCorner.state.isEnabled = hasBorderRadius;
-              this.buttonCornerBottomLeft.state.isActive = !!(last.corner & wcardinalUi.EShapeCorner.BOTTOM_LEFT);
-              this.buttonCornerBottomRight.state.isActive = !!(last.corner & wcardinalUi.EShapeCorner.BOTTOM_RIGHT);
-              this.buttonCornerTopLeft.state.isActive = !!(last.corner & wcardinalUi.EShapeCorner.TOP_LEFT);
-              this.buttonCornerTopRight.state.isActive = !!(last.corner & wcardinalUi.EShapeCorner.TOP_RIGHT);
+              if (wcardinalUi.EShapeCapabilities.contains(last, wcardinalUi.EShapeCapability.BORDER_RADIUS)) {
+                  textCorner.show();
+                  inputCornerRadius.show();
+                  inputCornerRadius.value = last.radius;
+                  layoutCorner.show();
+                  var corner = last.corner;
+                  this.buttonCornerBottomLeft.state.isActive = !!(corner & wcardinalUi.EShapeCorner.BOTTOM_LEFT);
+                  this.buttonCornerBottomRight.state.isActive = !!(corner & wcardinalUi.EShapeCorner.BOTTOM_RIGHT);
+                  this.buttonCornerTopLeft.state.isActive = !!(corner & wcardinalUi.EShapeCorner.TOP_LEFT);
+                  this.buttonCornerTopRight.state.isActive = !!(corner & wcardinalUi.EShapeCorner.TOP_RIGHT);
+              }
+              else {
+                  textCorner.hide();
+                  inputCornerRadius.hide();
+                  layoutCorner.hide();
+              }
+          }
+          else {
+              textCorner.hide();
+              inputCornerRadius.hide();
+              layoutCorner.hide();
           }
           // Texture
           if (last != null) {
-              this.buttonTextureFitTo.state.isDisabled = last.image == null;
-              this.buttonTextureClear.state.isDisabled = last.image == null;
+              var hasImage = last.image != null;
+              this.buttonTextureFitTo.state.isEnabled = hasImage;
+              this.buttonTextureClear.state.isEnabled = hasImage;
           }
       };
       EEditorShape.prototype.getType = function () {
@@ -28171,6 +28289,12 @@
           var shapes = this._shapes;
           if (0 < shapes.length) {
               wcardinalUi.DControllers.getCommandController().push(new ECommandShapePropertyCursor(this, cursor));
+          }
+      };
+      EToolSelectSelection.prototype.setAngle = function (angle) {
+          var shapes = this._shapes;
+          if (0 < shapes.length) {
+              wcardinalUi.DControllers.getCommandController().push(new ECommandShapePropertyAngle(this, angle));
           }
       };
       EToolSelectSelection.prototype.setRadius = function (radius) {
@@ -32950,17 +33074,17 @@
           var theme = this._theme;
           return this.newToolShapeButtonCreate(theme.getToolShapeButtonCircleTitle(), "shape_circle", wcardinalUi.EShapeCircle);
       };
-      Object.defineProperty(FGraphicEditor.prototype, "toolShapeButtonSemicircle", {
+      Object.defineProperty(FGraphicEditor.prototype, "toolShapeButtonSector", {
           get: function () {
               var _a;
-              return ((_a = this._toolShapeButtonSemicircle) !== null && _a !== void 0 ? _a : (this._toolShapeButtonSemicircle = this.newToolShapeButtonSemicircle()));
+              return ((_a = this._toolShapeButtonSector) !== null && _a !== void 0 ? _a : (this._toolShapeButtonSector = this.newToolShapeButtonSector()));
           },
           enumerable: false,
           configurable: true
       });
-      FGraphicEditor.prototype.newToolShapeButtonSemicircle = function () {
+      FGraphicEditor.prototype.newToolShapeButtonSector = function () {
           var theme = this._theme;
-          return this.newToolShapeButtonCreate(theme.getToolShapeButtonSemicircleTitle(), "shape_semicircle", wcardinalUi.EShapeSemicircle);
+          return this.newToolShapeButtonCreate(theme.getToolShapeButtonSectorTitle(), "shape_sector", wcardinalUi.EShapeSector);
       };
       Object.defineProperty(FGraphicEditor.prototype, "toolShapeButtonRectangle", {
           get: function () {
@@ -33418,7 +33542,7 @@
               this.toolShapeButtonSelect,
               this.toolShapeButtonLine,
               this.toolShapeButtonCircle,
-              this.toolShapeButtonSemicircle,
+              this.toolShapeButtonSector,
               this.toolShapeButtonRectangle,
               this.toolShapeButtonRectangleRounded,
               this.toolShapeButtonTriangle,
@@ -36942,6 +37066,7 @@
     ECommandShapeGroup: ECommandShapeGroup,
     ECommandShapeProperty: ECommandShapeProperty,
     ECommandShapePropertyAll: ECommandShapePropertyAll,
+    ECommandShapePropertyAngle: ECommandShapePropertyAngle,
     ECommandShapePropertyCapability: ECommandShapePropertyCapability,
     ECommandShapePropertyCapabilityLock: ECommandShapePropertyCapabilityLock,
     ECommandShapePropertyCapabilityUnlock: ECommandShapePropertyCapabilityUnlock,
