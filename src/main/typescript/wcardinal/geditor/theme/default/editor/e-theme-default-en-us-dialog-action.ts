@@ -39,7 +39,7 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 	}
 
 	override getInputAngleLabel(): string | undefined {
-		return "Angle";
+		return "C. Angle";
 	}
 
 	override getInputAngleUnitLabel(): string | undefined {

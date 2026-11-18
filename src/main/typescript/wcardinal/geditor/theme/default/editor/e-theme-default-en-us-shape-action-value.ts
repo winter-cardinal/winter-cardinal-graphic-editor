@@ -34,7 +34,7 @@ export class EThemeDefaultEnUsShapeActionValue extends EThemeDefaultShapeActionV
 			case EShapeActionValueType.OPEN:
 				return "Open";
 			case EShapeActionValueType.CHANGE_ANGLE:
-				return "Change Angle";
+				return "Change Central Angle";
 			case EShapeActionValueType.CHANGE_COLOR:
 			case EShapeActionValueType.CHANGE_COLOR_LEGACY:
 				return "Change Color";
