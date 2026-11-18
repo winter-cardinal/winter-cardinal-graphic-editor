@@ -33,11 +33,13 @@ export class EThemeDefaultJaJpShapeActionValue extends EThemeDefaultShapeActionV
 				return "移動・回転・拡大縮小";
 			case EShapeActionValueType.OPEN:
 				return "開く";
+			case EShapeActionValueType.CHANGE_ANGLE:
+				return "中心角変更";
 			case EShapeActionValueType.CHANGE_COLOR:
 			case EShapeActionValueType.CHANGE_COLOR_LEGACY:
 				return "色変更";
 			case EShapeActionValueType.CHANGE_FILL_PERCENT:
-				return "塗り％";
+				return "塗り％変更";
 			case EShapeActionValueType.CHANGE_TEXT:
 				return "テキスト変更";
 			case EShapeActionValueType.CHANGE_CURSOR:
