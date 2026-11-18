@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.14.0
+ WinterCardinal Graphic Editor v1.14.1
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -1907,7 +1907,7 @@
             return "ms";
         };
         EThemeDefaultEnUsDialogAction.prototype.getInputAngleLabel = function () {
-            return "Angle";
+            return "C. Angle";
         };
         EThemeDefaultEnUsDialogAction.prototype.getInputAngleUnitLabel = function () {
             return "rad";
@@ -2992,7 +2992,7 @@
                 case wcardinalUi.EShapeActionValueType.OPEN:
                     return "Open";
                 case wcardinalUi.EShapeActionValueType.CHANGE_ANGLE:
-                    return "Change Angle";
+                    return "Change Central Angle";
                 case wcardinalUi.EShapeActionValueType.CHANGE_COLOR:
                 case wcardinalUi.EShapeActionValueType.CHANGE_COLOR_LEGACY:
                     return "Change Color";
