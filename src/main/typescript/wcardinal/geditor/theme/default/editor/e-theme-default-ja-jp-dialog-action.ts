@@ -38,6 +38,14 @@ export class EThemeDefaultJaJpDialogAction extends EThemeDefaultDialogAction {
 		return "ミリ秒";
 	}
 
+	override getInputAngleLabel(): string | undefined {
+		return "中心角";
+	}
+
+	override getInputAngleUnitLabel(): string | undefined {
+		return "ラジアン";
+	}
+
 	override getInputSizeLabel(): string | undefined {
 		return "サイズ";
 	}
@@ -157,6 +165,7 @@ export class EThemeDefaultJaJpDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("type", "number", "シェイプ種別"));
 		result.push(this.newKeyword("size.x", "number", "シェイプの横幅"));
 		result.push(this.newKeyword("size.y", "number", "シェイプの高さ"));
+		result.push(this.newKeyword("angle", "number", "シェイプの中心角（ラジアン単位）"));
 		result.push(this.newKeyword("fill.enable", "boolean", "シェイプの塗りが有効かどうかの真偽値"));
 		result.push(this.newKeyword("fill.color", "number", "シェイプの塗りのRGB色"));
 		result.push(this.newKeyword("fill.alpha", "number", "シェイプの塗りの透明度"));

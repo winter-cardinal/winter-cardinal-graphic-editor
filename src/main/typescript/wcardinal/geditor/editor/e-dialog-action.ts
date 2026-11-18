@@ -74,7 +74,9 @@ import {
 	DApplications,
 	EShapeActionMiscExtensions,
 	EShapeActionValueMiscExtension,
-	EShapeActionValueChangeFillPercent
+	EShapeActionValueChangeFillPercent,
+	EShapeActionValueChangeAngle,
+	DInputText
 } from "@wcardinal/wcardinal-ui";
 import { DisplayObject, Texture } from "pixi.js";
 import { EShapeActionExtensions } from "../extension";
@@ -103,6 +105,8 @@ export interface EThemeDialogAction extends DThemeDialogLayered {
 	getInputConditionLabel(): string | undefined;
 	getInputIntervalLabel(): string | undefined;
 	getInputIntervalUnitLabel(): string | undefined;
+	getInputAngleLabel(): string | undefined;
+	getInputAngleUnitLabel(): string | undefined;
 	getInputSizeLabel(): string | undefined;
 	getInputAmountLabel(): string | undefined;
 	getInputValueLabel(): string | undefined;
@@ -178,6 +182,8 @@ export class EDialogAction extends DDialogLayered<
 	protected _size?: DInputTextAndLabel;
 	protected _amount?: DInputTextAndLabel;
 	protected _contents?: DInputTextAndLabel;
+	protected _centralAngle?: DInputText;
+	protected _centralAngleLayout?: DLayoutHorizontal;
 	protected _initialization?: DInputTextAndLabel;
 	protected _pointerEventsLayout?: DLayoutHorizontal;
 	protected _pointerEvents?: DButtonCheck<string>;
@@ -245,6 +251,7 @@ export class EDialogAction extends DDialogLayered<
 			this.target,
 			this.argument,
 			this.contents,
+			this.centralAngleLayout,
 			this.initialization,
 			this.pointerEventsLayout,
 			this.colorCode,
@@ -349,6 +356,12 @@ export class EDialogAction extends DDialogLayered<
 				value: EShapeActionValueType.TRANSFORM,
 				text: {
 					value: themeShape.toTypeLabel(EShapeActionValueType.TRANSFORM)
+				}
+			},
+			{
+				value: EShapeActionValueType.CHANGE_ANGLE,
+				text: {
+					value: themeShape.toTypeLabel(EShapeActionValueType.CHANGE_ANGLE)
 				}
 			},
 			{
@@ -2029,6 +2042,59 @@ export class EDialogAction extends DDialogLayered<
 		}
 	}
 
+	// Central Angle
+	protected get centralAngle(): DInputText {
+		return (this._centralAngle ??= this.newCentralAngle());
+	}
+
+	protected newCentralAngle(): DInputText {
+		return new DInputText({
+			weight: 1,
+			text: {
+				value: ""
+			},
+			on: {
+				enter: () => {
+					this.ok();
+				}
+			}
+		});
+	}
+
+	protected get centralAngleLayout(): DLayoutHorizontal {
+		return (this._centralAngleLayout ??= this.newCentralAngleLayout());
+	}
+
+	protected newCentralAngleLayout(): DLayoutHorizontal {
+		const theme = this.theme;
+		return new DLayoutHorizontal({
+			width: "padding",
+			height: "auto",
+			children: [
+				this.newLabel(theme.getInputAngleLabel()),
+				this.centralAngle,
+				new DText<string>({
+					width: 60,
+					text: {
+						value: theme.getInputAngleUnitLabel(),
+						align: {
+							horizontal: DAlignHorizontal.LEFT
+						}
+					}
+				})
+			]
+		});
+	}
+
+	protected onChangeCentralAngleLayout(select: number | null): void {
+		const angleLayout = this.centralAngleLayout;
+		if (select === EShapeActionValueType.CHANGE_ANGLE) {
+			angleLayout.show();
+		} else {
+			angleLayout.hide();
+		}
+	}
+
 	// Initialization
 	protected get initialization(): DInputTextAndLabel {
 		return (this._initialization ??= this.newInitialization());
@@ -2906,6 +2972,7 @@ export class EDialogAction extends DDialogLayered<
 		this.onChangeArgument(select);
 		this.onChangeTargetName(select);
 		this.onChangeContents(select);
+		this.onChangeCentralAngleLayout(select);
 		this.onChangeInitialization(select);
 		this.onChangePointerEventsLayout(select);
 		this.onChangeTransformTypeLayout(select);
@@ -2946,6 +3013,7 @@ export class EDialogAction extends DDialogLayered<
 		this.size.input.value = "";
 		this.amount.input.value = "";
 		this.contents.input.value = "";
+		this.centralAngle.value = "";
 		this.initialization.input.value = "";
 		this.pointerEvents.state.isActive = true;
 		this.targetName.input.value = "";
@@ -3000,6 +3068,8 @@ export class EDialogAction extends DDialogLayered<
 						blinkColor.color,
 						blinkColor.alpha
 					);
+				case EShapeActionValueType.CHANGE_ANGLE:
+					return new EShapeActionValueChangeAngle(condition, this.centralAngle.value);
 				case EShapeActionValueType.CHANGE_COLOR:
 					const changeColorType = EShapeActionValueChangeColorTypes.pack(
 						this.changeColorType.values
@@ -3255,6 +3325,9 @@ export class EDialogAction extends DDialogLayered<
 				this.interval.value = value.interval;
 				this.color.value.color = value.color;
 				this.color.value.alpha = value.alpha;
+			} else if (value instanceof EShapeActionValueChangeAngle) {
+				this.condition.input.value = value.condition;
+				this.centralAngle.value = value.value;
 			} else if (value instanceof EShapeActionValueChangeColor) {
 				this.condition.input.value = value.condition;
 				this.changeColorType.values = EShapeActionValueChangeColorTypes.unpack(

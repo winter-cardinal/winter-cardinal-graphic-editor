@@ -38,6 +38,14 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 		return "ms";
 	}
 
+	override getInputAngleLabel(): string | undefined {
+		return "Angle";
+	}
+
+	override getInputAngleUnitLabel(): string | undefined {
+		return "rad";
+	}
+
 	override getInputSizeLabel(): string | undefined {
 		return "Size";
 	}
@@ -157,6 +165,7 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("type", "number", "A shape type."));
 		result.push(this.newKeyword("size.x", "number", "A shape width."));
 		result.push(this.newKeyword("size.y", "number", "A shape height."));
+		result.push(this.newKeyword("angle", "number", "A central angle of a shape in radians."));
 		result.push(this.newKeyword("fill.enable", "boolean", "True if a fill of a shape is enabled."));
 		result.push(this.newKeyword("fill.color", "number", "A fill color of a shape."));
 		result.push(this.newKeyword("fill.alpha", "number", "A fill alpha of a shape."));
@@ -170,7 +179,7 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 		result.push(this.newKeyword("transform.position.y", "number", "A shape Y position."));
 		result.push(this.newKeyword("transform.pivot.x", "number", "A X-coordinate pivot of a shape."));
 		result.push(this.newKeyword("transform.pivot.y", "number", "A Y-coordinate pivot of a shape."));
-		result.push(this.newKeyword("transform.rotation", "number", "A rotation of a shape."));
+		result.push(this.newKeyword("transform.rotation", "number", "A rotation angle of a shape in radians."));
 		result.push(this.newKeyword("transform.skew.x", "number", "A X-coordinate skew of a shape."));
 		result.push(this.newKeyword("transform.skew.y", "number", "A Y-coordinate skew of a shape."));
 		result.push(this.newKeyword("transform.scale.x", "number", "A X-coordinate scale of a shape."));

@@ -1591,6 +1591,8 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 	}
 
 	protected newInputAngle(): DInputReal {
+		const toDegree = 180 / Math.PI;
+		const toRadian = Math.PI / 180;
 		return new DInputReal({
 			width: "100%",
 			min: 0,
@@ -1598,15 +1600,15 @@ export class EEditorShape extends DPane<EThemeEditorShape, DContentOptions, EEdi
 			max: 180,
 			text: {
 				formatter: (value: number): string => {
-					return `${+(value * 360).toFixed(2)}°`;
+					return `${+(value * toDegree).toFixed(2)}°`;
 				}
 			},
 			editing: {
 				formatter: (value: number): string => {
-					return `${+(value * 360).toFixed(2)}`;
+					return `${+(value * toDegree).toFixed(2)}`;
 				},
 				unformatter: (text: string): number => {
-					return parseFloat(text) / 360;
+					return parseFloat(text) * toRadian;
 				}
 			},
 			on: {
