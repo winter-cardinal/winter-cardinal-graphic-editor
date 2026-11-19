@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.14.1
+ WinterCardinal Graphic Editor v1.15.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -1906,11 +1906,17 @@
         EThemeDefaultEnUsDialogAction.prototype.getInputIntervalUnitLabel = function () {
             return "ms";
         };
-        EThemeDefaultEnUsDialogAction.prototype.getInputAngleLabel = function () {
+        EThemeDefaultEnUsDialogAction.prototype.getInputCentralAngleLabel = function () {
             return "C. Angle";
         };
-        EThemeDefaultEnUsDialogAction.prototype.getInputAngleUnitLabel = function () {
-            return "rad";
+        EThemeDefaultEnUsDialogAction.prototype.getInputCentralAngleUnitLabel = function () {
+            return "deg";
+        };
+        EThemeDefaultEnUsDialogAction.prototype.getInputRotationAngleLabel = function () {
+            return "Amount";
+        };
+        EThemeDefaultEnUsDialogAction.prototype.getInputRotationAngleUnitLabel = function () {
+            return "deg";
         };
         EThemeDefaultEnUsDialogAction.prototype.getInputSizeLabel = function () {
             return "Size";

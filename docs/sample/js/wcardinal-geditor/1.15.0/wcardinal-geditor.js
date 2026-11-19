@@ -1,5 +1,5 @@
 /*
- WinterCardinal Graphic Editor v1.14.1
+ WinterCardinal Graphic Editor v1.15.0
  Copyright (C) TOSHIBA Coorporation
  SPDX-License-Identifier: Apache-2.0
 
@@ -12677,7 +12677,7 @@
       EDialogAction.prototype.newContentChildren = function (theme, options) {
           var _this = this;
           var result = _super.prototype.newContentChildren.call(this, theme, options);
-          result.push(this.selectLayout, this.showHideTypeLayout, this.blinkTypeLayout, this.transformTypeLayout, this.changeColorTypeLayout, this.changeColorTargetLayout, this.rotateTypeLayout, this.resizeTypeLayout, this.originXLayout, this.originYLayout, this.moveTypeLayout, this.openTypeLayout, this.openDialogTypeLayout, this.changeTextTypeLayout, this.miscTypeLayout, this.onInputActionLayout, this.whenTypeLayout, this.gestureTypeLayout, this.gestureOperationTypeLayout, this.selectLayerLayout, this.condition, this.intervalLayout, this.size, this.amount, this.targetName, this.colorLayout, this.target, this.argument, this.contents, this.centralAngleLayout, this.initialization, this.pointerEventsLayout, this.colorCode, this.alphaCode, this.brightness, this.blend, this.initial, this.step, this.min, this.max, this.scaleLayout, this.checkBringToFrontLayout, this.inNewWindowLayout);
+          result.push(this.selectLayout, this.showHideTypeLayout, this.blinkTypeLayout, this.transformTypeLayout, this.changeColorTypeLayout, this.changeColorTargetLayout, this.rotateTypeLayout, this.resizeTypeLayout, this.originXLayout, this.originYLayout, this.moveTypeLayout, this.openTypeLayout, this.openDialogTypeLayout, this.changeTextTypeLayout, this.miscTypeLayout, this.onInputActionLayout, this.whenTypeLayout, this.gestureTypeLayout, this.gestureOperationTypeLayout, this.selectLayerLayout, this.condition, this.intervalLayout, this.size, this.amount, this.targetName, this.colorLayout, this.target, this.argument, this.contents, this.centralAngleLayout, this.rotationAngleLayout, this.initialization, this.pointerEventsLayout, this.colorCode, this.alphaCode, this.brightness, this.blend, this.initial, this.step, this.min, this.max, this.scaleLayout, this.checkBringToFrontLayout, this.inNewWindowLayout);
           var onChangeBound = function () {
               _this.onChange();
           };
@@ -14412,7 +14412,7 @@
           }
       };
       Object.defineProperty(EDialogAction.prototype, "amount", {
-          // Move amount
+          // Translation Amount
           get: function () {
               var _a;
               return ((_a = this._amount) !== null && _a !== void 0 ? _a : (this._amount = this.newAmount()));
@@ -14448,8 +14448,7 @@
           var amount = this.amount;
           if (select === wcardinalUi.EShapeActionValueType.TRANSFORM) {
               var transformType = this.transformType.value;
-              if (transformType === wcardinalUi.EShapeActionValueTransformType.MOVE ||
-                  transformType === wcardinalUi.EShapeActionValueTransformType.ROTATE) {
+              if (transformType === wcardinalUi.EShapeActionValueTransformType.MOVE) {
                   amount.show();
               }
               else {
@@ -14554,12 +14553,12 @@
               width: "padding",
               height: "auto",
               children: [
-                  this.newLabel(theme.getInputAngleLabel()),
+                  this.newLabel(theme.getInputCentralAngleLabel()),
                   this.centralAngle,
                   new wcardinalUi.DText({
                       width: 60,
                       text: {
-                          value: theme.getInputAngleUnitLabel(),
+                          value: theme.getInputCentralAngleUnitLabel(),
                           align: {
                               horizontal: wcardinalUi.DAlignHorizontal.LEFT
                           }
@@ -14569,12 +14568,78 @@
           });
       };
       EDialogAction.prototype.onChangeCentralAngleLayout = function (select) {
-          var angleLayout = this.centralAngleLayout;
+          var centralAngleLayout = this.centralAngleLayout;
           if (select === wcardinalUi.EShapeActionValueType.CHANGE_ANGLE) {
-              angleLayout.show();
+              centralAngleLayout.show();
           }
           else {
-              angleLayout.hide();
+              centralAngleLayout.hide();
+          }
+      };
+      Object.defineProperty(EDialogAction.prototype, "rotationAngle", {
+          // Rotation Angle
+          get: function () {
+              var _a;
+              return ((_a = this._rotationAngle) !== null && _a !== void 0 ? _a : (this._rotationAngle = this.newRotationAngle()));
+          },
+          enumerable: false,
+          configurable: true
+      });
+      EDialogAction.prototype.newRotationAngle = function () {
+          var _this = this;
+          return new wcardinalUi.DInputText({
+              weight: 1,
+              text: {
+                  value: ""
+              },
+              on: {
+                  enter: function () {
+                      _this.ok();
+                  }
+              }
+          });
+      };
+      Object.defineProperty(EDialogAction.prototype, "rotationAngleLayout", {
+          get: function () {
+              var _a;
+              return ((_a = this._rotationAngleLayout) !== null && _a !== void 0 ? _a : (this._rotationAngleLayout = this.newRotationAngleLayout()));
+          },
+          enumerable: false,
+          configurable: true
+      });
+      EDialogAction.prototype.newRotationAngleLayout = function () {
+          var theme = this.theme;
+          return new wcardinalUi.DLayoutHorizontal({
+              width: "padding",
+              height: "auto",
+              children: [
+                  this.newLabel(theme.getInputRotationAngleLabel()),
+                  this.rotationAngle,
+                  new wcardinalUi.DText({
+                      width: 60,
+                      text: {
+                          value: theme.getInputRotationAngleUnitLabel(),
+                          align: {
+                              horizontal: wcardinalUi.DAlignHorizontal.LEFT
+                          }
+                      }
+                  })
+              ]
+          });
+      };
+      EDialogAction.prototype.onChangeRotationAngleLayout = function (select) {
+          var rotationAngleLayout = this.rotationAngleLayout;
+          if (select === wcardinalUi.EShapeActionValueType.TRANSFORM) {
+              var transformType = this.transformType.value;
+              if (transformType === wcardinalUi.EShapeActionValueTransformType.ROTATE) {
+                  rotationAngleLayout.show();
+              }
+              else {
+                  rotationAngleLayout.hide();
+              }
+          }
+          else {
+              rotationAngleLayout.hide();
           }
       };
       Object.defineProperty(EDialogAction.prototype, "initialization", {
@@ -15546,6 +15611,7 @@
           this.onChangeTargetName(select);
           this.onChangeContents(select);
           this.onChangeCentralAngleLayout(select);
+          this.onChangeRotationAngleLayout(select);
           this.onChangeInitialization(select);
           this.onChangePointerEventsLayout(select);
           this.onChangeTransformTypeLayout(select);
@@ -15584,6 +15650,7 @@
           this.amount.input.value = "";
           this.contents.input.value = "";
           this.centralAngle.value = "";
+          this.rotationAngle.value = "";
           this.initialization.input.value = "";
           this.pointerEvents.state.isActive = true;
           this.targetName.input.value = "";
@@ -15663,7 +15730,7 @@
                               case wcardinalUi.EShapeActionValueTransformType.ROTATE:
                                   var rotateType = this.rotateType.value ||
                                       wcardinalUi.EShapeActionValueTransformRotateType.RELATIVE;
-                                  return new wcardinalUi.EShapeActionValueTransformRotate(rotateType, condition, originX, originY, this.amount.input.value);
+                                  return new wcardinalUi.EShapeActionValueTransformRotate(rotateType, condition, originX, originY, this.rotationAngle.value);
                           }
                           break;
                       case wcardinalUi.EShapeActionValueType.CHANGE_FILL_PERCENT:
@@ -15812,7 +15879,7 @@
                       this.rotateType.value = value.opetype;
                       this.originX.value = value.originX;
                       this.originY.value = value.originY;
-                      this.amount.input.value = value.amount;
+                      this.rotationAngle.value = value.amount;
                   }
                   else if (value instanceof wcardinalUi.EShapeActionValueChangeFillPercent) {
                       this.condition.input.value = value.condition;
