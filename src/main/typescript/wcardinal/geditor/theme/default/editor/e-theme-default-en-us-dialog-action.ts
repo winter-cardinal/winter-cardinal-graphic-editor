@@ -38,12 +38,20 @@ export class EThemeDefaultEnUsDialogAction extends EThemeDefaultDialogAction {
 		return "ms";
 	}
 
-	override getInputAngleLabel(): string | undefined {
+	override getInputCentralAngleLabel(): string | undefined {
 		return "C. Angle";
 	}
 
-	override getInputAngleUnitLabel(): string | undefined {
-		return "rad";
+	override getInputCentralAngleUnitLabel(): string | undefined {
+		return "deg";
+	}
+
+	override getInputRotationAngleLabel(): string | undefined {
+		return "Amount";
+	}
+
+	override getInputRotationAngleUnitLabel(): string | undefined {
+		return "deg";
 	}
 
 	override getInputSizeLabel(): string | undefined {

@@ -38,12 +38,20 @@ export class EThemeDefaultJaJpDialogAction extends EThemeDefaultDialogAction {
 		return "ミリ秒";
 	}
 
-	override getInputAngleLabel(): string | undefined {
+	override getInputCentralAngleLabel(): string | undefined {
 		return "中心角";
 	}
 
-	override getInputAngleUnitLabel(): string | undefined {
-		return "ラジアン";
+	override getInputCentralAngleUnitLabel(): string | undefined {
+		return "度";
+	}
+
+	override getInputRotationAngleLabel(): string | undefined {
+		return "量";
+	}
+
+	override getInputRotationAngleUnitLabel(): string | undefined {
+		return "度";
 	}
 
 	override getInputSizeLabel(): string | undefined {

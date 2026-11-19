@@ -23,9 +23,13 @@ export abstract class EThemeDefaultDialogAction
 
 	abstract getInputIntervalUnitLabel(): string | undefined;
 
-	abstract getInputAngleLabel(): string | undefined;
+	abstract getInputCentralAngleLabel(): string | undefined;
 
-	abstract getInputAngleUnitLabel(): string | undefined;
+	abstract getInputCentralAngleUnitLabel(): string | undefined;
+
+	abstract getInputRotationAngleLabel(): string | undefined;
+
+	abstract getInputRotationAngleUnitLabel(): string | undefined;
 
 	abstract getInputSizeLabel(): string | undefined;
 

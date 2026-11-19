@@ -105,8 +105,10 @@ export interface EThemeDialogAction extends DThemeDialogLayered {
 	getInputConditionLabel(): string | undefined;
 	getInputIntervalLabel(): string | undefined;
 	getInputIntervalUnitLabel(): string | undefined;
-	getInputAngleLabel(): string | undefined;
-	getInputAngleUnitLabel(): string | undefined;
+	getInputCentralAngleLabel(): string | undefined;
+	getInputCentralAngleUnitLabel(): string | undefined;
+	getInputRotationAngleLabel(): string | undefined;
+	getInputRotationAngleUnitLabel(): string | undefined;
 	getInputSizeLabel(): string | undefined;
 	getInputAmountLabel(): string | undefined;
 	getInputValueLabel(): string | undefined;
@@ -184,6 +186,8 @@ export class EDialogAction extends DDialogLayered<
 	protected _contents?: DInputTextAndLabel;
 	protected _centralAngle?: DInputText;
 	protected _centralAngleLayout?: DLayoutHorizontal;
+	protected _rotationAngle?: DInputText;
+	protected _rotationAngleLayout?: DLayoutHorizontal;
 	protected _initialization?: DInputTextAndLabel;
 	protected _pointerEventsLayout?: DLayoutHorizontal;
 	protected _pointerEvents?: DButtonCheck<string>;
@@ -252,6 +256,7 @@ export class EDialogAction extends DDialogLayered<
 			this.argument,
 			this.contents,
 			this.centralAngleLayout,
+			this.rotationAngleLayout,
 			this.initialization,
 			this.pointerEventsLayout,
 			this.colorCode,
@@ -1942,7 +1947,7 @@ export class EDialogAction extends DDialogLayered<
 		}
 	}
 
-	// Move amount
+	// Translation Amount
 	protected get amount(): DInputTextAndLabel {
 		return (this._amount ??= this.newAmount());
 	}
@@ -1975,10 +1980,7 @@ export class EDialogAction extends DDialogLayered<
 		const amount = this.amount;
 		if (select === EShapeActionValueType.TRANSFORM) {
 			const transformType = this.transformType.value;
-			if (
-				transformType === EShapeActionValueTransformType.MOVE ||
-				transformType === EShapeActionValueTransformType.ROTATE
-			) {
+			if (transformType === EShapeActionValueTransformType.MOVE) {
 				amount.show();
 			} else {
 				amount.hide();
@@ -2071,12 +2073,12 @@ export class EDialogAction extends DDialogLayered<
 			width: "padding",
 			height: "auto",
 			children: [
-				this.newLabel(theme.getInputAngleLabel()),
+				this.newLabel(theme.getInputCentralAngleLabel()),
 				this.centralAngle,
 				new DText<string>({
 					width: 60,
 					text: {
-						value: theme.getInputAngleUnitLabel(),
+						value: theme.getInputCentralAngleUnitLabel(),
 						align: {
 							horizontal: DAlignHorizontal.LEFT
 						}
@@ -2087,11 +2089,69 @@ export class EDialogAction extends DDialogLayered<
 	}
 
 	protected onChangeCentralAngleLayout(select: number | null): void {
-		const angleLayout = this.centralAngleLayout;
+		const centralAngleLayout = this.centralAngleLayout;
 		if (select === EShapeActionValueType.CHANGE_ANGLE) {
-			angleLayout.show();
+			centralAngleLayout.show();
 		} else {
-			angleLayout.hide();
+			centralAngleLayout.hide();
+		}
+	}
+
+	// Rotation Angle
+	protected get rotationAngle(): DInputText {
+		return (this._rotationAngle ??= this.newRotationAngle());
+	}
+
+	protected newRotationAngle(): DInputText {
+		return new DInputText({
+			weight: 1,
+			text: {
+				value: ""
+			},
+			on: {
+				enter: () => {
+					this.ok();
+				}
+			}
+		});
+	}
+
+	protected get rotationAngleLayout(): DLayoutHorizontal {
+		return (this._rotationAngleLayout ??= this.newRotationAngleLayout());
+	}
+
+	protected newRotationAngleLayout(): DLayoutHorizontal {
+		const theme = this.theme;
+		return new DLayoutHorizontal({
+			width: "padding",
+			height: "auto",
+			children: [
+				this.newLabel(theme.getInputRotationAngleLabel()),
+				this.rotationAngle,
+				new DText<string>({
+					width: 60,
+					text: {
+						value: theme.getInputRotationAngleUnitLabel(),
+						align: {
+							horizontal: DAlignHorizontal.LEFT
+						}
+					}
+				})
+			]
+		});
+	}
+
+	protected onChangeRotationAngleLayout(select: number | null): void {
+		const rotationAngleLayout = this.rotationAngleLayout;
+		if (select === EShapeActionValueType.TRANSFORM) {
+			const transformType = this.transformType.value;
+			if (transformType === EShapeActionValueTransformType.ROTATE) {
+				rotationAngleLayout.show();
+			} else {
+				rotationAngleLayout.hide();
+			}
+		} else {
+			rotationAngleLayout.hide();
 		}
 	}
 
@@ -2973,6 +3033,7 @@ export class EDialogAction extends DDialogLayered<
 		this.onChangeTargetName(select);
 		this.onChangeContents(select);
 		this.onChangeCentralAngleLayout(select);
+		this.onChangeRotationAngleLayout(select);
 		this.onChangeInitialization(select);
 		this.onChangePointerEventsLayout(select);
 		this.onChangeTransformTypeLayout(select);
@@ -3014,6 +3075,7 @@ export class EDialogAction extends DDialogLayered<
 		this.amount.input.value = "";
 		this.contents.input.value = "";
 		this.centralAngle.value = "";
+		this.rotationAngle.value = "";
 		this.initialization.input.value = "";
 		this.pointerEvents.state.isActive = true;
 		this.targetName.input.value = "";
@@ -3140,7 +3202,7 @@ export class EDialogAction extends DDialogLayered<
 								condition,
 								originX,
 								originY,
-								this.amount.input.value
+								this.rotationAngle.value
 							);
 					}
 					break;
@@ -3371,7 +3433,7 @@ export class EDialogAction extends DDialogLayered<
 				this.rotateType.value = value.opetype;
 				this.originX.value = value.originX;
 				this.originY.value = value.originY;
-				this.amount.input.value = value.amount;
+				this.rotationAngle.value = value.amount;
 			} else if (value instanceof EShapeActionValueChangeFillPercent) {
 				this.condition.input.value = value.condition;
 				this.contents.input.value = value.value;
